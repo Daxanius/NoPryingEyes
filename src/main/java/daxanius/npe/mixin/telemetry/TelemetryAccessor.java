@@ -10,4 +10,7 @@ public interface TelemetryAccessor {
     // already sent it's data
     @Accessor("sent")
     void setSent(boolean sent);
+
+    @Accessor
+    boolean getSent();
 }
