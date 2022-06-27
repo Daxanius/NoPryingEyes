@@ -10,6 +10,7 @@ public class NoPryingEyesConfig implements ConfigData {
     @Comment("Send telemetry data to Mojang")
     public boolean telemetry = false;
 
-    @Comment("Disable some UI elements if you are banned from Minecraft")
-    public boolean banned_gui = false;
+    // Temporarily disabled until mappings are available
+    // @Comment("Disable some UI elements if you are banned from Minecraft")
+    // public boolean banned_gui = false;
 }

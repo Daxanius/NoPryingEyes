@@ -8,7 +8,6 @@
   "client": [
     "telemetry.TelemetryMixin",
     "telemetry.TelemetryAccessor",
-    "bannedgui.TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
