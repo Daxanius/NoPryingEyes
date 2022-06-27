@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class TitleScreenMixin {
     @Inject(at = @At("HEAD"), method = "method_44692()Lnet/minecraft/Text;", cancellable = true)
     private void bannedCheck(CallbackInfoReturnable<Text> ci) {
-        if (!ConfigManager.getConfig().banned_gui) {
-            ci.setReturnValue(null);
-            ci.cancel();
-        }
+        // if (!ConfigManager.getConfig().banned_gui) {
+        //    ci.setReturnValue(null);
+        //    ci.cancel();
+        // }
     }
 }
