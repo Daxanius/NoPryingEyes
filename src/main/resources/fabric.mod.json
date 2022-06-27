@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "No Prying Eyes",
-  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data and attempts to free the game of Microsofts control.",
+  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data and attempts to free the game of Microsoft's control.",
   "authors": [
     "Daxanius"
   ],
@@ -19,7 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.npe.NoPryingEyes"
+      "daxanius.npe.NoPryingEyes"
+    ],
+    "modmenu": [
+      "daxanius.npe.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -29,7 +32,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "~1.19",
+    "minecraft": "~1.19.1-",
     "java": ">=17"
   },
   "suggests": {
