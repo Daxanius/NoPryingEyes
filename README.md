@@ -1,9 +1,2 @@
-# Fabric Example Mod
-
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+# No Prying Eyes
+NPE is a simple Minecraft mod that aims to give the user control over the collection of their data and attempts to free the game of Microsofts control.
