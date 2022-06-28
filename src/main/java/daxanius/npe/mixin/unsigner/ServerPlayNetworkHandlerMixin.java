@@ -2,7 +2,6 @@ package daxanius.npe.mixin.unsigner;
 
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
-import daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.network.message.*;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.MinecraftServer;
@@ -12,7 +11,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.npe.title": "No Prying Eyes",
+  "text.autoconfig.npe.option.telemetry": "Télémétrie",
+  "text.autoconfig.npe.option.reports": "Signaler",
+  "text.autoconfig.npe.option.telemetry.@Tooltip": "Envoyer des données de télémétrie à Microsoft",
+  "text.autoconfig.npe.option.reports.@Tooltip": "Côté serveur, permettre aux joueurs de se signaler mutuellement à Microsoft"
+}

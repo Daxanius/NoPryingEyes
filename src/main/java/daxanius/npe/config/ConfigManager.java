@@ -10,6 +10,7 @@ public class ConfigManager {
     private static ConfigHolder<NoPryingEyesConfig> holder;
     public static final Consumer<NoPryingEyesConfig> DEFAULT = (i) -> {
         i.telemetry = false;
+        // i.respect_ms_bans = false;
         i.reports = false;
     };
 
