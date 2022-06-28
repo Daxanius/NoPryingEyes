@@ -7,10 +7,13 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = NoPryingEyes.MODID)
 public class NoPryingEyesConfig implements ConfigData {
-    @Comment("Send telemetry data to Mojang")
+    @Comment("Send telemetry data to Microsoft")
     public boolean telemetry = false;
 
     // Temporarily disabled until mappings are available
     // @Comment("Disable some UI elements if you are banned from Minecraft")
     // public boolean banned_gui = false;
+
+    @Comment("Server side, enable players reporting each other to Microsoft")
+    public boolean reports = false;
 }
