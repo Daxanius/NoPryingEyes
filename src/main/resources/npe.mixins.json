@@ -7,7 +7,7 @@
   ],
   "client": [
     "telemetry.TelemetryMixin",
-    "telemetry.TelemetryAccessor",
+    "telemetry.TelemetryAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

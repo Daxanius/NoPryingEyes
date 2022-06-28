@@ -2,18 +2,11 @@ package daxanius.npe;
 
 import daxanius.npe.config.ConfigManager;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NoPryingEyes implements ModInitializer {
 	public static final String MODID = "npe";
-	public static int[] SEMVER;
-
-	public static Identifier identifier(String path) {
-		return new Identifier(MODID, path);
-	}
-
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
 	@Override
