@@ -1,38 +1,42 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "npe",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "No Prying Eyes",
+  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data and attempts to free the game of Microsoft's control.",
   "authors": [
-    "Me!"
+    "Daxanius"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Daxanius",
+    "sources": "https://github.com/Daxanius/NoPryingEyes"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/npe/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "daxanius.npe.NoPryingEyes"
+    ],
+    "modmenu": [
+      "daxanius.npe.config.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "npe.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "~1.19",
-    "java": ">=17"
+    "minecraft": "~1.19.1-",
+    "java": ">=17",
+    "cloth-config": ">=7.0.72"
   },
   "suggests": {
-    "another-mod": "*"
+    "modmenu": ">=4.0.1"
   }
 }

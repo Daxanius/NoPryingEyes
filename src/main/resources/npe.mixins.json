@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "daxanius.npe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "telemetry.TelemetryMixin",
+    "telemetry.TelemetryAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
