@@ -35,7 +35,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
      * @author FX - PR0CESS
      * @reason stop reporting
      */
-    @Inject(at = @At("head"), method = "handleMessage(Lnet/minecraft/network/packet/s2c/play/ChatMessageC2SPacket;Lnet/minecraft/server/filter/FilteredMessage;)V", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "handleMessage(Lnet/minecraft/network/packet/c2s/play/ChatMessageC2SPacket;Lnet/minecraft/server/filter/FilteredMessage;)V", cancellable = true)
     private void handleMessage(ChatMessageC2SPacket packet, FilteredMessage<String> message, CallbackInfo info) {
         NoPryingEyes.LOGGER.info("Player message received");
         if (!ConfigManager.getConfig().reports) {

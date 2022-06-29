@@ -3,6 +3,8 @@ package daxanius.npe.mixin.telemetry;
 import com.mojang.authlib.minecraft.UserApiService;
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.telemetry.TelemetrySender;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Optional;
 import java.util.UUID;
 
+@Environment(EnvType.CLIENT)
 @Mixin(TelemetrySender.class)
 public class TelemetryMixin {
 	// This does not prevent collecting telemetry data, but it prevents
