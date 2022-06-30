@@ -12,6 +12,7 @@ public class ConfigManager {
         i.telemetry = false;
         // i.respect_ms_bans = false;
         i.reports = false;
+        i.verbose = false;
     };
 
     public static void registerAutoConfig() {
