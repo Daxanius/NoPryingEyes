@@ -21,7 +21,7 @@ public class ConfigManager {
         }
 
         holder = AutoConfig.register(NoPryingEyesConfig.class, JanksonConfigSerializer::new);
-        if (!getConfig().telemetry) DEFAULT.accept(holder.getConfig());
+        if (!getConfig().telemetry && !getConfig().reports && !getConfig().verbose) DEFAULT.accept(holder.getConfig());
         holder.save();
     }
 
