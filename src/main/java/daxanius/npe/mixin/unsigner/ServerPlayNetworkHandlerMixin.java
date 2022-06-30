@@ -37,9 +37,9 @@ public abstract class ServerPlayNetworkHandlerMixin {
      */
     @Inject(at = @At("HEAD"), method = "handleMessage(Lnet/minecraft/network/packet/c2s/play/ChatMessageC2SPacket;Lnet/minecraft/server/filter/FilteredMessage;)V", cancellable = true)
     private void handleMessage(ChatMessageC2SPacket packet, FilteredMessage<String> message, CallbackInfo info) {
-        NoPryingEyes.LOGGER.info("Player message received");
+        NoPryingEyes.LogVerbose("Player message received");
         if (!ConfigManager.getConfig().reports) {
-            NoPryingEyes.LOGGER.info("Broadcasting received message to prevent reporting");
+            NoPryingEyes.LogVerbose("Broadcasting received message to prevent reporting");
             MessageDecorator messageDecorator = this.server.getMessageDecorator();
             messageDecorator.decorateChat(
                     this.player,
@@ -52,7 +52,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
             return;
         }
 
-        NoPryingEyes.LOGGER.info("Sending message normally, allowing for player reports");
+        NoPryingEyes.LogVerbose("Sending message normally, allowing for player reports");
     }
 
     private void broadcastUnsignedChatMessage(FilteredMessage<SignedMessage> filtered) {

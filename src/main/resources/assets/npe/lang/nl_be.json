@@ -1,7 +1,9 @@
 {
   "text.autoconfig.npe.title": "No Prying Eyes",
   "text.autoconfig.npe.option.telemetry": "Telemetrie",
-  "text.autoconfig.npe.option.reports": "Rapporteren",
   "text.autoconfig.npe.option.telemetry.@Tooltip": "Telemetriegegevens naar Microsoft verzenden",
-  "text.autoconfig.npe.option.reports.@Tooltip": "Serverkant, laat spelers elkaar rapporteren aan Microsoft"
+  "text.autoconfig.npe.option.reports": "Rapporteren",
+  "text.autoconfig.npe.option.reports.@Tooltip": "Serverkant, laat spelers elkaar rapporteren aan Microsoft",
+  "text.autoconfig.npe.option.verbose": "Woordenrijk",
+  "text.autoconfig.npe.option.verbose.@Tooltip": "Uitgebreide logregistratie, NPE is meestal stil"
 }

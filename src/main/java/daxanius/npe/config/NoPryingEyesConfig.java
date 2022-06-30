@@ -16,4 +16,7 @@ public class NoPryingEyesConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip()
     public boolean reports = false;
+
+    @ConfigEntry.Gui.Tooltip()
+    public boolean verbose = false;
 }

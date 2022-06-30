@@ -9,6 +9,14 @@ public class NoPryingEyes implements ModInitializer {
 	public static final String MODID = "npe";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
+	public static void LogVerbose(String s) {
+		if (!ConfigManager.getConfig().verbose) {
+			return;
+		}
+
+		LOGGER.info(s);
+	}
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.

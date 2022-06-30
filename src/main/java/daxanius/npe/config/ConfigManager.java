@@ -12,6 +12,7 @@ public class ConfigManager {
         i.telemetry = false;
         // i.respect_ms_bans = false;
         i.reports = false;
+        i.verbose = false;
     };
 
     public static void registerAutoConfig() {
@@ -20,7 +21,7 @@ public class ConfigManager {
         }
 
         holder = AutoConfig.register(NoPryingEyesConfig.class, JanksonConfigSerializer::new);
-        if (!getConfig().telemetry) DEFAULT.accept(holder.getConfig());
+        if (!getConfig().telemetry && !getConfig().reports && !getConfig().verbose) DEFAULT.accept(holder.getConfig());
         holder.save();
     }
 
