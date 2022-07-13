@@ -13,7 +13,7 @@
     "sources": "https://github.com/Daxanius/NoPryingEyes"
   },
 
-  "license": "CC0-1.0",
+  "license": "GNU GPLv3",
   "icon": "assets/npe/icon.png",
 
   "environment": "*",
