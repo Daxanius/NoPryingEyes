@@ -7,5 +7,5 @@
   "text.autoconfig.npe.option.verbose": "Verbose",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Verbose logging, NPE is usually silent",
   "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
-  "text.autoconfig.npe.option.profanity.@Tooltip": "Server side, enable the profanity filter"
+  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter"
 }

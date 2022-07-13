@@ -7,5 +7,5 @@
   "text.autoconfig.npe.option.verbose": "Verbeux",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Journalisation détaillée, NPE est généralement silencieux",
   "text.autoconfig.npe.option.profanity_filter": "Filtre d'Obscénités",
-  "text.autoconfig.npe.option.profanity.@Tooltip": "Côté serveur, activez le filtre grossier"
+  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Côté serveur, activez le filtre grossier"
 }
