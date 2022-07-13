@@ -6,7 +6,8 @@ NPE is a simple Minecraft mod that aims to give the user control over the collec
 - Minecraft version: 1.19.1-pre4
 - Mod version: 0.3.0
 - Mod loader: Fabric
-- Fabric version: 0.57.2+1.19.1
+- Fabric version: 0.14.8+
+- Fabric API: 0.57.2+1.19.1
 
 ## Features
 These are features that Mojang implemented under Microsoft that NPE simply disables and
