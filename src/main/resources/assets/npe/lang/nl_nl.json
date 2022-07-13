@@ -5,5 +5,7 @@
   "text.autoconfig.npe.option.reports": "Rapporteren",
   "text.autoconfig.npe.option.reports.@Tooltip": "Serverkant, laat spelers elkaar rapporteren aan Microsoft",
   "text.autoconfig.npe.option.verbose": "Woordenrijk",
-  "text.autoconfig.npe.option.verbose.@Tooltip": "Uitgebreide logregistratie, NPE is meestal stil"
+  "text.autoconfig.npe.option.verbose.@Tooltip": "Uitgebreide logregistratie, NPE is meestal stil",
+  "text.autoconfig.npe.option.profanity_filter": "Scheldwoorden Filter",
+  "text.autoconfig.npe.option.profanity.@Tooltip": "Serverkant, zet de scheldwoorden filter aan"
 }
