@@ -4,17 +4,8 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 
-import java.util.function.Consumer;
-
 public class ConfigManager {
     private static ConfigHolder<NoPryingEyesConfig> holder;
-    public static final Consumer<NoPryingEyesConfig> DEFAULT = (i) -> {
-        i.telemetry = false;
-        // i.respect_ms_bans = false;
-        i.reports = false;
-        i.profanity_filter = false;
-        i.verbose = false;
-    };
 
     public static void registerAutoConfig() {
         if (holder != null) {
@@ -22,8 +13,6 @@ public class ConfigManager {
         }
 
         holder = AutoConfig.register(NoPryingEyesConfig.class, JanksonConfigSerializer::new);
-        // TODO: Make this check simpler by adding a comparer to the config class
-        if (!getConfig().telemetry && !getConfig().reports && !getConfig().profanity_filter && !getConfig().verbose) DEFAULT.accept(holder.getConfig());
         holder.save();
     }
 
