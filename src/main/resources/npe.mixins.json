@@ -4,7 +4,8 @@
   "package": "daxanius.npe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "unsigner.ServerPlayNetworkHandlerMixin"
+    "unsigner.ServerPlayNetworkHandlerMixin",
+    "filter.TextFiltererMixin"
   ],
   "client": [
     "telemetry.TelemetryMixin",

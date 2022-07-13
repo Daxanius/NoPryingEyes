@@ -22,6 +22,7 @@ public class ConfigManager {
         }
 
         holder = AutoConfig.register(NoPryingEyesConfig.class, JanksonConfigSerializer::new);
+        // TODO: Make this check simpler by adding a comparer to the config class
         if (!getConfig().telemetry && !getConfig().reports && !getConfig().profanity_filter && !getConfig().verbose) DEFAULT.accept(holder.getConfig());
         holder.save();
     }
