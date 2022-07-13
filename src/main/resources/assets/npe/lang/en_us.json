@@ -1,7 +1,11 @@
 {
   "text.autoconfig.npe.title": "No Prying Eyes",
   "text.autoconfig.npe.option.telemetry": "Telemetry",
-  "text.autoconfig.npe.option.reports": "Reports",
   "text.autoconfig.npe.option.telemetry.@Tooltip": "Send telemetry data to Microsoft",
-  "text.autoconfig.npe.option.reports.@Tooltip": "Server side, enable players reporting each other to Microsoft"
+  "text.autoconfig.npe.option.reports": "Reports",
+  "text.autoconfig.npe.option.reports.@Tooltip": "Server side, enable players reporting each other to Microsoft",
+  "text.autoconfig.npe.option.verbose": "Verbose",
+  "text.autoconfig.npe.option.verbose.@Tooltip": "Verbose logging, NPE is usually silent",
+  "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
+  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter"
 }

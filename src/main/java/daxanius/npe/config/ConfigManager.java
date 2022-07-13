@@ -4,15 +4,8 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 
-import java.util.function.Consumer;
-
 public class ConfigManager {
     private static ConfigHolder<NoPryingEyesConfig> holder;
-    public static final Consumer<NoPryingEyesConfig> DEFAULT = (i) -> {
-        i.telemetry = false;
-        // i.respect_ms_bans = false;
-        i.reports = false;
-    };
 
     public static void registerAutoConfig() {
         if (holder != null) {
@@ -20,7 +13,6 @@ public class ConfigManager {
         }
 
         holder = AutoConfig.register(NoPryingEyesConfig.class, JanksonConfigSerializer::new);
-        if (!getConfig().telemetry) DEFAULT.accept(holder.getConfig());
         holder.save();
     }
 
