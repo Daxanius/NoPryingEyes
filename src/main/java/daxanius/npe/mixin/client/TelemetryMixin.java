@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.telemetry;
+package daxanius.npe.mixin.client;
 
 import com.mojang.authlib.minecraft.UserApiService;
 import daxanius.npe.NoPryingEyes;

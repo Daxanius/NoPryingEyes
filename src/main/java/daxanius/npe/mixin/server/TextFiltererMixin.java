@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.filter;
+package daxanius.npe.mixin.server;
 
 import com.mojang.authlib.GameProfile;
 import daxanius.npe.NoPryingEyes;
@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.concurrent.Executor;
 
+// Disables message filtering by passing all messages as permitted
 @Mixin(TextFilterer.class)
 public class TextFiltererMixin {
     @Inject(at = @At("HEAD"), method = "filterMessage(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/filter/TextFilterer$HashIgnorer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;", cancellable = true)

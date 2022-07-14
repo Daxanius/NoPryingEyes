@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.telemetry;
+package daxanius.npe.mixin.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.msban;
+package daxanius.npe.mixin.client;
 
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// Bypasses Minecraft Clienside ban restrictions by falsifying the fetched ban data
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {

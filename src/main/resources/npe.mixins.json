@@ -4,13 +4,13 @@
   "package": "daxanius.npe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "unsigner.ServerPlayNetworkHandlerMixin",
-    "filter.TextFiltererMixin"
+    "server.ServerPlayNetworkHandlerMixin",
+    "server.TextFiltererMixin"
   ],
   "client": [
-    "telemetry.TelemetryMixin",
-    "telemetry.TelemetryAccessor",
-    "msban.MinecraftClientMixin"
+    "client.TelemetryAccessor",
+    "client.TelemetryMixin",
+    "client.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

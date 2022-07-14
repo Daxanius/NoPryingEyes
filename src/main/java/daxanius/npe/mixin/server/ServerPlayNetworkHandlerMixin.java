@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.unsigner;
+package daxanius.npe.mixin.server;
 
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
