@@ -7,5 +7,7 @@
   "text.autoconfig.npe.option.verbose": "Verbose",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Verbose logging, NPE is usually silent",
   "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
-  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter"
+  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter",
+  "text.autoconfig.npe.option.respect_ms_bans": "Respect MS Bans",
+  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respect Microsoft bans, if you are banned, you can only join servers with this setting disabled"
 }

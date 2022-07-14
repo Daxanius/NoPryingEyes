@@ -10,9 +10,8 @@ public class NoPryingEyesConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip()
     public boolean telemetry = false;
 
-    // @Comment("Respect Microsoft account bans")
-    // @ConfigEntry.Gui.Tooltip()
-    // public boolean respect_ms_bans = false;
+    @ConfigEntry.Gui.Tooltip()
+    public boolean respect_ms_bans = false;
 
     @ConfigEntry.Gui.Tooltip()
     public boolean reports = false;

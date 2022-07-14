@@ -9,7 +9,8 @@
   ],
   "client": [
     "telemetry.TelemetryMixin",
-    "telemetry.TelemetryAccessor"
+    "telemetry.TelemetryAccessor",
+    "msban.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

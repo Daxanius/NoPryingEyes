@@ -7,5 +7,7 @@
   "text.autoconfig.npe.option.verbose": "Woordenrijk",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Uitgebreide logregistratie, NPE is meestal stil",
   "text.autoconfig.npe.option.profanity_filter": "Scheldwoorden Filter",
-  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Serverkant, zet de scheldwoorden filter aan"
+  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Serverkant, zet de scheldwoorden filter aan",
+  "text.autoconfig.npe.option.respect_ms_bans": "Respecteer MS Bans",
+  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respecteer Microsoft bans, als je gebanned bent, kun je alleen servers joinen die deze instelling uit hebben staan"
 }
