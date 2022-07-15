@@ -8,7 +8,6 @@
     "server.TextFiltererMixin"
   ],
   "client": [
-    "client.TelemetryAccessor",
     "client.TelemetryMixin",
     "client.MinecraftClientMixin"
   ],
