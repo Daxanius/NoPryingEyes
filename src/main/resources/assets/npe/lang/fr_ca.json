@@ -9,5 +9,7 @@
   "text.autoconfig.npe.option.profanity_filter": "Filtre d'Obscénités",
   "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Côté serveur, activez le filtre grossier",
   "text.autoconfig.npe.option.respect_ms_bans": "Respectez les interdictions de MS",
-  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respectez les interdictions de Microsoft, si vous êtes banni, vous ne pouvez rejoindre que les serveurs dont ce paramètre est désactivé"
+  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respectez les interdictions de Microsoft, si vous êtes banni, vous ne pouvez rejoindre que les serveurs dont ce paramètre est désactivé",
+  "text.autoconfig.npe.option.fake_ban": "Fausse Interdiction",
+  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Faites croire au jeu que vous êtes banni, car pourquoi pas"
 }

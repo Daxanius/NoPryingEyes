@@ -9,5 +9,7 @@
   "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
   "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter",
   "text.autoconfig.npe.option.respect_ms_bans": "Respect MS Bans",
-  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respect Microsoft bans, if you are banned, you can only join servers with this setting disabled"
+  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respect Microsoft bans, if you are banned, you can only join servers with this setting disabled",
+  "text.autoconfig.npe.option.fake_ban": "Fake Ban",
+  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Make the game think you're banned, because why not"
 }

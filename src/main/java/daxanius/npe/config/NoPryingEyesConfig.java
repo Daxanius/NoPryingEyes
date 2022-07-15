@@ -20,5 +20,8 @@ public class NoPryingEyesConfig implements ConfigData {
     public boolean profanity_filter = false;
 
     @ConfigEntry.Gui.Tooltip()
+    public boolean fake_ban = false;
+
+    @ConfigEntry.Gui.Tooltip()
     public boolean verbose = false;
 }
