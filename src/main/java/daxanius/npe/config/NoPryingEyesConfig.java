@@ -16,6 +16,11 @@ public class NoPryingEyesConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip()
     public boolean reports = false;
 
+    // This setting is enabled by default since it can diminish
+    // vanilla compatibility with servers and clients
+    @ConfigEntry.Gui.Tooltip()
+    public boolean message_signing = true;
+
     @ConfigEntry.Gui.Tooltip()
     public boolean profanity_filter = false;
 

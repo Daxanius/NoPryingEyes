@@ -3,9 +3,7 @@ package daxanius.npe.mixin.server;
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
 import net.minecraft.network.message.*;
-import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.filter.FilteredMessage;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -35,15 +33,15 @@ public abstract class ServerPlayNetworkHandlerMixin {
      * @author FX - PR0CESS
      * @reason stop reporting
      */
-    @Inject(at = @At("HEAD"), method = "handleMessage(Lnet/minecraft/network/packet/c2s/play/ChatMessageC2SPacket;Lnet/minecraft/server/filter/FilteredMessage;)V", cancellable = true)
-    private void handleMessage(ChatMessageC2SPacket packet, FilteredMessage<String> message, CallbackInfo info) {
+    @Inject(at = @At("HEAD"), method = "handleDecoratedMessage(Lnet/minecraft/network/message/SignedMessage;)V", cancellable = true)
+    private void handleDecoratedMessage(SignedMessage message, CallbackInfo info) {
         NoPryingEyes.LogVerbose("Player message received");
         if (!ConfigManager.getConfig().reports) {
             NoPryingEyes.LogVerbose("Broadcasting received message to prevent reporting");
             MessageDecorator messageDecorator = this.server.getMessageDecorator();
-            messageDecorator.decorateFiltered(
+            messageDecorator.decorate(
                     this.player,
-                    message.map(Text::literal)
+                    message.getContent()
             ).thenAcceptAsync(this::broadcastUnsignedChatMessage, this.server);
             info.cancel();
             return;
@@ -52,12 +50,12 @@ public abstract class ServerPlayNetworkHandlerMixin {
         NoPryingEyes.LogVerbose("Sending message normally, allowing for player reports");
     }
 
-    private void broadcastUnsignedChatMessage(FilteredMessage<Text> filtered) {
+    private void broadcastUnsignedChatMessage(Text messageContent) {
         Text message = Text.empty()
                 .append("<")
                 .append(this.player.getDisplayName())
                 .append("> ")
-                .append(filtered.raw());
+                .append(messageContent);
 
         // Log the modified message to the console
         NoPryingEyes.LOGGER.info("[UNSIGNED CHAT] {}", message.getString());

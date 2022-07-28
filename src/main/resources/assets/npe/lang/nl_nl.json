@@ -11,5 +11,7 @@
   "text.autoconfig.npe.option.respect_ms_bans": "Respecteer MS Bans",
   "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respecteer Microsoft bans, als je gebanned bent, kun je alleen servers joinen die deze instelling uit hebben staan",
   "text.autoconfig.npe.option.fake_ban": "Valse Ban",
-  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Laat de game denken dat je verbannen bent, want waarom niet"
+  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Laat de game denken dat je verbannen bent, want waarom niet",
+  "text.autoconfig.npe.option.message_signing": "Berichten Ondertekenen",
+  "text.autoconfig.npe.option.message_signing.@Tooltip": "Moet het spel ondertekende berichten verzenden/vereisen? Opmerking: als u deze instelling uitschakelt, kan de compatibiliteit met sommige servers worden uitgeschakeld"
 }

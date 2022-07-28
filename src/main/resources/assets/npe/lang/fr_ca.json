@@ -11,5 +11,7 @@
   "text.autoconfig.npe.option.respect_ms_bans": "Respectez les interdictions de MS",
   "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respectez les interdictions de Microsoft, si vous êtes banni, vous ne pouvez rejoindre que les serveurs dont ce paramètre est désactivé",
   "text.autoconfig.npe.option.fake_ban": "Fausse Interdiction",
-  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Faites croire au jeu que vous êtes banni, car pourquoi pas"
+  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Faites croire au jeu que vous êtes banni, car pourquoi pas",
+  "text.autoconfig.npe.option.message_signing": "Signature Des Messages",
+  "text.autoconfig.npe.option.message_signing.@Tooltip": "Le jeu doit-il envoyer/exiger des messages signés? Remarque: la désactivation de ce paramètre peut désactiver la compatibilité avec certains serveurs"
 }
