@@ -22,8 +22,7 @@ public class TextFiltererMixin {
         if (!ConfigManager.getConfig().profanity_filter) {
             NoPryingEyes.LogVerbose("Passing message as permitted");
 
-            // I have no idea if this is the correct message, the implementation has been obfuscated
-            info.setReturnValue(FilteredMessage.method_45060(message));
+            info.setReturnValue(FilteredMessage.permitted(message));
             info.cancel();
             return;
         }
