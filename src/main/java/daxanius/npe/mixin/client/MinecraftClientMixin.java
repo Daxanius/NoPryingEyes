@@ -19,7 +19,7 @@ import java.util.UUID;
 public class MinecraftClientMixin {
     // That's right, we grab it at it's root :-)
     @Inject(at = @At("HEAD"), method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", cancellable = true)
-    private void getMultiplayerBanDetails(CallbackInfoReturnable info) {
+    private void getMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> info) {
         NoPryingEyes.LogVerbose("Client is fetching ban details");
 
         // This mixin prioritizes a fake ban over the respect ms bans option, so if you enable
@@ -31,11 +31,10 @@ public class MinecraftClientMixin {
             return;
         }
 
-        if (!ConfigManager.getConfig().respect_ms_bans) {
+        if (ConfigManager.getConfig().disable_global_bans) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(null);
             info.cancel();
-            return;
         }
     }
 }

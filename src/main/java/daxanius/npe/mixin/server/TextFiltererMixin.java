@@ -16,10 +16,10 @@ import java.util.concurrent.Executor;
 @Mixin(TextFilterer.class)
 public class TextFiltererMixin {
     @Inject(at = @At("HEAD"), method = "filterMessage(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/filter/TextFilterer$HashIgnorer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;", cancellable = true)
-    private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable info) {
+    private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable<FilteredMessage> info) {
         NoPryingEyes.LogVerbose("Message queued to be checked for profanity");
 
-        if (!ConfigManager.getConfig().profanity_filter) {
+        if (ConfigManager.getConfig().disable_profanity_filter) {
             NoPryingEyes.LogVerbose("Passing message as permitted");
 
             info.setReturnValue(FilteredMessage.permitted(message));

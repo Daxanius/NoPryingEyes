@@ -1,17 +1,15 @@
 {
   "text.autoconfig.npe.title": "No Prying Eyes",
-  "text.autoconfig.npe.option.telemetry": "Telemetry",
-  "text.autoconfig.npe.option.telemetry.@Tooltip": "Send telemetry data to Microsoft",
-  "text.autoconfig.npe.option.reports": "Reports",
-  "text.autoconfig.npe.option.reports.@Tooltip": "Server side, enable players reporting each other to Microsoft",
+  "text.autoconfig.npe.option.disable_telemetry": "Disable Telemetry",
+  "text.autoconfig.npe.option.disable_telemetry.@Tooltip": "Disable sending telemetry data to Mojang",
   "text.autoconfig.npe.option.verbose": "Verbose",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Verbose logging, NPE is usually silent",
-  "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
-  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter",
-  "text.autoconfig.npe.option.respect_ms_bans": "Respect MS Bans",
-  "text.autoconfig.npe.option.respect_ms_bans.@Tooltip": "Respect Microsoft bans, if you are banned, you can only join servers with this setting disabled",
+  "text.autoconfig.npe.option.disable_profanity_filter": "Disable Profanity Filter",
+  "text.autoconfig.npe.option.disable_profanity_filter.@Tooltip": "Disable the profanity filter",
+  "text.autoconfig.npe.option.disable_global_bans": "Disable Global Bans",
+  "text.autoconfig.npe.option.disable_global_bans.@Tooltip": "Disable global game bans",
   "text.autoconfig.npe.option.fake_ban": "Fake Ban",
   "text.autoconfig.npe.option.fake_ban.@Tooltip": "Make the game think you're banned, because why not",
-  "text.autoconfig.npe.option.message_signing": "Message Signing",
-  "text.autoconfig.npe.option.message_signing.@Tooltip": "Should the game send/require signed messages? Note: disabling this setting can disable compatibility with some servers"
+  "text.autoconfig.npe.option.disable_message_signing": "Disable Message Signing",
+  "text.autoconfig.npe.option.disable_message_signing.@Tooltip": "Disable message signing"
 }

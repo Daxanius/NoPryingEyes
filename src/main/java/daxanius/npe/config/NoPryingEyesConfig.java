@@ -8,21 +8,16 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 @Config(name = NoPryingEyes.MODID)
 public class NoPryingEyesConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip()
-    public boolean telemetry = false;
+    public boolean disable_telemetry = true;
 
     @ConfigEntry.Gui.Tooltip()
-    public boolean respect_ms_bans = false;
+    public boolean disable_global_bans = true;
 
     @ConfigEntry.Gui.Tooltip()
-    public boolean reports = false;
-
-    // This setting is enabled by default since it can diminish
-    // vanilla compatibility with servers and clients
-    @ConfigEntry.Gui.Tooltip()
-    public boolean message_signing = true;
+    public boolean disable_message_signing = true;
 
     @ConfigEntry.Gui.Tooltip()
-    public boolean profanity_filter = false;
+    public boolean disable_profanity_filter = true;
 
     @ConfigEntry.Gui.Tooltip()
     public boolean fake_ban = false;

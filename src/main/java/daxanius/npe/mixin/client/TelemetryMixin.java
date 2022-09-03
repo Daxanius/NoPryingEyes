@@ -27,7 +27,7 @@ public class TelemetryMixin {
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/client/MinecraftClient;Lcom/mojang/authlib/minecraft/UserApiService;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/UUID;)V")
 	private void init(MinecraftClient client, UserApiService userApiService, Optional<String> userId, Optional<String> clientId, UUID deviceSessionId, CallbackInfo info) {
 		NoPryingEyes.LogVerbose("Minecraft is collecting telemetry data");
-		sent = !ConfigManager.getConfig().telemetry;
+		sent = ConfigManager.getConfig().disable_telemetry;
 
 		// Just to make sure nothing went wrong here
 		NoPryingEyes.LogVerbose("Blocked telemetry data: " + sent);
