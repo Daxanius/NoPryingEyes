@@ -27,14 +27,12 @@ public class MinecraftClientMixin {
         if (ConfigManager.getConfig().fake_ban) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(new BanDetails(new UUID(0, 0), null, "Fake Ban", "You have enabled the Fake Ban option"));
-            info.cancel();
             return;
         }
 
         if (ConfigManager.getConfig().disable_global_bans) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(null);
-            info.cancel();
         }
     }
 }

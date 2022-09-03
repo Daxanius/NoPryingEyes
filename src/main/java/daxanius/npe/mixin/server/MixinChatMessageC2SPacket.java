@@ -19,7 +19,6 @@ public class MixinChatMessageC2SPacket {
         if (ConfigManager.getConfig().disable_message_signing) {
             NoPryingEyes.LogVerbose("Stripping message signature");
             info.setReturnValue(MessageSignatureData.EMPTY);
-            info.cancel();
         }
     }
 }

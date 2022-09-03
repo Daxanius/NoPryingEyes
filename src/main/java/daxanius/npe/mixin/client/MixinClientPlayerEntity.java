@@ -3,6 +3,8 @@ package daxanius.npe.mixin.client;
 import com.mojang.brigadier.ParseResults;
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.network.message.*;
@@ -13,15 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@Environment(EnvType.CLIENT)
 @Mixin(ClientPlayerEntity.class)
-public class MixinLocalPlayer {
+public class MixinClientPlayerEntity {
     // Sign messages empty before sending them
     @Inject(method = "signChatMessage(Lnet/minecraft/network/message/MessageMetadata;Lnet/minecraft/network/message/DecoratedContents;Lnet/minecraft/network/message/LastSeenMessageList;)Lnet/minecraft/network/message/MessageSignatureData;", at = @At("HEAD"), cancellable = true)
     private void signChatMessage(MessageMetadata metadata, DecoratedContents content, LastSeenMessageList lastSeenMessages, CallbackInfoReturnable<MessageSignatureData> info) {
         if (ConfigManager.getConfig().disable_message_signing) {
             NoPryingEyes.LogVerbose("Signing message with empty signature");
             info.setReturnValue(MessageSignatureData.EMPTY);
-            info.cancel();
             return;
         }
 
@@ -34,7 +36,6 @@ public class MixinLocalPlayer {
         if (ConfigManager.getConfig().disable_message_signing) {
             NoPryingEyes.LogVerbose("Signing command args with empty signature");
             info.setReturnValue(ArgumentSignatureDataMap.EMPTY);
-            info.cancel();
             return;
         }
 

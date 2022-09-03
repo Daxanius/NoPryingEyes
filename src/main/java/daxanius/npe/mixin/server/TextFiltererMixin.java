@@ -23,7 +23,6 @@ public class TextFiltererMixin {
             NoPryingEyes.LogVerbose("Passing message as permitted");
 
             info.setReturnValue(FilteredMessage.permitted(message));
-            info.cancel();
             return;
         }
 

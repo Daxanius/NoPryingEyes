@@ -16,7 +16,6 @@ public class MixinPlayerEntity {
     private void onGetProfileKey(CallbackInfoReturnable<PlayerPublicKey> info) {
         if (ConfigManager.getConfig().disable_message_signing) {
             info.setReturnValue(null);
-            info.cancel();
         }
     }
 }
