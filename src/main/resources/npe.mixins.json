@@ -4,18 +4,18 @@
   "package": "daxanius.npe.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "server.MixinChatMessageC2SPacket",
-    "server.MixinPlayerEntity",
+    "server.ChatMessageC2SPacketMixin",
+    "server.PlayerEntityMixin",
     "server.ServerPlayNetworkHandlerMixin",
     "server.TextFiltererMixin",
-    "server.MixinServerMetadata"
+    "server.ServerMetadataMixin"
   ],
   "client": [
     "client.MinecraftClientMixin",
-    "client.MixinClientPlayerEntity",
+    "client.ClientPlayerEntityMixin",
     "client.TelemetryMixin",
     "client.ConnectScreenMixin"
-  ],
+  ]
   "injectors": {
     "defaultRequire": 1
   }

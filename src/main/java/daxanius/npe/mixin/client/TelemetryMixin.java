@@ -19,7 +19,8 @@ import java.util.UUID;
 @Environment(EnvType.CLIENT)
 @Mixin(TelemetrySender.class)
 public class TelemetryMixin {
-	@Shadow private boolean sent;
+	@Shadow
+	private boolean sent;
 
 	// This does not prevent collecting telemetry data, but it prevents
 	// sending the collected telemetry data by telling

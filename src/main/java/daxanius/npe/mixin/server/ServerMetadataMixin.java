@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerMetadata.class)
-public class MixinServerMetadata {
+public class ServerMetadataMixin {
     // Allows clients who don't sign their messages to join
     @Inject(method = "isSecureChatEnforced()Z", at = @At("HEAD"), cancellable = true)
     public void isSecureChatEnforced(CallbackInfoReturnable<Boolean> info) {

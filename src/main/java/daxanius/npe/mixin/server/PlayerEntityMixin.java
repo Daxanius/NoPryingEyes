@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
-public class MixinPlayerEntity {
+public class PlayerEntityMixin {
     // Makes sure that the public key is not sent to other clients
     @Inject(method = "getPublicKey()Lnet/minecraft/network/encryption/PlayerPublicKey;", at = @At("HEAD"), cancellable = true)
     private void onGetProfileKey(CallbackInfoReturnable<PlayerPublicKey> info) {

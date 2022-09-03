@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChatMessageC2SPacket.class)
-public class MixinChatMessageC2SPacket {
+public class ChatMessageC2SPacketMixin {
     // Remove signature of received message
     @Inject(method = "signature", at = @At("HEAD"), cancellable = true)
     private void signature(CallbackInfoReturnable<MessageSignatureData> info) {
