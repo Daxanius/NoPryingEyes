@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "daxanius.npe.mixin",
+  "package": "daxanius.npe.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "server.ChatMessageC2SPacketMixin",
