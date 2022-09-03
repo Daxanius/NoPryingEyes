@@ -11,7 +11,8 @@
   ],
   "client": [
     "client.TelemetryMixin",
-    "client.MinecraftClientMixin"
+    "client.MinecraftClientMixin",
+    "client.MixinLocalPlayer"
   ],
   "injectors": {
     "defaultRequire": 1
