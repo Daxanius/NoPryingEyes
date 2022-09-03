@@ -26,7 +26,7 @@ public class ConnectScreenMixin {
         NoPryingEyes.LogVerbose("Checking server info");
 
         if (info == null) {
-            NoPryingEyes.LogVerbose("Could not determine server info");
+            NoPryingEyes.LOGGER.error("Could not determine server info");
             callbackInfo.cancel();
             return;
         }
