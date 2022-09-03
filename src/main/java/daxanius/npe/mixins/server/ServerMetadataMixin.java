@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.server;
+package daxanius.npe.mixins.server;
 
 import daxanius.npe.config.ConfigManager;
 import net.minecraft.server.ServerMetadata;

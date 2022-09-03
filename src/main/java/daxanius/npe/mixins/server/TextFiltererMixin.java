@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.server;
+package daxanius.npe.mixins.server;
 
 import com.mojang.authlib.GameProfile;
 import daxanius.npe.NoPryingEyes;

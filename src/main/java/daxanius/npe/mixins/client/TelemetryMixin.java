@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.client;
+package daxanius.npe.mixins.client;
 
 import com.mojang.authlib.minecraft.UserApiService;
 import daxanius.npe.NoPryingEyes;

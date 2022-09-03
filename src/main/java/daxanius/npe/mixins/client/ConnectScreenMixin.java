@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.client;
+package daxanius.npe.mixins.client;
 
 import daxanius.npe.NoPryingEyes;
 import daxanius.npe.config.ConfigManager;
