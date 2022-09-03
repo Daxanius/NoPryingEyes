@@ -15,7 +15,7 @@
     "client.ClientPlayerEntityMixin",
     "client.TelemetryMixin",
     "client.ConnectScreenMixin"
-  ]
+  ],
   "injectors": {
     "defaultRequire": 1
   }
