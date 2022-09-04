@@ -14,7 +14,8 @@
     "client.MinecraftClientMixin",
     "client.ClientPlayerEntityMixin",
     "client.TelemetryMixin",
-    "client.ConnectScreenMixin"
+    "client.ConnectScreenMixin",
+    "client.ProfileKeysMixin"
   ],
   "injectors": {
     "defaultRequire": 1
