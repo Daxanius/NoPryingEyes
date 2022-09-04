@@ -23,7 +23,6 @@ public class MinecraftClientMixin {
      * @author Daxanius
      */
 
-    // That's right, we grab it at it's root :-)
     @Inject(at = @At("HEAD"), method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", cancellable = true)
     private void getMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> info) {
         NoPryingEyes.LogVerbose("Client is fetching ban details");

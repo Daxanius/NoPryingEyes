@@ -15,6 +15,13 @@ import java.util.concurrent.Executor;
 // Disables message filtering by passing all messages as permitted
 @Mixin(TextFilterer.class)
 public class TextFiltererMixin {
+
+    /**
+     * @reason Makes the MessageFilterer class pass everything as filtered
+     * so that profanity is allowed
+     * @author Daxanius
+     */
+
     @Inject(at = @At("HEAD"), method = "filterMessage(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/filter/TextFilterer$HashIgnorer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;", cancellable = true)
     private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable<FilteredMessage> info) {
         NoPryingEyes.LogVerbose("Message queued to be checked for profanity");

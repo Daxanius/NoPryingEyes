@@ -18,6 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(ClientPlayerEntity.class)
 public class ClientPlayerEntityMixin {
+
+    /**
+     * @reason Signs a message empty before sending it to the server,
+     * that way the server won't receive the player's key
+     * @author Daxanius
+     */
+
     // Sign messages empty before sending them
     @Inject(method = "signChatMessage(Lnet/minecraft/network/message/MessageMetadata;Lnet/minecraft/network/message/DecoratedContents;Lnet/minecraft/network/message/LastSeenMessageList;)Lnet/minecraft/network/message/MessageSignatureData;", at = @At("HEAD"), cancellable = true)
     private void signChatMessage(MessageMetadata metadata, DecoratedContents content, LastSeenMessageList lastSeenMessages, CallbackInfoReturnable<MessageSignatureData> info) {
@@ -29,6 +36,12 @@ public class ClientPlayerEntityMixin {
 
         NoPryingEyes.LogVerbose("Client is signing message");
     }
+
+    /**
+     * @reason Commands are also signed by default, this
+     * is also disabled here
+     * @author Daxanius
+     */
 
     // Sign commands empty before sending them
     @Inject(method = "signArguments(Lnet/minecraft/network/message/MessageMetadata;Lcom/mojang/brigadier/ParseResults;Lnet/minecraft/text/Text;Lnet/minecraft/network/message/LastSeenMessageList;)Lnet/minecraft/network/message/ArgumentSignatureDataMap;", at = @At("HEAD"), cancellable = true)

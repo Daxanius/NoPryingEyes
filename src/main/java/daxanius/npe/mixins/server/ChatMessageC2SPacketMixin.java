@@ -11,7 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChatMessageC2SPacket.class)
 public class ChatMessageC2SPacketMixin {
-    // Remove signature of received message
+
+    /**
+     * @reason Strips incoming messages of their signature so that it
+     * won't accidentally land in the wrong hands
+     * @author Daxanius
+     */
+
     @Inject(method = "signature", at = @At("HEAD"), cancellable = true)
     private void signature(CallbackInfoReturnable<MessageSignatureData> info) {
         NoPryingEyes.LogVerbose("Received message packet");

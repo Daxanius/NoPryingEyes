@@ -30,9 +30,11 @@ public abstract class ServerPlayNetworkHandlerMixin {
     protected abstract void checkForSpam();
 
     /**
+     * @reason Stops clients from being able to report
+     * received messages by sending them as system messages
      * @author FX - PR0CESS
-     * @reason stop reporting
      */
+
     @Inject(at = @At("HEAD"), method = "handleDecoratedMessage(Lnet/minecraft/network/message/SignedMessage;)V", cancellable = true)
     private void handleDecoratedMessage(SignedMessage message, CallbackInfo info) {
         NoPryingEyes.LogVerbose("Player message received");

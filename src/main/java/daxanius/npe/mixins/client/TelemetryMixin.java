@@ -22,9 +22,12 @@ public class TelemetryMixin {
 	@Shadow
 	private boolean sent;
 
-	// This does not prevent collecting telemetry data, but it prevents
-	// sending the collected telemetry data by telling
-	// it that it has already sent the data
+	/**
+	 * @reason Make the game think it has already sent its
+	 * telemetry data, since a neat boolean has already been created for us
+	 * @author Daxanius
+	 */
+
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/client/MinecraftClient;Lcom/mojang/authlib/minecraft/UserApiService;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/UUID;)V")
 	private void init(MinecraftClient client, UserApiService userApiService, Optional<String> userId, Optional<String> clientId, UUID deviceSessionId, CallbackInfo info) {
 		NoPryingEyes.LogVerbose("Minecraft is collecting telemetry data");
