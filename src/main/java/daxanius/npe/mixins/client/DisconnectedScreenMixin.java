@@ -30,16 +30,16 @@ public class DisconnectedScreenMixin {
 
     @Inject(method = "init()V", at = @At("HEAD"), cancellable = true)
     protected void init(CallbackInfo info) {
-        if (ConfigManager.getConfig().disable_message_signing) {
-            // Yep, this is how we check it
-            String reason = this.reason.toString();
-            NoPryingEyes.LogVerbose("Disconnect info: " + reason);
+        String reason = this.reason.toString();
+        NoPryingEyes.LogVerbose("Disconnect info: " + reason);
 
-            if (reason.contains("multiplayer.disconnect.missing_public_key") ||
-                    reason.contains("multiplayer.disconnect.unsigned_chat")) {
-                MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_signing")));
-                info.cancel();
-            }
+        // Yep, this is how we check it
+        if (ConfigManager.getConfig().disable_message_signing && (
+                reason.contains("multiplayer.disconnect.missing_public_key") ||
+                reason.contains("multiplayer.disconnect.unsigned_chat")
+        )) {
+            MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_signing")));
+            info.cancel();
         }
     }
 }
