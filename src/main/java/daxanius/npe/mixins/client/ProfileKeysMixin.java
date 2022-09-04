@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.util.ProfileKeys;
 import net.minecraft.network.encryption.PlayerKeyPair;
 import net.minecraft.network.encryption.PlayerPublicKey;
+import net.minecraft.network.encryption.Signer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -88,5 +89,23 @@ public class ProfileKeysMixin {
         }
 
         NoPryingEyes.LogVerbose("Fetching key pair");
+    }
+
+    /**
+     * @reason Prevent the client from creating a signature elsewhere
+     * @author Daxanius
+     */
+
+    @Inject(method = "getSigner()Lnet/minecraft/network/encryption/Signer;", at = @At("HEAD"), cancellable = true)
+    public void getSigner(CallbackInfoReturnable<Signer> info) {
+        NoPryingEyes.LogVerbose("Client requested signer");
+
+        if (ConfigManager.getConfig().disable_message_signing) {
+            NoPryingEyes.LogVerbose("Returning null");
+            info.setReturnValue(null);
+            return;
+        }
+
+        NoPryingEyes.LogVerbose("Providing signer");
     }
 }
