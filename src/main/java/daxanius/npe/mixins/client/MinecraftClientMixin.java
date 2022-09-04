@@ -13,10 +13,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
-// Bypasses Minecraft Clienside ban restrictions by falsifying the fetched ban data
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
+
+    /**
+     * @reason prevents the client from fetching valid ban details,
+     * providing full clientside control, despite the player being banned.
+     * @author Daxanius
+     */
+
     // That's right, we grab it at it's root :-)
     @Inject(at = @At("HEAD"), method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", cancellable = true)
     private void getMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> info) {
