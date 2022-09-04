@@ -38,7 +38,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
     @Inject(at = @At("HEAD"), method = "handleDecoratedMessage(Lnet/minecraft/network/message/SignedMessage;)V", cancellable = true)
     private void handleDecoratedMessage(SignedMessage message, CallbackInfo info) {
         NoPryingEyes.LogVerbose("Player message received");
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noSign()) {
             NoPryingEyes.LogVerbose("Broadcasting received message to prevent reporting");
             MessageDecorator messageDecorator = this.server.getMessageDecorator();
             messageDecorator.decorate(

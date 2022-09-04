@@ -11,7 +11,8 @@
   "text.autoconfig.npe.option.disable_global_bans.@Tooltip": "Disable global game bans",
   "text.autoconfig.npe.option.fake_ban": "Fake Ban",
   "text.autoconfig.npe.option.fake_ban.@Tooltip": "Make the game think you're banned, because why not",
-  "text.autoconfig.npe.option.disable_message_signing": "Disable Message Signing",
-  "text.autoconfig.npe.option.disable_message_signing.@Tooltip": "Disable message signing",
-  "npe.warning.server_signing": "Uh, oh. It looks like this server does not accept unsigned messages. To join this server, simply enable message signing in the settings. Don't forget to disable it again later though!"
+  "text.autoconfig.npe.option.signing_mode": "Signing Mode",
+  "text.autoconfig.npe.option.signing_mode.@Tooltip": "Set the signing mode for messages & keypairs",
+  "npe.warning.server_signing": "Uh, oh. It looks like this server does not accept unsigned messages. To chat in this server, simply set the signing mode to \"SIGN\" in the settings. Don't forget to change it back later though!",
+  "npe.warning.server_key": "Hmm, it looks like this server enforces secure profiles. They won't let us in without a key! To join this server, simply set the signing mode to anything but \"NO_KEY\" in the settings. Don't forget to change it back later though!"
 }

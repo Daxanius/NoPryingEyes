@@ -28,7 +28,7 @@ public class ProfileKeysMixin {
     public void getPublicKey(CallbackInfoReturnable<Optional<PlayerPublicKey>> info) {
         NoPryingEyes.LogVerbose("Client is fetching profile public key");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key");
             info.setReturnValue(Optional.empty());
             return;
@@ -46,7 +46,7 @@ public class ProfileKeysMixin {
     private void loadKeyPairFromFile(CallbackInfoReturnable<Optional<PlayerKeyPair>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair from file");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key pair");
             info.setReturnValue(Optional.empty());
             return;
@@ -64,7 +64,7 @@ public class ProfileKeysMixin {
     private void getKeyPair(CallbackInfoReturnable<CompletableFuture<Optional<PlayerKeyPair>>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key pair");
             info.setReturnValue(CompletableFuture.completedFuture(Optional.empty()));
             return;
@@ -82,7 +82,7 @@ public class ProfileKeysMixin {
     public void refresh(CallbackInfoReturnable<CompletableFuture<Optional<PlayerPublicKey.PublicKeyData>>> info) {
         NoPryingEyes.LogVerbose("Client requested key data refresh");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key data");
             info.setReturnValue(CompletableFuture.completedFuture(Optional.empty()));
             return;
@@ -98,14 +98,15 @@ public class ProfileKeysMixin {
 
     @Inject(method = "getSigner()Lnet/minecraft/network/encryption/Signer;", at = @At("HEAD"), cancellable = true)
     public void getSigner(CallbackInfoReturnable<Signer> info) {
-        NoPryingEyes.LogVerbose("Client requested signer");
+        // This spammed the console full x.x
+        // NoPryingEyes.LogVerbose("Client requested signer");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
-            NoPryingEyes.LogVerbose("Returning null");
+        if (ConfigManager.getConfig().noKey()) {
+            // NoPryingEyes.LogVerbose("Returning null");
             info.setReturnValue(null);
             return;
         }
 
-        NoPryingEyes.LogVerbose("Providing signer");
+        // NoPryingEyes.LogVerbose("Providing signer");
     }
 }

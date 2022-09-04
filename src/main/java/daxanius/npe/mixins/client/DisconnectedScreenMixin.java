@@ -34,12 +34,18 @@ public class DisconnectedScreenMixin {
         NoPryingEyes.LogVerbose("Disconnect info: " + reason);
 
         // Yep, this is how we check it
-        if (ConfigManager.getConfig().disable_message_signing && (
-                reason.contains("multiplayer.disconnect.missing_public_key") ||
-                reason.contains("multiplayer.disconnect.unsigned_chat")
-        )) {
-            MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_signing")));
-            info.cancel();
+        if (ConfigManager.getConfig().noSign()) {
+            if (reason.contains("multiplayer.disconnect.missing_public_key")) {
+                MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_key")));
+                info.cancel();
+                return;
+            }
+
+            if (reason.contains("multiplayer.disconnect.unsigned_chat")) {
+                MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_signing")));
+                info.cancel();
+                // return;
+            }
         }
     }
 }

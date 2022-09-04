@@ -22,7 +22,7 @@ public class ChatMessageC2SPacketMixin {
     private void signature(CallbackInfoReturnable<MessageSignatureData> info) {
         NoPryingEyes.LogVerbose("Received message packet");
 
-        if (ConfigManager.getConfig().disable_message_signing) {
+        if (ConfigManager.getConfig().noSign()) {
             NoPryingEyes.LogVerbose("Stripping message signature");
             info.setReturnValue(MessageSignatureData.EMPTY);
         }

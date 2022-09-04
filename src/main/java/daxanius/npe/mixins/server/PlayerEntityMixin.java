@@ -19,8 +19,11 @@ public class PlayerEntityMixin {
      */
 
     @Inject(method = "getPublicKey()Lnet/minecraft/network/encryption/PlayerPublicKey;", at = @At("HEAD"), cancellable = true)
-    private void onGetProfileKey(CallbackInfoReturnable<PlayerPublicKey> info) {
-        if (ConfigManager.getConfig().disable_message_signing) {
+    private void getPublicKey(CallbackInfoReturnable<PlayerPublicKey> info) {
+        // This is set to no sign because the public key must never be forwarded to other clients
+        // despite the possibility of NO_KEY not being set
+        // It would be BAD to send the key to other clients
+        if (ConfigManager.getConfig().noSign()) {
             info.setReturnValue(null);
         }
     }
