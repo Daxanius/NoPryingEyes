@@ -2,6 +2,7 @@ package daxanius.npe.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.WarningScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
@@ -22,8 +23,8 @@ public class NoPryingEyesWarningScreen extends WarningScreen {
     protected void initButtons(int yOffset) {
         int width = 150;
         this.addDrawableChild(new ButtonWidget(this.width / 2 - width / 2, 100 + yOffset, width, 20, ScreenTexts.ACKNOWLEDGE, (button) -> {
-            this.client.disconnect();
-            this.client.setScreen(new MultiplayerScreen(new TitleScreen()));
+            MinecraftClient.getInstance().disconnect();
+            MinecraftClient.getInstance().setScreen(new MultiplayerScreen(new TitleScreen()));
         }));
     }
 

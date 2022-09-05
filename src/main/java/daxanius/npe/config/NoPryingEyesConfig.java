@@ -44,6 +44,6 @@ public class NoPryingEyesConfig implements ConfigData {
         NO_SIGN,
 
         // Don't send the public key at all
-        NO_KEY;
+        NO_KEY
     }
 }
