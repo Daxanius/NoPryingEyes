@@ -8,7 +8,8 @@
     "server.PlayerEntityMixin",
     "server.ServerPlayNetworkHandlerMixin",
     "server.TextFiltererMixin",
-    "server.ServerMetadataMixin"
+    "server.ServerMetadataMixin",
+    "server.ServerPropertiesHandlerMixin"
   ],
   "client": [
     "client.MinecraftClientMixin",
