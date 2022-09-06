@@ -1,4 +1,4 @@
-package daxanius.npe.mixin.filter;
+package daxanius.npe.mixins.server;
 
 import com.mojang.authlib.GameProfile;
 import daxanius.npe.NoPryingEyes;
@@ -12,16 +12,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.concurrent.Executor;
 
+// Disables message filtering by passing all messages as permitted
 @Mixin(TextFilterer.class)
 public class TextFiltererMixin {
+
+    /**
+     * @reason Makes the MessageFilterer class pass everything as filtered
+     * so that profanity is allowed
+     * @author Daxanius
+     */
+
     @Inject(at = @At("HEAD"), method = "filterMessage(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/filter/TextFilterer$HashIgnorer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;", cancellable = true)
-    private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable info) {
+    private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable<FilteredMessage> info) {
         NoPryingEyes.LogVerbose("Message queued to be checked for profanity");
 
-        if (!ConfigManager.getConfig().profanity_filter) {
+        if (ConfigManager.getConfig().disable_profanity_filter) {
             NoPryingEyes.LogVerbose("Passing message as permitted");
+
             info.setReturnValue(FilteredMessage.permitted(message));
-            info.cancel();
             return;
         }
 

@@ -1,15 +1,22 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "daxanius.npe.mixin",
+  "package": "daxanius.npe.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "unsigner.ServerPlayNetworkHandlerMixin",
-    "filter.TextFiltererMixin"
+    "server.ChatMessageC2SPacketMixin",
+    "server.PlayerEntityMixin",
+    "server.ServerPlayNetworkHandlerMixin",
+    "server.TextFiltererMixin",
+    "server.ServerMetadataMixin",
+    "server.ServerPropertiesHandlerMixin"
   ],
   "client": [
-    "telemetry.TelemetryMixin",
-    "telemetry.TelemetryAccessor"
+    "client.MinecraftClientMixin",
+    "client.ClientPlayerEntityMixin",
+    "client.TelemetryMixin",
+    "client.ProfileKeysMixin",
+    "client.DisconnectedScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

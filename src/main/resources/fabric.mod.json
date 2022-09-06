@@ -4,13 +4,14 @@
   "version": "${version}",
 
   "name": "No Prying Eyes",
-  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data and attempts to free the game of Microsoft's control.",
+  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.",
   "authors": [
     "Daxanius"
   ],
   "contact": {
     "homepage": "https://github.com/Daxanius",
-    "sources": "https://github.com/Daxanius/NoPryingEyes"
+    "sources": "https://github.com/Daxanius/NoPryingEyes",
+    "issues": "https://www.curseforge.com/minecraft/mc-mods/no-prying-eyes"
   },
 
   "license": "GNU GPLv3",
@@ -30,13 +31,13 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.8",
     "fabric": "*",
-    "minecraft": "~1.19.1-",
+    "fabricloader": ">=0.14.9",
+    "minecraft": "=1.19.2",
     "java": ">=17",
     "cloth-config": ">=7.0.73"
   },
   "suggests": {
-    "modmenu": "=4.0.2"
+    "modmenu": ">=4.0.2"
   }
 }
