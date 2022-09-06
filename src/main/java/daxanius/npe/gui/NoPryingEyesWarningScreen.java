@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public class NoPryingEyesWarningScreen extends WarningScreen {
-    private static final Text TITLE = Text.translatable("npe.name").setStyle(Style.EMPTY.withBold(true));
+    private static final Text TITLE = Text.translatable("npe.title").setStyle(Style.EMPTY.withBold(true));
 
     public NoPryingEyesWarningScreen(Text content) {
         super(TITLE, content.copy().setStyle(Style.EMPTY.withColor(16776960)), TITLE.copy().append("\n").append(content));

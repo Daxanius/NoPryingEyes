@@ -16,7 +16,9 @@
     "client.ClientPlayerEntityMixin",
     "client.TelemetryMixin",
     "client.ProfileKeysMixin",
-    "client.DisconnectedScreenMixin"
+    "client.DisconnectedScreenMixin",
+    "client.ClientPlayNetworkHandlerMixin",
+    "client.ToastManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
