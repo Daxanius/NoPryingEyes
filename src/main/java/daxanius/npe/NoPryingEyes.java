@@ -2,7 +2,6 @@ package daxanius.npe;
 
 import daxanius.npe.config.ConfigManager;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.StringHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
