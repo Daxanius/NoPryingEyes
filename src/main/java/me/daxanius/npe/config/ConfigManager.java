@@ -1,4 +1,4 @@
-package daxanius.npe.config;
+package me.daxanius.npe.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;

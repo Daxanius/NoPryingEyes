@@ -1,6 +1,6 @@
-package daxanius.npe;
+package me.daxanius.npe;
 
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.ConfigManager;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,11 +1,22 @@
 {
+  "npe.title": "No Prying Eyes",
   "text.autoconfig.npe.title": "No Prying Eyes",
-  "text.autoconfig.npe.option.telemetry": "Telemetry",
-  "text.autoconfig.npe.option.telemetry.@Tooltip": "Send telemetry data to Microsoft",
-  "text.autoconfig.npe.option.reports": "Reports",
-  "text.autoconfig.npe.option.reports.@Tooltip": "Server side, enable players reporting each other to Microsoft",
+  "text.autoconfig.npe.option.disable_telemetry": "Disable Telemetry",
+  "text.autoconfig.npe.option.disable_telemetry.@Tooltip": "Disable sending telemetry data to Mojang",
   "text.autoconfig.npe.option.verbose": "Verbose",
   "text.autoconfig.npe.option.verbose.@Tooltip": "Verbose logging, NPE is usually silent",
-  "text.autoconfig.npe.option.profanity_filter": "Profanity Filter",
-  "text.autoconfig.npe.option.profanity_filter.@Tooltip": "Server side, enable the profanity filter"
+  "text.autoconfig.npe.option.disable_profanity_filter": "Disable Profanity Filter",
+  "text.autoconfig.npe.option.disable_profanity_filter.@Tooltip": "Disable the profanity filter",
+  "text.autoconfig.npe.option.server_toasts": "Server Toasts",
+  "text.autoconfig.npe.option.server_toasts.@Tooltip": "Enable toasts notifying whether the server modifies messages or not",
+  "text.autoconfig.npe.option.disable_global_bans": "Disable Global Bans",
+  "text.autoconfig.npe.option.disable_global_bans.@Tooltip": "Disable global game bans",
+  "text.autoconfig.npe.option.fake_ban": "Fake Ban",
+  "text.autoconfig.npe.option.fake_ban.@Tooltip": "Make the game think you're banned, because why not",
+  "text.autoconfig.npe.option.signing_mode": "Signing Mode",
+  "text.autoconfig.npe.option.signing_mode.@Tooltip": "Set the signing mode for messages & keypairs",
+  "npe.warning.server_signing": "Uh, oh. It looks like this server does not accept unsigned messages. To chat in this server, simply set the signing mode to \"SIGN\" in the settings. Don't forget to change it back later though!",
+  "npe.warning.server_key": "Hmm, it looks like this server enforces secure profiles. They won't let us in without a key! To join this server, simply set the signing mode to anything but \"NO_KEY\" in the settings. Don't forget to change it back later though!",
+  "npe.modified_chat.toast": "It looks like this server disables player reporting. Nice!",
+  "npe.unmodified_chat.toast": "Hmm, it looks like this server has player reporting enabled... Are you sure you want to keep playing?"
 }
