@@ -1,4 +1,4 @@
-package daxanius.npe.mixins.client;
+package me.daxanius.npe.mixins.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

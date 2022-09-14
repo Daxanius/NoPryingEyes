@@ -1,7 +1,7 @@
-package daxanius.npe.mixins.server;
+package me.daxanius.npe.mixins.server;
 
-import daxanius.npe.NoPryingEyes;
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.config.ConfigManager;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import org.spongepowered.asm.mixin.Mixin;

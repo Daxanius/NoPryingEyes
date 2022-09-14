@@ -20,10 +20,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "daxanius.npe.NoPryingEyes"
+      "me.daxanius.npe.NoPryingEyes"
     ],
     "modmenu": [
-      "daxanius.npe.config.ModMenuIntegration"
+      "me.daxanius.npe.config.ModMenuIntegration"
     ]
   },
   "mixins": [

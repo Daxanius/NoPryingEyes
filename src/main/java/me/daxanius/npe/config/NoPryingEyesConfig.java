@@ -1,6 +1,6 @@
-package daxanius.npe.config;
+package me.daxanius.npe.config;
 
-import daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.NoPryingEyes;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;

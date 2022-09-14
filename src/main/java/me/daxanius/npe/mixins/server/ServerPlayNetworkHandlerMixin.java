@@ -1,7 +1,7 @@
-package daxanius.npe.mixins.server;
+package me.daxanius.npe.mixins.server;
 
-import daxanius.npe.NoPryingEyes;
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.config.ConfigManager;
 import net.minecraft.network.message.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;

@@ -1,6 +1,6 @@
-package daxanius.npe.mixins.server;
+package me.daxanius.npe.mixins.server;
 
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.ConfigManager;
 import net.minecraft.server.dedicated.ServerPropertiesHandler;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package daxanius.npe.gui;
+package me.daxanius.npe.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

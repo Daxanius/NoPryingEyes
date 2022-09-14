@@ -1,8 +1,8 @@
-package daxanius.npe.mixins.server;
+package me.daxanius.npe.mixins.server;
 
 import com.mojang.authlib.GameProfile;
-import daxanius.npe.NoPryingEyes;
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.config.ConfigManager;
 import net.minecraft.server.filter.FilteredMessage;
 import net.minecraft.server.filter.TextFilterer;
 import org.spongepowered.asm.mixin.Mixin;

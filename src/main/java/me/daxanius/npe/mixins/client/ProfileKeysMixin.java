@@ -1,7 +1,7 @@
-package daxanius.npe.mixins.client;
+package me.daxanius.npe.mixins.client;
 
-import daxanius.npe.NoPryingEyes;
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.config.ConfigManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.util.ProfileKeys;

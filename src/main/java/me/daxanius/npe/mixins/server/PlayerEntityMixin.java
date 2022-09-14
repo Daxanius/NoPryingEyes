@@ -1,7 +1,7 @@
-package daxanius.npe.mixins.server;
+package me.daxanius.npe.mixins.server;
 
 
-import daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.ConfigManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import org.spongepowered.asm.mixin.Mixin;
