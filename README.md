@@ -60,7 +60,11 @@ This works both server-side and client-side. It strips signatures and public key
 On the client-side of things this prevents the game client from sending the player's public key to the server, and prevents the client from signing messages.
 
 ### Profanity filter
-When the filter is disabled, it will just pass messages as permitted, that's about all there is to say about it.
+This disables the profanity filter (used in realms) that you can also just disable in your Minecraft account settings. It removes the asterisks. At least on the client-side of things, as I cannot modify realms servers.
+
+It's a nice feature to be able to toggle on the fly without having to potentially go on the Minecraft website, modify your account settings and restarting your game.
+
+About the account settings, you can only disable the profanity filter if Mojang knows you are 18+, this means children cannot disable this setting in their account settings without the consent / control of a guardian. This feature can basically bypass that.
 
 It is disabled by default.
 
