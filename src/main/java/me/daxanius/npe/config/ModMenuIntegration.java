@@ -75,16 +75,15 @@ public class ModMenuIntegration implements ModMenuApi {
                     .build());
 
             // Chat indicator
-            SubCategoryBuilder chatIndicatorSubCat = entryBuilder.startSubCategory(Text.translatable("npe.config.chat_indicator"));
+            SubCategoryBuilder chatIndicatorSubCat = entryBuilder.startSubCategory(Text.translatable("npe.config.chat_indicator"))
+                    .setTooltip(Text.translatable("npe.config.chat_indicator.tooltip"));
 
             chatIndicatorSubCat.add(entryBuilder.startBooleanToggle(Text.translatable("npe.config.chat_indicator.hide_red"), config.chat_indicator.hide_red)
-                    .setTooltip(Text.translatable("npe.config.chat_indicator.hide_red.tooltip"))
                     .setDefaultValue(configDefault.chat_indicator.hide_red)
                     .setSaveConsumer(value -> config.chat_indicator.hide_red = value)
                     .build());
 
             chatIndicatorSubCat.add(entryBuilder.startBooleanToggle(Text.translatable("npe.config.chat_indicator.hide_yellow"), config.chat_indicator.hide_yellow)
-                    .setTooltip(Text.translatable("npe.config.chat_indicator.hide_yellow.tooltip"))
                     .setDefaultValue(configDefault.chat_indicator.hide_yellow)
                     .setSaveConsumer(value -> config.chat_indicator.hide_yellow = value)
                     .build());
