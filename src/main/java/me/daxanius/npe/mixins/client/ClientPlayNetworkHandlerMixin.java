@@ -19,11 +19,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ClientPlayNetworkHandlerMixin {
     @Final
     @Shadow
-    private static Text UNSECURE_SERVER_TOAST_TITLE = Text.translatable("npe.title");
+    private static final Text UNSECURE_SERVER_TOAST_TITLE = Text.translatable("npe.title");
 
     @Final
     @Shadow
-    private static Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
+    private static final Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
 
     @Shadow
     @Final
