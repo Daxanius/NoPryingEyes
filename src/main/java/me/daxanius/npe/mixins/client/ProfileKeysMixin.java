@@ -104,7 +104,7 @@ public class ProfileKeysMixin {
         if (NoPryingEyesConfig.getInstance().noKey()) {
             // NoPryingEyes.LogVerbose("Returning null");
             info.setReturnValue(null);
-            return;
+            // return;
         }
 
         // NoPryingEyes.LogVerbose("Providing signer");

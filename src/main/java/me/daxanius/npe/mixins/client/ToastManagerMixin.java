@@ -23,11 +23,13 @@ public class ToastManagerMixin {
 
     @Inject(method = "add(Lnet/minecraft/client/toast/Toast;)V", at = @At("HEAD"), cancellable = true)
     public void add(Toast toast, CallbackInfo info) {
-        if (!NoPryingEyesConfig.getInstance().server_toasts) {
-            if (toast instanceof SystemToast t && t.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING) {
-                NoPryingEyes.LogVerbose("Blocking system toast for server info");
-                info.cancel();
-            }
+        if (NoPryingEyesConfig.getInstance().server_toasts) {
+            return;
+        }
+
+        if (toast instanceof SystemToast t && t.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING) {
+            NoPryingEyes.LogVerbose("Blocking system toast for server info");
+            info.cancel();
         }
     }
 }
