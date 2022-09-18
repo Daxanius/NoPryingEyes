@@ -29,6 +29,9 @@ public class NoPryingEyesConfig implements ConfigData {
     @ConfigEntry.Gui.EnumHandler()
     public SigningMode signing_mode = SigningMode.NO_KEY;
 
+    @ConfigEntry.Gui.CollapsibleObject()
+    public ChatIndicatorOptions chat_indicator = new ChatIndicatorOptions();
+
     // For ease of use
     public boolean noSign() {
         return signing_mode != SigningMode.SIGN;
@@ -36,6 +39,11 @@ public class NoPryingEyesConfig implements ConfigData {
 
     public boolean noKey() {
         return signing_mode == SigningMode.NO_KEY;
+    }
+
+    public static class ChatIndicatorOptions {
+        public boolean hide_red = true;
+        public boolean hide_yellow = false;
     }
 
     // There are 3 signing modes which the user can select

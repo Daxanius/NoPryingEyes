@@ -18,7 +18,8 @@
     "client.ProfileKeysMixin",
     "client.DisconnectedScreenMixin",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.ToastManagerMixin"
+    "client.ToastManagerMixin",
+    "client.MessageTrustStatusMixin"
   ],
   "injectors": {
     "defaultRequire": 1
