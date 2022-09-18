@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.client;
 
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.toast.SystemToast;
@@ -21,13 +21,15 @@ public class ToastManagerMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "Lnet/minecraft/client/toast/ToastManager;add(Lnet/minecraft/client/toast/Toast;)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "add(Lnet/minecraft/client/toast/Toast;)V", at = @At("HEAD"), cancellable = true)
     public void add(Toast toast, CallbackInfo info) {
-        if (!ConfigManager.getConfig().server_toasts) {
-            if (toast instanceof SystemToast t && t.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING) {
-                NoPryingEyes.LogVerbose("Blocking system toast for server info");
-                info.cancel();
-            }
+        if (NoPryingEyesConfig.getInstance().server_toasts) {
+            return;
+        }
+
+        if (toast instanceof SystemToast t && t.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING) {
+            NoPryingEyes.LogVerbose("Blocking system toast for server info");
+            info.cancel();
         }
     }
 }

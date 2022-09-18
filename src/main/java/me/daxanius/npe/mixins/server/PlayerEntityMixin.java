@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.server;
 
 
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +23,7 @@ public class PlayerEntityMixin {
         // This is set to no sign because the public key must never be forwarded to other clients
         // despite the possibility of NO_KEY not being set
         // It would be BAD to send the key to other clients
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             info.setReturnValue(null);
         }
     }

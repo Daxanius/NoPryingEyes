@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.server;
 
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public class ChatMessageC2SPacketMixin {
     private void signature(CallbackInfoReturnable<MessageSignatureData> info) {
         NoPryingEyes.LogVerbose("Received message packet");
 
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Stripping message signature");
             info.setReturnValue(MessageSignatureData.EMPTY);
         }

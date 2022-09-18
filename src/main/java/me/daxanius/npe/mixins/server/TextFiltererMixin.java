@@ -2,7 +2,7 @@ package me.daxanius.npe.mixins.server;
 
 import com.mojang.authlib.GameProfile;
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.server.filter.FilteredMessage;
 import net.minecraft.server.filter.TextFilterer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +26,7 @@ public class TextFiltererMixin {
     private void filterMessage(GameProfile gameProfile, String message, TextFilterer.HashIgnorer ignorer, Executor executor, CallbackInfoReturnable<FilteredMessage> info) {
         NoPryingEyes.LogVerbose("Message queued to be checked for profanity");
 
-        if (ConfigManager.getConfig().disable_profanity_filter) {
+        if (NoPryingEyesConfig.getInstance().disable_profanity_filter) {
             NoPryingEyes.LogVerbose("Passing message as permitted");
 
             info.setReturnValue(FilteredMessage.permitted(message));
