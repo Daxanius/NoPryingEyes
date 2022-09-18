@@ -92,7 +92,7 @@ public class ModMenuIntegration implements ModMenuApi {
             cat.addEntry(chatIndicatorSubCat.build());
 
             NoPryingEyesConfig.setInstance(config);
-            builder.setSavingRunnable(NoPryingEyesConfig::saveConfig);
+            builder.setSavingRunnable(NoPryingEyesConfig::save);
             return builder.build();
         };
     }

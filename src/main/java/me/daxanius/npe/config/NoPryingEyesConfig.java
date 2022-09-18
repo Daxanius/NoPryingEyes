@@ -62,7 +62,7 @@ public class NoPryingEyesConfig {
 
     public static NoPryingEyesConfig getInstance() {
         if (INSTANCE == null) {
-            loadConfig();
+            load();
         }
 
         return INSTANCE;
@@ -73,7 +73,7 @@ public class NoPryingEyesConfig {
         INSTANCE = instance;
     }
 
-    public static void loadConfig() {
+    public static void load() {
         NoPryingEyes.LOGGER.info("Loading config");
         INSTANCE = readFile();
 
@@ -82,7 +82,7 @@ public class NoPryingEyesConfig {
         }
     }
 
-    public static void saveConfig() {
+    public static void save() {
         NoPryingEyes.LOGGER.info("Saving config");
         if (INSTANCE == null) {
             INSTANCE = new NoPryingEyesConfig();

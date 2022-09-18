@@ -19,6 +19,6 @@ public class NoPryingEyes implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		NoPryingEyesConfig.loadConfig();
+		NoPryingEyesConfig.load();
 	}
 }
