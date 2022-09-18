@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.client;
 
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import me.daxanius.npe.gui.NoPryingEyesWarningScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -34,7 +34,7 @@ public class DisconnectedScreenMixin {
         NoPryingEyes.LogVerbose("Disconnect info: " + reason);
 
         // Yep, this is how we check it
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             if (reason.contains("multiplayer.disconnect.missing_public_key")) {
                 MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_key")));
                 info.cancel();

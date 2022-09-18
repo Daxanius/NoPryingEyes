@@ -1,6 +1,6 @@
 package me.daxanius.npe.mixins.server;
 
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.server.dedicated.ServerPropertiesHandler;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,6 +28,6 @@ public class ServerPropertiesHandlerMixin {
     @Inject(method = "<init>(Ljava/util/Properties;)V", at = @At("TAIL"))
     private void init(Properties properties, CallbackInfo info) {
         // This way we still respect the config if noKey is disabled
-        enforceSecureProfile = enforceSecureProfile && !ConfigManager.getConfig().noKey();
+        enforceSecureProfile = enforceSecureProfile && !NoPryingEyesConfig.getInstance().noKey();
     }
 }

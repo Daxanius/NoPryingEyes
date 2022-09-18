@@ -1,6 +1,6 @@
 package me.daxanius.npe.mixins.server;
 
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.server.ServerMetadata;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +19,7 @@ public class ServerMetadataMixin {
     // Allows clients who don't sign their messages to join
     @Inject(method = "isSecureChatEnforced()Z", at = @At("HEAD"), cancellable = true)
     public void isSecureChatEnforced(CallbackInfoReturnable<Boolean> info) {
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             info.setReturnValue(false);
         }
     }

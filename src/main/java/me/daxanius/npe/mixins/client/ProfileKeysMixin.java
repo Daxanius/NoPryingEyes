@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.client;
 
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.util.ProfileKeys;
@@ -28,7 +28,7 @@ public class ProfileKeysMixin {
     public void getPublicKey(CallbackInfoReturnable<Optional<PlayerPublicKey>> info) {
         NoPryingEyes.LogVerbose("Client is fetching profile public key");
 
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key");
             info.setReturnValue(Optional.empty());
             return;
@@ -46,7 +46,7 @@ public class ProfileKeysMixin {
     private void loadKeyPairFromFile(CallbackInfoReturnable<Optional<PlayerKeyPair>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair from file");
 
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key pair");
             info.setReturnValue(Optional.empty());
             return;
@@ -64,7 +64,7 @@ public class ProfileKeysMixin {
     private void getKeyPair(CallbackInfoReturnable<CompletableFuture<Optional<PlayerKeyPair>>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair");
 
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key pair");
             info.setReturnValue(CompletableFuture.completedFuture(Optional.empty()));
             return;
@@ -82,7 +82,7 @@ public class ProfileKeysMixin {
     public void refresh(CallbackInfoReturnable<CompletableFuture<Optional<PlayerPublicKey.PublicKeyData>>> info) {
         NoPryingEyes.LogVerbose("Client requested key data refresh");
 
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             NoPryingEyes.LogVerbose("Returning empty key data");
             info.setReturnValue(CompletableFuture.completedFuture(Optional.empty()));
             return;
@@ -101,7 +101,7 @@ public class ProfileKeysMixin {
         // This spammed the console full x.x
         // NoPryingEyes.LogVerbose("Client requested signer");
 
-        if (ConfigManager.getConfig().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noKey()) {
             // NoPryingEyes.LogVerbose("Returning null");
             info.setReturnValue(null);
             return;

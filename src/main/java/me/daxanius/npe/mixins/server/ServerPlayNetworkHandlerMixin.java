@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.server;
 
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.network.message.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -38,7 +38,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
     @Inject(at = @At("HEAD"), method = "handleDecoratedMessage(Lnet/minecraft/network/message/SignedMessage;)V", cancellable = true)
     private void handleDecoratedMessage(SignedMessage message, CallbackInfo info) {
         NoPryingEyes.LogVerbose("Player message received");
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Broadcasting received message to prevent reporting");
             MessageDecorator messageDecorator = this.server.getMessageDecorator();
             messageDecorator.decorate(

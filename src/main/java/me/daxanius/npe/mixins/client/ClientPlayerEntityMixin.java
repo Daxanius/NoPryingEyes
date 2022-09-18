@@ -2,7 +2,7 @@ package me.daxanius.npe.mixins.client;
 
 import com.mojang.brigadier.ParseResults;
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -28,7 +28,7 @@ public class ClientPlayerEntityMixin {
     // Sign messages empty before sending them
     @Inject(method = "signChatMessage(Lnet/minecraft/network/message/MessageMetadata;Lnet/minecraft/network/message/DecoratedContents;Lnet/minecraft/network/message/LastSeenMessageList;)Lnet/minecraft/network/message/MessageSignatureData;", at = @At("HEAD"), cancellable = true)
     private void signChatMessage(MessageMetadata metadata, DecoratedContents content, LastSeenMessageList lastSeenMessages, CallbackInfoReturnable<MessageSignatureData> info) {
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Signing message with empty signature");
             info.setReturnValue(MessageSignatureData.EMPTY);
             return;
@@ -46,7 +46,7 @@ public class ClientPlayerEntityMixin {
     // Sign commands empty before sending them
     @Inject(method = "signArguments(Lnet/minecraft/network/message/MessageMetadata;Lcom/mojang/brigadier/ParseResults;Lnet/minecraft/text/Text;Lnet/minecraft/network/message/LastSeenMessageList;)Lnet/minecraft/network/message/ArgumentSignatureDataMap;", at = @At("HEAD"), cancellable = true)
     private void signArguments(MessageMetadata signer, ParseResults<CommandSource> parseResults, @Nullable Text preview, LastSeenMessageList lastSeenMessages, CallbackInfoReturnable<ArgumentSignatureDataMap> info) {
-        if (ConfigManager.getConfig().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Signing command args with empty signature");
             info.setReturnValue(ArgumentSignatureDataMap.EMPTY);
             return;

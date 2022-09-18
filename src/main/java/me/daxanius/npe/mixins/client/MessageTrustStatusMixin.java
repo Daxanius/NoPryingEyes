@@ -1,6 +1,6 @@
 package me.daxanius.npe.mixins.client;
 
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.network.message.MessageTrustStatus;
 import net.minecraft.network.message.MessageVerifier;
@@ -54,13 +54,13 @@ public class MessageTrustStatusMixin {
 
         switch (status) {
             case NOT_SECURE -> {
-                if (ConfigManager.getConfig().chat_indicator.hide_red) {
+                if (NoPryingEyesConfig.getInstance().chat_indicator.hide_red) {
                     return MessageTrustStatus.SECURE;
                 }
                 return status;
             }
             case MODIFIED, FILTERED -> {
-                if (ConfigManager.getConfig().chat_indicator.hide_yellow) {
+                if (NoPryingEyesConfig.getInstance().chat_indicator.hide_yellow) {
                     return MessageTrustStatus.SECURE;
                 }
                 return status;

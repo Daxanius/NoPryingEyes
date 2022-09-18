@@ -2,7 +2,7 @@ package me.daxanius.npe.mixins.client;
 
 import com.mojang.authlib.minecraft.BanDetails;
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -29,13 +29,13 @@ public class MinecraftClientMixin {
 
         // This mixin prioritizes a fake ban over the respect ms bans option, so if you enable
         // the fake ban setting, it will always display as banned
-        if (ConfigManager.getConfig().fake_ban) {
+        if (NoPryingEyesConfig.getInstance().fake_ban) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(new BanDetails(new UUID(0, 0), null, "Fake Ban", "You have enabled the Fake Ban option"));
             return;
         }
 
-        if (ConfigManager.getConfig().disable_global_bans) {
+        if (NoPryingEyesConfig.getInstance().disable_global_bans) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(null);
         }

@@ -2,7 +2,7 @@ package me.daxanius.npe.mixins.client;
 
 import com.mojang.authlib.minecraft.UserApiService;
 import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.ConfigManager;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -31,7 +31,7 @@ public class TelemetryMixin {
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/client/MinecraftClient;Lcom/mojang/authlib/minecraft/UserApiService;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/UUID;)V")
 	private void init(MinecraftClient client, UserApiService userApiService, Optional<String> userId, Optional<String> clientId, UUID deviceSessionId, CallbackInfo info) {
 		NoPryingEyes.LogVerbose("Minecraft is collecting telemetry data");
-		sent = ConfigManager.getConfig().disable_telemetry;
+		sent = NoPryingEyesConfig.getInstance().disable_telemetry;
 
 		// Just to make sure nothing went wrong here
 		NoPryingEyes.LogVerbose("Blocked telemetry data: " + sent);
