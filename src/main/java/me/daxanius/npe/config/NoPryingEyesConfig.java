@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import me.daxanius.npe.NoPryingEyes;
 import net.fabricmc.loader.api.FabricLoader;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
