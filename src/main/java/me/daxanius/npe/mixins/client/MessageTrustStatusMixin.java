@@ -4,10 +4,12 @@ import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.network.message.MessageTrustStatus;
 import net.minecraft.network.message.MessageVerifier;
+import net.minecraft.network.message.MessageVerifier.Impl;
 import net.minecraft.network.message.SignedMessage;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import net.minecraft.server.PlayerManager;
 
 import java.time.Instant;
 
@@ -19,12 +21,12 @@ public class MessageTrustStatusMixin {
             return MessageTrustStatus.NOT_SECURE;
         }
 
-        MessageVerifier.Status status = sender.getMessageVerifier().verify(message);
-        if (status == MessageVerifier.Status.BROKEN_CHAIN) {
+       MessageTrustStatus status = sender.getMessageVerifier().verify(message);
+        if (status == MessageTrustStatus.BROKEN_CHAIN) {
             return MessageTrustStatus.BROKEN_CHAIN;
         }
 
-        if (status == MessageVerifier.Status.NOT_SECURE) {
+        if (status == MessageTrustStatus.NOT_SECURE) {
             return MessageTrustStatus.NOT_SECURE;
         }
 
@@ -33,14 +35,14 @@ public class MessageTrustStatusMixin {
         }
 
         if (!message.filterMask().isPassThrough()) {
-            return MessageTrustStatus.FILTERED;
+            return MessageTrustStatus.MODIFIED;
         }
 
         if (message.unsignedContent().isPresent()) {
             return MessageTrustStatus.MODIFIED;
         }
 
-        return !decorated.contains(message.getSignedContent().decorated()) ? MessageTrustStatus.MODIFIED : MessageTrustStatus.SECURE;
+        return !decorated.contains(message.getContent()) ? MessageTrustStatus.MODIFIED : MessageTrustStatus.SECURE;
     }
 
     /**
@@ -49,8 +51,8 @@ public class MessageTrustStatusMixin {
      */
 
     @Overwrite
-    public static MessageTrustStatus getStatus(SignedMessage message, Text decorated, PlayerListEntry sender, Instant receptionTimestamp) {
-        MessageTrustStatus status = getStatusOriginal(message, decorated, sender, receptionTimestamp);
+    public static MessageTrustStatus getStatus(SignedMessage message, Text decorated, Instant receptionTimestamp) {
+        MessageTrustStatus status = getStatusOriginal(message, decorated, null, receptionTimestamp);
 
         switch (status) {
             case NOT_SECURE -> {
@@ -59,7 +61,7 @@ public class MessageTrustStatusMixin {
                 }
                 return status;
             }
-            case MODIFIED, FILTERED -> {
+            case MODIFIED -> {
                 if (NoPryingEyesConfig.getInstance().chat_indicator.hide_yellow) {
                     return MessageTrustStatus.SECURE;
                 }
