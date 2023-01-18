@@ -4,7 +4,7 @@ import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.util.ProfileKeys;
+import net.minecraft.client.util.ProfileKeysImpl;
 import net.minecraft.network.encryption.PlayerKeyPair;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.network.encryption.Signer;
@@ -17,8 +17,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
-@Mixin(ProfileKeys.class)
-public class ProfileKeysMixin {
+@Mixin(ProfileKeysImpl.class)
+public class ProfileKeysImplMixin {
     /**
      * @reason Prevents the client from accessing the key
      * @author Daxanius
