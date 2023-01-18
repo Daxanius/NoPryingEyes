@@ -26,7 +26,5 @@ public class PlayerEntityMixin {
         if (NoPryingEyesConfig.getInstance().noSign()) {
             info.setReturnValue(null);
         }
-
-        //Daxanius, the PlayerEntity class in 1.19.3 does not have a getPublicKey method according to the javadoc
     }
 }
