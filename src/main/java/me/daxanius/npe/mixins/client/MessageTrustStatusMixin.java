@@ -1,9 +1,7 @@
 package me.daxanius.npe.mixins.client;
 
 import me.daxanius.npe.config.NoPryingEyesConfig;
-import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.network.message.MessageTrustStatus;
-import net.minecraft.network.message.MessageVerifier;
 import net.minecraft.network.message.SignedMessage;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
