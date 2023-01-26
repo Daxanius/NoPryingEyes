@@ -24,7 +24,7 @@ public class ChatMessageC2SPacketMixin {
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Stripping message signature");
-            info.setReturnValue(MessageSignatureData.EMPTY);
+            info.setReturnValue(null);
         }
     }
 }

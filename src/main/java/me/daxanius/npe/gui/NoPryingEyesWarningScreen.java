@@ -22,10 +22,10 @@ public class NoPryingEyesWarningScreen extends WarningScreen {
 
     protected void initButtons(int yOffset) {
         int width = 150;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - width / 2, 100 + yOffset, width, 20, ScreenTexts.ACKNOWLEDGE, (button) -> {
+        this.addDrawableChild(new ButtonWidget.Builder(ScreenTexts.ACKNOWLEDGE, (button) -> {
             MinecraftClient.getInstance().disconnect();
             MinecraftClient.getInstance().setScreen(new MultiplayerScreen(new TitleScreen()));
-        }));
+        }).dimensions(this.width / 2 - width / 2, 100 + yOffset, width, 20).build());
     }
 
     @Override
