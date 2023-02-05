@@ -84,4 +84,4 @@ Also I just kinda wanted to make this mod for fun...
 
 ## Contact
 
-Feel free to join my [Discord](https://discord.gg/7aPa5AfQ95)
+Feel free to join my [Discord](https://discord.gg/UuKQasSUrn)
