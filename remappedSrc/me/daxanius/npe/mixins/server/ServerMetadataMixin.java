@@ -17,7 +17,7 @@ public class ServerMetadataMixin {
      */
 
     // Allows clients who don't sign their messages to join
-    @Inject(method = "secureChatEnforced()Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isSecureChatEnforced()Z", at = @At("HEAD"), cancellable = true)
     public void isSecureChatEnforced(CallbackInfoReturnable<Boolean> info) {
         if (NoPryingEyesConfig.getInstance().noKey()) {
             info.setReturnValue(false);
