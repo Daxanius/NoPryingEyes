@@ -8,7 +8,8 @@
     "server.ServerPlayNetworkHandlerMixin",
     "server.TextFiltererMixin",
     "server.ServerMetadataMixin",
-    "server.ServerPropertiesHandlerMixin"
+    "server.ServerPropertiesHandlerMixin",
+    "server.ServerCommonNetworkHandlerAccessor"
   ],
   "client": [
     "client.MinecraftClientMixin",
@@ -18,7 +19,8 @@
     "client.ClientPlayNetworkHandlerMixin",
     "client.ToastManagerMixin",
     "client.MessageTrustStatusMixin",
-    "client.YggdrasilUserApiServiceMixin"
+    "client.YggdrasilUserApiServiceMixin",
+    "client.ClientCommonNetworkHandlerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
