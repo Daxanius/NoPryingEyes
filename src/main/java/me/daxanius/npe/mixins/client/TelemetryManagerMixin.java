@@ -20,7 +20,7 @@ public class TelemetryManagerMixin {
 	 * @author Daxanius
 	 */
 
-	@Inject(method = "getSender()Lnet/minecraft/client/util/telemetry/TelemetrySender;", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "getSender()Lnet/minecraft/client/session/telemetry/TelemetrySender;", at = @At("HEAD"), cancellable = true)
 	private void getSender(CallbackInfoReturnable<TelemetrySender> info) {
 		NoPryingEyes.LogVerbose("Minecraft is requesting the telemetry sender");
 
