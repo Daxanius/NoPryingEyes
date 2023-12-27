@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "npe",
-  "version": "${version}",
+  "version": "${mod_version}",
 
   "name": "No Prying Eyes",
   "description": "A simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.",
@@ -32,12 +32,12 @@
 
   "depends": {
     "fabric-api": "*",
-    "fabricloader": ">=0.14.17",
-    "minecraft": "=1.20.2",
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "=${minecraft_version}",
     "java": ">=17"
   },
   "suggests": {
-    "cloth-config": ">=12.0.109",
-    "modmenu": ">=8.0.0"
+    "cloth-config": ">=${cloth_version}",
+    "modmenu": ">=${modmenu_version}"
   }
 }
