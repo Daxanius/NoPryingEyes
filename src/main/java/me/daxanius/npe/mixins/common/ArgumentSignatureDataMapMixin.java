@@ -17,13 +17,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(ArgumentSignatureDataMap.class)
-public class ArgumentSignatureDataMapMixin {
+public abstract class ArgumentSignatureDataMapMixin {
     @Final
     @Nullable
     @Mutable
     @Shadow
     private List<ArgumentSignatureDataMap.Entry> entries;
 
+
+    @Shadow public abstract List<ArgumentSignatureDataMap.Entry> entries();
 
     /**
      * @reason Upon creation of the packet, sets the message signature as null
@@ -34,9 +36,9 @@ public class ArgumentSignatureDataMapMixin {
     private void init(List<ArgumentSignatureDataMap.Entry> list, CallbackInfo ci) {
         NoPryingEyes.LogVerbose("Creating message packet");
 
-        if (NoPryingEyesConfig.getInstance().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
-            this.entries = null;
+            entries.clear();
         }
     }
 
@@ -62,13 +64,13 @@ public class ArgumentSignatureDataMapMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "entries()Ljava/util/List;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "entries()Ljava/util/List;", at = @At("HEAD"))
     public void entries(CallbackInfoReturnable<List<ArgumentSignatureDataMap.Entry>> info) {
         NoPryingEyes.LogVerbose("Requested signature from message packet");
 
-        if (NoPryingEyesConfig.getInstance().noSign()) {
+        if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
-            info.setReturnValue(null);
+            entries.clear();
         }
     }
 }
