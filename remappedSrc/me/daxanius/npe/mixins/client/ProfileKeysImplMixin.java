@@ -4,7 +4,7 @@ import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.util.ProfileKeysImpl;
+import net.minecraft.client.session.ProfileKeysImpl;
 import net.minecraft.network.encryption.PlayerKeyPair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
