@@ -1,12 +1,10 @@
 # No Prying Eyes
 NPE is a simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.
 
-## Information
+## Requirements
 
-- Minecraft version: 1.20.2
-- Mod version: 1.20.2-v1.4.0
-- Mod loader: Fabric
-- Fabric version: 0.90.4+
+- Fabric loader
+- Fabric API
 
 ## Features
 All of these features are configurable and enabled by default.
