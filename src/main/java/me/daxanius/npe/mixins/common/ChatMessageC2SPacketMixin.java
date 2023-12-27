@@ -34,7 +34,6 @@ public class ChatMessageC2SPacketMixin {
     private void init(String string, Instant timestamp, long salt, MessageSignatureData signature, LastSeenMessageList.Acknowledgment acknowledgment, CallbackInfo ci) {
         NoPryingEyes.LogVerbose("Creating message packet");
 
-
         if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
             this.signature = null;

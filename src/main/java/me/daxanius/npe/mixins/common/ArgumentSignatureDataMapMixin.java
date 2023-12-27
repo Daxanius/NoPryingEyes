@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(ArgumentSignatureDataMap.class)
@@ -38,7 +39,7 @@ public abstract class ArgumentSignatureDataMapMixin {
 
         if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
-            entries.clear();
+            entries = new ArrayList<>();
         }
     }
 
@@ -70,7 +71,7 @@ public abstract class ArgumentSignatureDataMapMixin {
 
         if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
-            entries.clear();
+            entries = new ArrayList<>();
         }
     }
 }
