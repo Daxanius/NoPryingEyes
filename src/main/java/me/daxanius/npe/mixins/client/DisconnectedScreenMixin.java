@@ -34,7 +34,7 @@ public class DisconnectedScreenMixin {
         NoPryingEyes.LogVerbose("Disconnect info: " + reason);
 
         // Yep, this is how we check it
-        if (!NoPryingEyesConfig.getInstance().noSign()) {
+        if (!NoPryingEyesConfig.getInstance().noKey()) {
             return;
         }
 
