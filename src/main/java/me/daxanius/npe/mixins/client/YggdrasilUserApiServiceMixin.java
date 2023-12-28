@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.minecraft.TelemetrySession;
 import com.mojang.authlib.yggdrasil.YggdrasilUserApiService;
+
 @Mixin(value = YggdrasilUserApiService.class, remap = false)
 public class YggdrasilUserApiServiceMixin {
     @Inject(method = "newTelemetrySession", at = @At("HEAD"), cancellable = true)

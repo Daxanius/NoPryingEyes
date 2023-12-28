@@ -18,24 +18,6 @@ import java.util.concurrent.CompletableFuture;
 @Mixin(ProfileKeysImpl.class)
 public class ProfileKeysImplMixin {
     /**
-     * @reason Prevents the client from accessing the key
-     * @author Daxanius
-     */
-
-    @Inject(method = "fetchKeyPair()Ljava/util/concurrent/CompletableFuture;", at = @At("HEAD"), cancellable = true)
-    public void fetchKeyPair(CallbackInfoReturnable<Optional<PlayerKeyPair>> info) {
-        NoPryingEyes.LogVerbose("Client is fetching profile public key");
-
-        if (NoPryingEyesConfig.getInstance().noKey()) {
-            NoPryingEyes.LogVerbose("Returning empty key");
-            info.setReturnValue(Optional.empty());
-            return;
-        }
-
-        NoPryingEyes.LogVerbose("Returning profile key");
-    }
-
-    /**
      * @reason Prevents the client from accessing the key pair from storage so it won't send it to the server
      * @author Daxanius
      */

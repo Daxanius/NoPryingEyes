@@ -4,20 +4,20 @@
   "package": "me.daxanius.npe.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "server.ChatMessageC2SPacketMixin",
+    "common.ArgumentSignatureDataMapMixin",
+    "common.ChatMessageC2SPacketMixin",
     "server.ServerPlayNetworkHandlerMixin",
-    "server.TextFiltererMixin",
-    "server.ServerMetadataMixin",
-    "server.ServerPropertiesHandlerMixin"
+    "server.ServerPropertiesHandlerMixin",
+    "server.TextFiltererMixin"
   ],
   "client": [
-    "client.MinecraftClientMixin",
-    "client.TelemetryManagerMixin",
-    "client.ProfileKeysImplMixin",
-    "client.DisconnectedScreenMixin",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.ToastManagerMixin",
+    "client.DisconnectedScreenMixin",
     "client.MessageTrustStatusMixin",
+    "client.MinecraftClientMixin",
+    "client.ProfileKeysImplMixin",
+    "client.TelemetryManagerMixin",
+    "client.ToastManagerMixin",
     "client.YggdrasilUserApiServiceMixin"
   ],
   "injectors": {
