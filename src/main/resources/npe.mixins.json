@@ -6,9 +6,7 @@
   "mixins": [
     "common.ArgumentSignatureDataMapMixin",
     "common.ChatMessageC2SPacketMixin",
-    "server.MinecraftServerMixin",
     "server.ServerCommonNetworkHandlerAccessor",
-    "server.ServerMetadataMixin",
     "server.ServerPlayNetworkHandlerMixin",
     "server.ServerPropertiesHandlerMixin",
     "server.TextFiltererMixin"
