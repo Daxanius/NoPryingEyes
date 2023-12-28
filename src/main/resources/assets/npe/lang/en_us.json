@@ -1,5 +1,6 @@
 {
   "npe.title": "No Prying Eyes",
+  "npe.config.category.main": "No Prying Eyes Config",
   "npe.config.disable_telemetry": "Disable Telemetry",
   "npe.config.disable_telemetry.tooltip": "Disable sending telemetry data to Mojang",
   "npe.config.verbose": "Verbose",

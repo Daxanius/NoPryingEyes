@@ -1,3 +1,8 @@
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/no-prying-eyes)
+[![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Daxanius/NoPryingEyes)
+![fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg)
+[![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)
+
 # No Prying Eyes
 NPE is a simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.
 
@@ -52,7 +57,7 @@ it is generally recommended to not use this option unless required.
 
 #### 3. NO_KEY
 
-This works both server-side and client-side. It strips signatures and public keys from signed messages (server-side) so that clients who sign their messages can still join the server, while also allowing clients who don't send their key (and also don't sign their messages) to join. 
+This works both server-side and client-side. It strips signatures and public keys from signed messages (server-side) so that clients who sign their messages can still join the server, while also allowing clients who don't send their key (and also don't sign their messages) to join.
 
 On the client-side of things this prevents the game client from sending the player's public key to the server, and prevents the client from signing messages.
 
@@ -81,4 +86,4 @@ Also I just kinda wanted to make this mod for fun...
 
 ## Contact
 
-Feel free to join my [Discord](https://discord.gg/UuKQasSUrn)
+Feel free to join my [Discord](https://discord.gg/8Mm3g3T5re)

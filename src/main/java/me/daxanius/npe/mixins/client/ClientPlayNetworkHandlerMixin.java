@@ -27,7 +27,7 @@ public class ClientPlayNetworkHandlerMixin {
 
     private MinecraftClient client = ((ClientCommonNetworkHandlerAccessor)this).getClient();
 
-   
+
 
     /**
      * @reason Add a warning message
