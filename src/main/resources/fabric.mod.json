@@ -37,8 +37,19 @@
     "minecraft": "=${minecraft_version}",
     "java": ">=17"
   },
+
   "suggests": {
     "cloth-config": ">=${cloth_version}",
     "modmenu": ">=${modmenu_version}"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/8Mm3g3T5re"
+      },
+
+      "update_checker": true
+    }
   }
 }
