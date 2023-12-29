@@ -7,5 +7,6 @@ import net.minecraft.server.ServerMetadata;
 
 @Mixin(ServerMetadata.class)
 public class ServerMetadataMixin {
+    @SuppressWarnings("unused")
     private boolean preventsChatReports = NoPryingEyesConfig.getInstance().noKey();
 }
