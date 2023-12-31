@@ -22,7 +22,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
     private void getSignedMessage(ChatMessageC2SPacket packet, LastSeenMessageList lastSeenMessages, CallbackInfoReturnable<SignedMessage> info) {
         MessageBody messageBody = new MessageBody(packet.chatMessage(), packet.timestamp(), packet.salt(), lastSeenMessages);
 
-        if (NoPryingEyesConfig.getInstance().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             info.setReturnValue(SignedMessage.ofUnsigned(messageBody.content()));
         }
     }
