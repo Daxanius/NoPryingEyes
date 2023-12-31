@@ -4,7 +4,7 @@
 [![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)
 
 # No Prying Eyes
-NPE is a simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.
+A Minecraft mod that aims to provide control over what happens to your data.
 
 ## Requirements
 - Fabric loader
