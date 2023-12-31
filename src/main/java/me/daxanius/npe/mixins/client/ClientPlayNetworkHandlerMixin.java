@@ -25,7 +25,7 @@ public class ClientPlayNetworkHandlerMixin {
     @Shadow
     private static final Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
 
-    private MinecraftClient client = ((ClientCommonNetworkHandlerAccessor)this).getClient();
+    private MinecraftClient client;
 
 
 

@@ -5,8 +5,8 @@ import me.daxanius.npe.config.NoPryingEyesConfig;
 import me.daxanius.npe.util.telemetry.TelemetrySenderDummy;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.session.telemetry.TelemetryManager;
-import net.minecraft.client.session.telemetry.TelemetrySender;
+import net.minecraft.client.util.telemetry.TelemetryManager;
+import net.minecraft.client.util.telemetry.TelemetrySender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,7 +20,7 @@ public class TelemetryManagerMixin {
 	 * @author Daxanius
 	 */
 
-	@Inject(method = "getSender()Lnet/minecraft/client/session/telemetry/TelemetrySender;", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "getSender()Lnet/minecraft/client/util/telemetry/TelemetrySender;", at = @At("HEAD"), cancellable = true)
 	private void getSender(CallbackInfoReturnable<TelemetrySender> info) {
 		NoPryingEyes.LogVerbose("Minecraft is requesting the telemetry sender");
 
