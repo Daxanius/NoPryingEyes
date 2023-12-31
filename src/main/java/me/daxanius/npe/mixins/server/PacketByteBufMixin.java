@@ -1,4 +1,4 @@
-package me.daxanius.npe.mixins.common;
+package me.daxanius.npe.mixins.server;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -47,7 +47,7 @@ public abstract class PacketByteBufMixin {
             DataResult<JsonElement> dataResult = codec.encodeStart(JsonOps.INSTANCE, value);
             JsonElement element = Util.getResult(dataResult, string -> new EncoderException("Failed to encode: " + string + " " + value));
 
-            element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noKey());
+            element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
 
             this.writeString(GSON.toJson(element));
 

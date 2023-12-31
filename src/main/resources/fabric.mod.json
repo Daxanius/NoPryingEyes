@@ -4,7 +4,7 @@
   "version": "${mod_version}",
 
   "name": "No Prying Eyes",
-  "description": "A simple Minecraft mod that aims to give the user control over the collection of their data in an attempt to free the game.",
+  "description": "Aims to provide control over what happens to your data.",
   "authors": [
     "Daxanius",
     "TechPro424"
