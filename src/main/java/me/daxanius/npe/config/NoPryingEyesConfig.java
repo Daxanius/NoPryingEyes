@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.daxanius.npe.NoPryingEyes;
 import net.fabricmc.loader.api.FabricLoader;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -79,6 +79,7 @@ public class NoPryingEyesConfig {
 
         if (INSTANCE == null) {
             INSTANCE = new NoPryingEyesConfig();
+            save();
         }
     }
 

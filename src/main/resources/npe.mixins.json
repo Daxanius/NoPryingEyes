@@ -6,20 +6,21 @@
   "mixins": [
     "server.ChatMessageC2SPacketMixin",
     "server.PlayerEntityMixin",
-    "server.ServerPlayNetworkHandlerMixin",
-    "server.TextFiltererMixin",
+    "server.ServerMetadataDeserializerMixin",
     "server.ServerMetadataMixin",
-    "server.ServerPropertiesHandlerMixin"
+    "server.ServerPlayNetworkHandlerMixin",
+    "server.ServerPropertiesHandlerMixin",
+    "server.TextFiltererMixin"
   ],
   "client": [
-    "client.MinecraftClientMixin",
     "client.ClientPlayerEntityMixin",
-    "client.TelemetryMixin",
-    "client.ProfileKeysMixin",
-    "client.DisconnectedScreenMixin",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.ToastManagerMixin",
-    "client.MessageTrustStatusMixin"
+    "client.DisconnectedScreenMixin",
+    "client.MessageTrustStatusMixin",
+    "client.MinecraftClientMixin",
+    "client.ProfileKeysMixin",
+    "client.TelemetryMixin",
+    "client.ToastManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
