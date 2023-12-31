@@ -25,6 +25,9 @@ public abstract class ArgumentSignatureDataMapMixin {
     @Shadow
     private List<ArgumentSignatureDataMap.Entry> entries;
 
+
+    @Shadow public abstract List<ArgumentSignatureDataMap.Entry> entries();
+
     /**
      * @reason Upon creation of the packet, sets the message signature as null
      * @author Daxanius

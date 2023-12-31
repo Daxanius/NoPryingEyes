@@ -79,6 +79,7 @@ public class NoPryingEyesConfig {
 
         if (INSTANCE == null) {
             INSTANCE = new NoPryingEyesConfig();
+            save();
         }
     }
 
