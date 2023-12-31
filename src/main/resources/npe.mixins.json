@@ -10,7 +10,7 @@
     "server.ServerPlayNetworkHandlerMixin",
     "server.ServerPropertiesHandlerMixin",
     "server.TextFiltererMixin",
-    "common.PacketByteBufMixin"
+    "server.PacketByteBufMixin"
   ],
   "client": [
     "client.ClientCommonNetworkHandlerAccessor",

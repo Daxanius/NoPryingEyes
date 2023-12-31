@@ -1,4 +1,4 @@
-package me.daxanius.npe.mixins.common;
+package me.daxanius.npe.mixins.server;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
