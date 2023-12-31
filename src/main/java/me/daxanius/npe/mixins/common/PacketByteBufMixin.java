@@ -47,7 +47,7 @@ public abstract class PacketByteBufMixin {
             DataResult<JsonElement> dataResult = codec.encodeStart(JsonOps.INSTANCE, value);
             JsonElement element = Util.getResult(dataResult, string -> new EncoderException("Failed to encode: " + string + " " + value));
 
-            element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noKey());
+            element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
 
             this.writeString(GSON.toJson(element));
 
