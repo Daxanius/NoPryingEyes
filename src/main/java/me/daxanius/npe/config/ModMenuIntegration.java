@@ -8,12 +8,17 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
+        if (!FabricLoader.getInstance().isModLoaded("cloth-config")) {
+            return null;
+        }
+
         return parent -> {
             NoPryingEyesConfig config = NoPryingEyesConfig.getInstance();
             NoPryingEyesConfig configDefault = new NoPryingEyesConfig();
