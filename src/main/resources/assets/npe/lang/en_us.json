@@ -21,6 +21,7 @@
   "npe.config.chat_indicator.hide_yellow": "Hide Yellow Warning",
   "npe.warning.server_signing": "Uh, oh. It looks like this server does not accept unsigned messages. To chat in this server, simply set the signing mode to \"SIGN\" in the settings. Don't forget to change it back later though!",
   "npe.warning.server_key": "Hmm, it looks like this server enforces secure profiles. They won't let us in without a key! To join this server, simply set the signing mode to anything but \"NO_KEY\" in the settings. Don't forget to change it back later though!",
+  "npe.warning.on_demand": "The signing mode in your config is set to ON_DEMAND. This option enables message signing whenever a server demands it, and disables it when you exit that server, which means that all messages that you send on that particular server can be reported. The server you are currently in is one such server, and as such, all messages you send on this server can be reported. Chat with caution.",
   "npe.modified_chat.toast": "It looks like this server disables player reporting. Nice!",
   "npe.unmodified_chat.toast": "Hmm, it looks like this server has player reporting enabled... Are you sure you want to keep playing?"
 }
