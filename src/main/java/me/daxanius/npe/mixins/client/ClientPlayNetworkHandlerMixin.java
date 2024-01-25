@@ -7,6 +7,7 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.network.packet.s2c.play.ServerMetadataS2CPacket;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -43,13 +44,17 @@ public abstract class ClientPlayNetworkHandlerMixin {
     
 
     private void interceptMessages() {
-        Text warning = Text.translatable("npe.warning.on_demand");
+        Text warning = Text.literal("\n").withColor(0xFF0000)
+        .append(Text.translatable("npe.warning.on_demand")).append("\n");
+
         NoPryingEyes.LogVerbose("Setting warn screen (does not work right now)");
         MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(warning));
-        NoPryingEyes.LogVerbose("Sending warn message");
-        client.player.sendMessage(warning);
+        
         NoPryingEyes.LogVerbose("Enabling sign for 1 session");
         NoPryingEyesConfig.getInstance().setTempSign(true);
+
+        NoPryingEyes.LogVerbose("Sending warn message");
+        client.player.sendMessage(warning);
     }
 
     /**
