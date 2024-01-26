@@ -52,7 +52,9 @@ public abstract class ClientPlayNetworkHandlerMixin {
         NoPryingEyes.LogVerbose("Enabling sign for 1 session");
         NoPryingEyesConfig.getInstance().setTempSign(true);
 
-        if(!NoPryingEyesConfig.getInstance().toastHasBeenSent()) {
+        NoPryingEyesConfig.OnDemandWarning on_demand_warning = NoPryingEyesConfig.getInstance().onDemandWarning;
+        if(on_demand_warning == NoPryingEyesConfig.OnDemandWarning.ALWAYS
+        || (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.IF_TOAST_NOT_SENT && !NoPryingEyesConfig.getInstance().toastHasBeenSent())) {
             NoPryingEyes.LogVerbose("Sending warn message");
             client.player.sendMessage(warning);
         }

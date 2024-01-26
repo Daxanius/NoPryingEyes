@@ -29,13 +29,13 @@ public class NoPryingEyesConfig {
 
     public boolean server_toasts = true;
 
-    public boolean on_demand_warning = true;
-
     public boolean fake_ban = false;
 
     public boolean verbose = false;
 
     public SigningMode signing_mode = SigningMode.NO_KEY;
+
+    public OnDemandWarning onDemandWarning = OnDemandWarning.IF_TOAST_NOT_SENT;
 
     public ChatIndicatorOptions chat_indicator = new ChatIndicatorOptions();
 
@@ -86,6 +86,17 @@ public class NoPryingEyesConfig {
 
         // Sign messages only if demanded by the server
         ON_DEMAND
+    }
+
+    public enum OnDemandWarning {
+        //Always
+        ALWAYS,
+
+        //Never
+        NEVER,
+
+        //Only if the toast has not been sent
+        IF_TOAST_NOT_SENT
     }
 
 

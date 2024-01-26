@@ -66,10 +66,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .build());
 
             //On demand warning
-            cat.addEntry(entryBuilder.startBooleanToggle(Text.translatable("npe.config.on_demand_warning"), config.on_demand_warning)
+            cat.addEntry(entryBuilder.startEnumSelector(Text.translatable("npe.config.on_demand_warning"), NoPryingEyesConfig.OnDemandWarning.class, config.onDemandWarning)
                         .setTooltip(Text.translatable("npe.config.on_demand_warning.tooltip"))
-                        .setDefaultValue(configDefault.on_demand_warning)
-                        .setSaveConsumer(value -> config.on_demand_warning = value)
+                        .setDefaultValue(configDefault.onDemandWarning)
+                        .setSaveConsumer(value -> config.onDemandWarning = value)
                         .build());
 
             // Fake ban
