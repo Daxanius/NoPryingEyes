@@ -19,6 +19,7 @@ public class NoPryingEyesConfig {
     //https://stackoverflow.com/a/5889590/22705536
     //the transient keyword should exclude tempSign from being serialized
     private transient boolean tempSign = false;
+    private transient boolean toastHasBeenSent = false;
 
     public boolean disable_telemetry = true;
 
@@ -27,6 +28,8 @@ public class NoPryingEyesConfig {
     public boolean disable_profanity_filter = true;
 
     public boolean server_toasts = true;
+
+    public boolean on_demand_warning = true;
 
     public boolean fake_ban = false;
 
@@ -55,6 +58,14 @@ public class NoPryingEyesConfig {
 
     public void setTempSign(boolean value) {
         this.tempSign = value;
+    }
+
+    public boolean toastHasBeenSent() {
+        return toastHasBeenSent;
+    }
+
+    public void setToastHasBeenSent(boolean value) {
+        this.toastHasBeenSent = value;
     }
 
     public static class ChatIndicatorOptions {

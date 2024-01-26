@@ -8,6 +8,8 @@
   "npe.config.disable_profanity_filter": "Disable Profanity Filter",
   "npe.config.disable_profanity_filter.tooltip": "Disable the profanity filter",
   "npe.config.server_toasts": "Server Toasts",
+  "npe.config.on_demand_warning": "On Demand Warning",
+  "npe.config.on_demand_warning.tooltip": "Enable warning messafe that is sent when signing is enabled for a single session when signing mode is set to ON_DEMAND",
   "npe.config.server_toasts.tooltip": "Enable toasts notifying whether the server modifies messages or not",
   "npe.config.disable_global_bans": "Disable Global Bans",
   "npe.config.disable_global_bans.tooltip": "Disable global game bans",

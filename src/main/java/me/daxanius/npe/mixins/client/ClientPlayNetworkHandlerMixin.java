@@ -53,8 +53,11 @@ public abstract class ClientPlayNetworkHandlerMixin {
         NoPryingEyes.LogVerbose("Enabling sign for 1 session");
         NoPryingEyesConfig.getInstance().setTempSign(true);
 
-        NoPryingEyes.LogVerbose("Sending warn message");
-        client.player.sendMessage(warning);
+        if(!NoPryingEyesConfig.getInstance().toastHasBeenSent()) {
+            NoPryingEyes.LogVerbose("Sending warn message");
+            client.player.sendMessage(warning);
+        }
+        
     }
 
     /**
@@ -67,6 +70,7 @@ public abstract class ClientPlayNetworkHandlerMixin {
         if (packet.isSecureChatEnforced()) {
             SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, Text.translatable("npe.unmodified_chat.toast"));
             this.client.getToastManager().add(systemToast);
+            NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }
     }
 

@@ -45,5 +45,6 @@ public class MinecraftClientMixin {
     @Inject(method = "onDisconnected", at = @At("HEAD")) 
     private void onDisconnected(CallbackInfo ci) {
         NoPryingEyesConfig.getInstance().setTempSign(false);
+        NoPryingEyesConfig.getInstance().setToastHasBeenSent(false);
     }
 }
