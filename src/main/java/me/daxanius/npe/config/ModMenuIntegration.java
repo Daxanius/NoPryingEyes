@@ -65,6 +65,13 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(value -> config.server_toasts = value)
                     .build());
 
+            //On demand warning
+            cat.addEntry(entryBuilder.startEnumSelector(Text.translatable("npe.config.on_demand_warning"), NoPryingEyesConfig.OnDemandWarning.class, config.onDemandWarning)
+                        .setTooltip(Text.translatable("npe.config.on_demand_warning.tooltip"))
+                        .setDefaultValue(configDefault.onDemandWarning)
+                        .setSaveConsumer(value -> config.onDemandWarning = value)
+                        .build());
+
             // Fake ban
             cat.addEntry(entryBuilder.startBooleanToggle(Text.translatable("npe.config.fake_ban"), config.fake_ban)
                     .setTooltip(Text.translatable("npe.config.fake_ban.tooltip"))

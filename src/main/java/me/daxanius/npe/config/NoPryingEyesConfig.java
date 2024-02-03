@@ -16,6 +16,10 @@ public class NoPryingEyesConfig {
     private static final Path CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve("npe.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static NoPryingEyesConfig INSTANCE;
+    //https://stackoverflow.com/a/5889590/22705536
+    //the transient keyword should exclude tempSign from being serialized
+    private transient boolean tempSign = false;
+    private transient boolean toastHasBeenSent = false;
 
     public boolean disable_telemetry = true;
 
@@ -31,15 +35,37 @@ public class NoPryingEyesConfig {
 
     public SigningMode signing_mode = SigningMode.NO_KEY;
 
+    public OnDemandWarning onDemandWarning = OnDemandWarning.IF_TOAST_NOT_SENT;
+
     public ChatIndicatorOptions chat_indicator = new ChatIndicatorOptions();
 
     // For ease of use
     public boolean noSign() {
-        return signing_mode != SigningMode.SIGN;
+        return signing_mode != SigningMode.SIGN && !tempSign();
     }
 
     public boolean noKey() {
         return signing_mode == SigningMode.NO_KEY;
+    }
+
+    public boolean onDemand() {
+        return signing_mode == SigningMode.ON_DEMAND;
+    }
+
+    public boolean tempSign() {
+        return tempSign;
+    }
+
+    public void setTempSign(boolean value) {
+        this.tempSign = value;
+    }
+
+    public boolean toastHasBeenSent() {
+        return toastHasBeenSent;
+    }
+
+    public void setToastHasBeenSent(boolean value) {
+        this.toastHasBeenSent = value;
     }
 
     public static class ChatIndicatorOptions {
@@ -56,7 +82,21 @@ public class NoPryingEyesConfig {
         NO_SIGN,
 
         // Don't send the public key at all
-        NO_KEY
+        NO_KEY,
+
+        // Sign messages only if demanded by the server
+        ON_DEMAND
+    }
+
+    public enum OnDemandWarning {
+        //Always
+        ALWAYS,
+
+        //Never
+        NEVER,
+
+        //Only if the toast has not been sent
+        IF_TOAST_NOT_SENT
     }
 
 

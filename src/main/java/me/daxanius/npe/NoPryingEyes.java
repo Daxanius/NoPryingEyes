@@ -14,7 +14,7 @@ public class NoPryingEyes implements ModInitializer {
 			return;
 		}
 
-		LOGGER.info(s);
+		LOGGER.info("NPE: " + s);
 	}
 
 	@Override

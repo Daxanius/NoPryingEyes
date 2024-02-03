@@ -8,6 +8,8 @@
   "npe.config.disable_profanity_filter": "Disable Profanity Filter",
   "npe.config.disable_profanity_filter.tooltip": "Disable the profanity filter",
   "npe.config.server_toasts": "Server Toasts",
+  "npe.config.on_demand_warning": "On Demand Warning",
+  "npe.config.on_demand_warning.tooltip": "Enable warning message that is sent when signing is enabled for a single session when signing mode is set to ON_DEMAND",
   "npe.config.server_toasts.tooltip": "Enable toasts notifying whether the server modifies messages or not",
   "npe.config.disable_global_bans": "Disable Global Bans",
   "npe.config.disable_global_bans.tooltip": "Disable global game bans",
@@ -19,8 +21,11 @@
   "npe.config.chat_indicator.tooltip": "Change how modified or unsafe messages appear",
   "npe.config.chat_indicator.hide_red": "Hide Red Warning",
   "npe.config.chat_indicator.hide_yellow": "Hide Yellow Warning",
+
   "npe.warning.server_signing": "This server requires all player messages to be signed (reportable to Mojang). If you want to chat, set the signing mode to \"SIGN\" in the No Prying Eyes settings. Otherwise, you can still use any commands that are not related to chat.",
   "npe.warning.server_key": "This server requires secure profiles, which implies that all player messages to be signed (reportable to Mojang). To join this server, change the signing mode from \"NO_KEY\" to something else in the No PryingEyes settings.",
   "npe.modified_chat.toast": "Chat messages are not reportable to Mojang on this server.",
-  "npe.unmodified_chat.toast": "Chat messages can be reported to Mojang on this server."
+  "npe.unmodified_chat.toast": "Chat messages can be reported to Mojang on this server.",
+  "npe.warning.on_demand": "The signing mode in your config is set to ON_DEMAND. This option enables message signing whenever a server demands it, and disables it when you exit that server, which means that all messages that you send on that particular server can be reported. The server you are currently in is one such server, and as such, all messages you send on this server can be reported. Chat with caution."
 }
+
