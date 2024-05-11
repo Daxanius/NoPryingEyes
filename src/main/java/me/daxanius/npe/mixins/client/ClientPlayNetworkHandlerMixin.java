@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.toast.SystemToast;
-import net.minecraft.network.packet.s2c.play.ServerMetadataS2CPacket;
+import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -66,9 +66,9 @@ public abstract class ClientPlayNetworkHandlerMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "onServerMetadata(Lnet/minecraft/network/packet/s2c/play/ServerMetadataS2CPacket;)V", at = @At("TAIL"))
-    private void onServerMetaData(ServerMetadataS2CPacket packet, CallbackInfo info) {
-        if (packet.isSecureChatEnforced()) {
+    @Inject(method = "onGameJoin(Lnet/minecraft/network/packet/s2c/play/GameJoinS2CPacket;)V", at = @At("TAIL"))
+    private void onGameJoin(GameJoinS2CPacket packet, CallbackInfo info) {
+        if (packet.enforcesSecureChat()) {
             SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, Text.translatable("npe.unmodified_chat.toast"));
             this.client.getToastManager().add(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
@@ -84,21 +84,21 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     private void sendChatMessage(String content, CallbackInfo ci) {
 
-        if(serverInfo != null) if (serverInfo.isSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
+        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
         
     }
 
     @Inject(method = "sendChatCommand", at = @At("HEAD"), cancellable = true)
     private void sendChatCommand(String content, CallbackInfo ci) {
 
-        if(serverInfo != null) if (serverInfo.isSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
+        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
         
     }
 
     @Inject(method = "sendCommand", at = @At("HEAD"), cancellable = true)
     private void sendCommand(String content, CallbackInfoReturnable<Boolean> cir) {
 
-        if(serverInfo != null) if (serverInfo.isSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
+        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
         
     }
     
