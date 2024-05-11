@@ -14,6 +14,7 @@
   ],
   "client": [
     "client.ClientCommonNetworkHandlerAccessor",
+    "client.ClientPlayNetworkHandlerAccessor",
     "client.ClientPlayNetworkHandlerMixin",
     "client.DisconnectedScreenMixin",
     "client.MessageTrustStatusMixin",
