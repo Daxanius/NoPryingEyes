@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -49,14 +50,15 @@ public abstract class ArgumentSignatureDataMapMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "get(Ljava/lang/String;)Lnet/minecraft/network/message/MessageSignatureData;", at = @At("HEAD"), cancellable = true)
-    public void get(String argumentName, CallbackInfoReturnable<MessageSignatureData> info) {
+    @ModifyVariable(method = "sign", at = @At("STORE"), ordinal = 1)
+    private MessageSignatureData removeMessageSignatureData(MessageSignatureData original) {
         NoPryingEyes.LogVerbose("Requested signature from message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyes.LogVerbose("Stripping packet signature");
-            info.setReturnValue(null);
+            return null;
         }
+        return original;
     }
 
     /**

@@ -15,7 +15,6 @@ import com.mojang.serialization.JsonOps;
 
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.ServerMetadata;
-import net.minecraft.util.Util;
 
 import io.netty.handler.codec.EncoderException;
 import me.daxanius.npe.config.NoPryingEyesConfig;
@@ -45,7 +44,7 @@ public abstract class PacketByteBufMixin {
             ci.cancel();
 
             DataResult<JsonElement> dataResult = codec.encodeStart(JsonOps.INSTANCE, value);
-            JsonElement element = Util.getResult(dataResult, string -> new EncoderException("Failed to encode: " + string + " " + value));
+            JsonElement element = dataResult.getOrThrow(string -> new EncoderException("Failed to encode: " + string + " " + value));
 
             element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
 

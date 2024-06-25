@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "me.daxanius.npe.mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "common.ArgumentSignatureDataMapMixin",
     "common.ChatMessageC2SPacketMixin",
@@ -14,6 +14,7 @@
   ],
   "client": [
     "client.ClientCommonNetworkHandlerAccessor",
+    "client.ClientPlayNetworkHandlerAccessor",
     "client.ClientPlayNetworkHandlerMixin",
     "client.DisconnectedScreenMixin",
     "client.MessageTrustStatusMixin",
