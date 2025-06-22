@@ -22,7 +22,7 @@ public class ChatScreenMixin {
      * @author TechPro424
      */
     @ModifyExpressionValue(method = "sendMessage(Ljava/lang/String;Z)V", at = @At(value = "INVOKE", target = "Ljava/lang/String;isEmpty()Z"))
-    private boolean test(boolean original) {
+    private boolean interceptMessage(boolean original) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (!original
                 && player != null
@@ -43,7 +43,7 @@ public class ChatScreenMixin {
     }
 
     @ModifyArg(method = "keyPressed(III)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V", ordinal = 1))
-    private Screen test2(@Nullable Screen screen) {
+    private Screen redirectExitScreen(@Nullable Screen screen) {
         if (shouldCloseToNPEDemandWarningScreen.get()) {
             shouldCloseToNPEDemandWarningScreen.set(false);
             NoPryingEyes.LogVerbose("Opening on demand warn screen");
