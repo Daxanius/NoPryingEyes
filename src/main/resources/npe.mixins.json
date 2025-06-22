@@ -6,17 +6,17 @@
   "mixins": [
     "common.ArgumentSignatureDataMapMixin",
     "common.ChatMessageC2SPacketMixin",
+    "server.AbstractTextFiltererMixin",
+    "server.PacketByteBufMixin",
     "server.ServerCommonNetworkHandlerAccessor",
     "server.ServerPlayNetworkHandlerMixin",
-    "server.ServerPropertiesHandlerMixin",
-    "server.TextFiltererMixin",
-    "server.PacketByteBufMixin"
+    "server.ServerPropertiesHandlerMixin"
   ],
   "client": [
+    "client.ChatScreenMixin",
     "client.ClientCommonNetworkHandlerAccessor",
     "client.ClientPlayNetworkHandlerAccessor",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.DisconnectedScreenMixin",
     "client.MessageTrustStatusMixin",
     "client.MinecraftClientMixin",
     "client.ProfileKeysImplMixin",

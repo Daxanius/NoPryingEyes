@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 public class NoPryingEyes implements ModInitializer {
 	public static final String MOD_ID = "npe";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final ThreadLocal<Boolean> shouldCloseToNPEDemandWarningScreen = ThreadLocal.withInitial(() -> false);
 
 	public static void LogVerbose(String s) {
 		if (!NoPryingEyesConfig.getInstance().verbose) {
