@@ -2,6 +2,7 @@ package me.daxanius.npe.mixins.client;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,6 +33,8 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Final
     @Shadow
     private static final Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
+    @Unique
+    private static final Text SECURE_SERVER_TOAST_TEXT = Text.translatable("npe.unmodified_chat.toast");
 
     @Unique
     private final MinecraftClient client = ((ClientCommonNetworkHandlerAccessor) this).getClient();
@@ -44,7 +47,8 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Inject(method = "onGameJoin(Lnet/minecraft/network/packet/s2c/play/GameJoinS2CPacket;)V", at = @At("TAIL"))
     private void onGameJoin(GameJoinS2CPacket packet, CallbackInfo info) {
         if (packet.enforcesSecureChat()) {
-            SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, UNSECURE_SERVER_TOAST_TEXT);
+            NoPryingEyes.LogVerbose("Opening warning toast.");
+            SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
             this.client.getToastManager().add(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }

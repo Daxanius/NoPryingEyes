@@ -4,9 +4,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ConfirmScreen;
-import net.minecraft.client.gui.screen.GameMenuScreen;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.screen.ScreenTexts;
+import static net.minecraft.client.gui.screen.GameMenuScreen.disconnect;
+import static net.minecraft.client.world.ClientWorld.QUITTING_MULTIPLAYER_TEXT;
+import static net.minecraft.screen.ScreenTexts.*;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
@@ -19,11 +19,11 @@ public class NoPryingEyesWarningScreens {
         public NoPryingEyesWarningScreen(Text message) {
             super(resumeGame -> {
                 if (!resumeGame) {
-                    GameMenuScreen.disconnect(MinecraftClient.getInstance(), ClientWorld.QUITTING_MULTIPLAYER_TEXT);
+                    disconnect(MinecraftClient.getInstance(), QUITTING_MULTIPLAYER_TEXT);
                 } else {
                     MinecraftClient.getInstance().setScreen(null);
                 }
-            }, Text.translatable("npe.title"), message, ScreenTexts.ACKNOWLEDGE, ScreenTexts.DISCONNECT);
+            }, Text.translatable("npe.title"), message, ACKNOWLEDGE, DISCONNECT);
         }
     }
 }
