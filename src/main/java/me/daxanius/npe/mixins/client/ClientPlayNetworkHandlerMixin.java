@@ -33,6 +33,7 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Final
     @Shadow
     private static final Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
+
     @Unique
     private static final Text SECURE_SERVER_TOAST_TEXT = Text.translatable("npe.unmodified_chat.toast");
 

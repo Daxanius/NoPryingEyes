@@ -41,7 +41,7 @@ public class NoPryingEyesConfig {
 
     // For ease of use
     public boolean noSign() {
-        return signing_mode != SigningMode.SIGN && !tempSign();
+        return (signing_mode != SigningMode.SIGN && !tempSign()) || noKey();
     }
 
     public boolean noKey() {
