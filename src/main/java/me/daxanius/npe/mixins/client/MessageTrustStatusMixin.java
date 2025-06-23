@@ -7,6 +7,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @Mixin(MessageTrustStatus.class)
 public class MessageTrustStatusMixin {
     // The original way of getting the status
+    @Unique
     private static MessageTrustStatus getStatusOriginal(SignedMessage message, Text decorated, Instant receptionTimestamp) {
         if (message.hasSignature() && !message.isExpiredOnClient(receptionTimestamp)) {
             return isModified(message, decorated) ? MessageTrustStatus.MODIFIED : MessageTrustStatus.SECURE;
@@ -22,6 +24,7 @@ public class MessageTrustStatusMixin {
         }
     }
 
+    @Unique
     private static boolean isModified(SignedMessage message, Text decorated) {
         if (!decorated.getString().contains(message.getSignedContent())) {
             return true;
@@ -31,10 +34,12 @@ public class MessageTrustStatusMixin {
         }
     }
 
+    @Unique
     private static boolean isNotInDefaultFont(Text content) {
         return content.visit((style, part) -> isNotInDefaultFont(style) ? Optional.of(true) : Optional.empty(), Style.EMPTY).orElse(false);
     }
 
+    @Unique
     private static boolean isNotInDefaultFont(Style style) {
         return !style.getFont().equals(Style.DEFAULT_FONT_ID);
     }

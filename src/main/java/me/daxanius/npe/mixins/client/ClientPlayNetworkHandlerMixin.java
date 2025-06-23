@@ -1,24 +1,27 @@
 package me.daxanius.npe.mixins.client;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import me.daxanius.npe.NoPryingEyes;
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.client.network.ServerInfo;
+import net.minecraft.client.network.message.MessageHandler;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import me.daxanius.npe.NoPryingEyes;
-import me.daxanius.npe.config.NoPryingEyesConfig;
-import me.daxanius.npe.gui.NoPryingEyesWarningScreen;
+import static me.daxanius.npe.gui.NoPryingEyesWarningScreens.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ClientPlayNetworkHandler.class)
@@ -30,36 +33,11 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Final
     @Shadow
     private static final Text UNSECURE_SERVER_TOAST_TEXT = Text.translatable("npe.modified_chat.toast");
+    @Unique
+    private static final Text SECURE_SERVER_TOAST_TEXT = Text.translatable("npe.unmodified_chat.toast");
 
-    private MinecraftClient client = ((ClientCommonNetworkHandlerAccessor)this).getClient();
-
-    ServerInfo serverInfo = ((ClientPlayNetworkHandler)(Object)this).getServerInfo();
-
-    
-    /**
-     * @reason Common method to intercept messages/commands from client
-     * @author TechPro424
-     */
-    
-
-    private void interceptMessages() {
-        Text warning = Text.literal("\n").withColor(0xFF0000)
-        .append(Text.translatable("npe.warning.on_demand")).append("\n");
-
-        NoPryingEyes.LogVerbose("Setting warn screen (does not work right now)");
-        MinecraftClient.getInstance().setScreen(new NoPryingEyesWarningScreen(warning));
-        
-        NoPryingEyes.LogVerbose("Enabling sign for 1 session");
-        NoPryingEyesConfig.getInstance().setTempSign(true);
-
-        NoPryingEyesConfig.OnDemandWarning on_demand_warning = NoPryingEyesConfig.getInstance().onDemandWarning;
-        if(on_demand_warning == NoPryingEyesConfig.OnDemandWarning.ALWAYS
-        || (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.IF_TOAST_NOT_SENT && !NoPryingEyesConfig.getInstance().toastHasBeenSent())) {
-            NoPryingEyes.LogVerbose("Sending warn message");
-            client.player.sendMessage(warning);
-        }
-        
-    }
+    @Unique
+    private final MinecraftClient client = ((ClientCommonNetworkHandlerAccessor) this).getClient();
 
     /**
      * @reason Add a warning message
@@ -69,37 +47,36 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @Inject(method = "onGameJoin(Lnet/minecraft/network/packet/s2c/play/GameJoinS2CPacket;)V", at = @At("TAIL"))
     private void onGameJoin(GameJoinS2CPacket packet, CallbackInfo info) {
         if (packet.enforcesSecureChat()) {
-            SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, Text.translatable("npe.unmodified_chat.toast"));
+            NoPryingEyes.LogVerbose("Opening warning toast.");
+            SystemToast systemToast = SystemToast.create(this.client, SystemToast.Type.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
             this.client.getToastManager().add(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }
     }
 
-
-    /**
-     * @reason injects to intercept messages/commands from client and show warning scrren
-     * @author TechPro424
-     */
-    
-    @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
-    private void sendChatMessage(String content, CallbackInfo ci) {
-
-        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
-        
+    @WrapOperation(method = "onGameMessage(Lnet/minecraft/network/packet/s2c/play/GameMessageS2CPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/message/MessageHandler;onGameMessage(Lnet/minecraft/text/Text;Z)V"))
+    private void showWarning(MessageHandler instance, Text message, boolean overlay, Operation<Void> original) {
+        // Yep, this is how we check it
+        if (NoPryingEyesConfig.getInstance().noKey()) {
+            if (isThisASignatureExceptionMessage(message)) {
+                MinecraftClient.getInstance().setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
+            } else if (messageCompareException(message, "chat.disabled.invalid_command_signature")) {
+                MinecraftClient.getInstance().setScreen(REQUIRED_MESSAGE_SIGNING);
+            }
+        }
+        original.call(instance, message, overlay);
     }
 
-    @Inject(method = "sendChatCommand", at = @At("HEAD"), cancellable = true)
-    private void sendChatCommand(String content, CallbackInfo ci) {
-
-        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
-        
+    @Unique
+    private boolean isThisASignatureExceptionMessage(Text message) {
+        return messageCompareException(message, "chat.disabled.missingProfileKey") ||
+                messageCompareException(message, "chat.disabled.expiredProfileKey") ||
+                messageCompareException(message, "chat.disabled.invalid_signature");
     }
 
-    @Inject(method = "sendCommand", at = @At("HEAD"), cancellable = true)
-    private void sendCommand(String content, CallbackInfoReturnable<Boolean> cir) {
-
-        if(serverInfo != null) if (((ClientPlayNetworkHandlerAccessor)((ClientPlayNetworkHandler)(Object)this)).getSecureChatEnforced() && NoPryingEyesConfig.getInstance().onDemand() && !NoPryingEyesConfig.getInstance().tempSign()) interceptMessages();
-        
+    @Unique
+    private boolean messageCompareException(Text message, String key) {
+        return message.equals(Text.translatable(key).formatted(Formatting.RED));
     }
-    
+
 }
