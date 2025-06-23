@@ -50,8 +50,8 @@ public abstract class ArgumentSignatureDataMapMixin {
      * @author Daxanius
      */
 
-    @ModifyVariable(method = "sign", at = @At("STORE"), ordinal = 1)
-    private MessageSignatureData removeMessageSignatureData(MessageSignatureData original) {
+    @ModifyVariable(method = "sign", at = @At("HEAD"), ordinal = 1)
+    private static MessageSignatureData removeMessageSignatureData(MessageSignatureData original) {
         NoPryingEyes.LogVerbose("Requested signature from message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
