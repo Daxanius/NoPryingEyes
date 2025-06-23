@@ -56,7 +56,7 @@ This works both server-side and client-side. It strips signatures and public key
 
 On the client-side this prevents the game client from sending the player's public key to the server, and prevents the client from signing messages.
 
-#### 3. ON_DEMAND
+#### 4. ON_DEMAND
 This will yield on servers that require signing, thus enabling signing. NPE will however prompt you to ask if you want to sign your messages on said servers. The prompt is also configurable.
 
 ### Profanity filter
