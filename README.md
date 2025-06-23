@@ -13,11 +13,12 @@ A Minecraft mod that aims to provide control over what happens to your data.
 ## Features
 All of these features are configurable and enabled by default.
 
-- Disable chat reporting using 3 different modes
+- Disable chat reporting using 4 different modes
 - Disable telemetry data collection
 - (Clientside) bypass global bans
 - Disable profanity filter
 - Fake ban (yes, pretend to be banned)
+- On-demand signing
 - More features planned
 
 ## How it works
@@ -54,6 +55,9 @@ It is generally **discouraged to use this option** unless required.
 This works both server-side and client-side. It strips signatures and public keys from signed messages (server-side) so that clients who sign their messages can still join the server, while also allowing clients who don't send their key (and also don't sign their messages) to join. 
 
 On the client-side this prevents the game client from sending the player's public key to the server, and prevents the client from signing messages.
+
+#### 3. ON_DEMAND
+This will yield on servers that require signing, thus enabling signing. NPE will however prompt you to ask if you want to sign your messages on said servers. The prompt is also configurable.
 
 ### Profanity filter
 This disables the profanity filter (used in realms) that you can also just disable in your Minecraft account settings. It removes the asterisks. At least on the client-side of things, as I cannot modify realms servers.
