@@ -58,7 +58,7 @@ public abstract class ClientPlayNetworkHandlerMixin {
     @WrapOperation(method = "onGameMessage(Lnet/minecraft/network/packet/s2c/play/GameMessageS2CPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/message/MessageHandler;onGameMessage(Lnet/minecraft/text/Text;Z)V"))
     private void showWarning(MessageHandler instance, Text message, boolean overlay, Operation<Void> original) {
         // Yep, this is how we check it
-        if (NoPryingEyesConfig.getInstance().noKey()) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
             if (isThisASignatureExceptionMessage(message)) {
                 MinecraftClient.getInstance().setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
             } else if (messageCompareException(message, "chat.disabled.invalid_command_signature")) {
