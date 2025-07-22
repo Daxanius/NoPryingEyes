@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "server.ChatMessageC2SPacketMixin",
+    "server.DecoratedContentsInvoker",
     "server.PlayerEntityMixin",
     "server.ServerMetadataDeserializerMixin",
     "server.ServerMetadataMixin",
