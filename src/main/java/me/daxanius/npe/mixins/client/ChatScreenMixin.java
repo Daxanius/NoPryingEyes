@@ -42,7 +42,7 @@ public class ChatScreenMixin {
 
     }
 
-    @ModifyArg(method = "keyPressed(III)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V", ordinal = 1))
+    @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyInput;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"))
     private Screen redirectExitScreen(@Nullable Screen screen) {
         if (shouldCloseToNPEDemandWarningScreen.get()) {
             shouldCloseToNPEDemandWarningScreen.set(false);

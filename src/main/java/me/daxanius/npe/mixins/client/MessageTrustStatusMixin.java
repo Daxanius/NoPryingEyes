@@ -4,6 +4,7 @@ import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.client.network.message.MessageTrustStatus;
 import net.minecraft.network.message.SignedMessage;
 import net.minecraft.text.Style;
+import net.minecraft.text.StyleSpriteSource;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -41,7 +42,7 @@ public class MessageTrustStatusMixin {
 
     @Unique
     private static boolean isNotInDefaultFont(Style style) {
-        return !style.getFont().equals(Style.DEFAULT_FONT_ID);
+        return !style.getFont().equals(StyleSpriteSource.DEFAULT);
     }
 
     /**

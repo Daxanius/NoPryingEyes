@@ -4,9 +4,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ConfirmScreen;
-import static net.minecraft.client.gui.screen.GameMenuScreen.disconnect;
 import static net.minecraft.client.world.ClientWorld.QUITTING_MULTIPLAYER_TEXT;
 import static net.minecraft.screen.ScreenTexts.*;
+
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
@@ -18,8 +18,9 @@ public class NoPryingEyesWarningScreens {
     private static class NoPryingEyesWarningScreen extends ConfirmScreen {
         public NoPryingEyesWarningScreen(Text message) {
             super(resumeGame -> {
+                MinecraftClient client = MinecraftClient.getInstance();
                 if (!resumeGame) {
-                    disconnect(MinecraftClient.getInstance(), QUITTING_MULTIPLAYER_TEXT);
+                    client.disconnect(QUITTING_MULTIPLAYER_TEXT);
                 } else {
                     MinecraftClient.getInstance().setScreen(null);
                 }

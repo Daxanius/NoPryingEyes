@@ -29,7 +29,7 @@ public abstract class PacketByteBufMixin {
     public abstract PacketByteBuf writeString(String string);
 
     @Inject(method = "encodeAsJson", at = @At("HEAD"), cancellable = true)
-    private void writeJson(Codec codec, Object value, CallbackInfo ci) {
+    private void writeJson(Codec<?> codec, Object value, CallbackInfo ci) {
         /*
          * The raw type and unchecked warnings are not an issue here
          * 
@@ -43,7 +43,8 @@ public abstract class PacketByteBufMixin {
         if (codec == ServerMetadata.CODEC) {
             ci.cancel();
 
-            DataResult<JsonElement> dataResult = codec.encodeStart(JsonOps.INSTANCE, value);
+            @SuppressWarnings("unchecked")
+            DataResult<JsonElement> dataResult = ((Codec<Object>) codec).encodeStart(JsonOps.INSTANCE, value);
             JsonElement element = dataResult.getOrThrow(string -> new EncoderException("Failed to encode: " + string + " " + value));
 
             element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
