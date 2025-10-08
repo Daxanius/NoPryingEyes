@@ -4,7 +4,7 @@
 [![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)
 
 # No Prying Eyes
-A Minecraft mod that aims to provide control over what happens to your data.
+Provides full control over your data; namely telemetry and chat reporting.
 
 ## Requirements
 - Fabric loader
@@ -22,7 +22,7 @@ All of these features are configurable and enabled by default.
 - More features planned
 
 ## How it works
-I will explain everything to the best of my ability, but if something is not clear, feel free to join the [Discord](https://discord.gg/8Mm3g3T5re) and ask for clarification on any of these topics.
+If something is unclear, you are welcome to join the [Discord](https://discord.gg/8Mm3g3T5re) to talk about it.
 
 ### Telemetry
 If telemetry is disabled, it will replace the telemetry sender with a dummy that does nothing.
