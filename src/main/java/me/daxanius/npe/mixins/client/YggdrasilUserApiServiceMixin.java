@@ -4,6 +4,7 @@ import java.util.concurrent.Executor;
 
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
+import net.fabricmc.loader.api.FabricLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,5 +25,11 @@ public class YggdrasilUserApiServiceMixin {
         }
 
         NoPryingEyes.LogVerbose("Creating telemetry session");
+    }
+
+    @Inject(method = "canSendReports()Z", at = @At("HEAD"), cancellable = true)
+    private void onCanSendReports(CallbackInfoReturnable<Boolean> info) {
+        // Only allow the reporting button in the devenv for testing purposes
+        info.setReturnValue(FabricLoader.getInstance().isDevelopmentEnvironment());
     }
 }
