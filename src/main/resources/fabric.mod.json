@@ -15,7 +15,7 @@
     "issues": "https://github.com/Daxanius/NoPryingEyes/issues"
   },
 
-  "license": "GNU GPLv3",
+  "license": "MIT",
   "icon": "assets/npe/icon.png",
 
   "environment": "*",
