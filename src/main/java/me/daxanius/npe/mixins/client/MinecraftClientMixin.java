@@ -1,7 +1,6 @@
 package me.daxanius.npe.mixins.client;
 
 import com.mojang.authlib.minecraft.BanDetails;
-import com.mojang.authlib.yggdrasil.ProfileActionType;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
