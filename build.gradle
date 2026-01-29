@@ -11,6 +11,17 @@ repositories {
 	maven { url "https://maven.terraformersmc.com/releases" }
 }
 
+loom {
+    runs {
+        // Add a 2nd client for convenient multiplayer testing
+        client2 {
+            client()
+            name "Minecraft Client 2"
+            runDir "run/client2"
+        }
+    }
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
