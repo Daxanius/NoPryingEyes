@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NoPryingEyes implements ModInitializer {
-	public static final String MOD_ID = "npe";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String MOD_ID = "nopryingeyes";
+	public static final Logger LOGGER = LoggerFactory.getLogger("No Prying Eyes");
 	public static final ThreadLocal<Boolean> shouldCloseToNPEDemandWarningScreen = ThreadLocal.withInitial(() -> false);
 
 	public static void LogVerbose(String s) {
@@ -15,7 +15,7 @@ public class NoPryingEyes implements ModInitializer {
 			return;
 		}
 
-		LOGGER.info("NPE: " + s);
+		LOGGER.info(s);
 	}
 
 	@Override
