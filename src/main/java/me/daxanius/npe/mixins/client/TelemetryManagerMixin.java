@@ -27,6 +27,7 @@ public class TelemetryManagerMixin {
 		if (NoPryingEyesConfig.getInstance().disable_telemetry) {
 			NoPryingEyes.LogVerbose("Creating dummy telemetry sender");
 			info.setReturnValue(new TelemetrySenderDummy());
+            return;
 		}
 
 		NoPryingEyes.LogVerbose("Creating telemetry sender");
