@@ -1,6 +1,7 @@
 package me.daxanius.npe.mixins.client;
 
 import com.mojang.authlib.minecraft.BanDetails;
+import com.mojang.authlib.yggdrasil.ProfileActionType;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
@@ -24,7 +25,7 @@ public class MinecraftClientMixin {
      * @author Daxanius
      */
 
-    @Inject(at = @At("HEAD"), method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", cancellable = true)
+    @Inject(method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", at = @At("HEAD"), cancellable = true)
     private void getMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> info) {
         NoPryingEyes.LogVerbose("Client is fetching ban details");
 
@@ -39,6 +40,13 @@ public class MinecraftClientMixin {
         if (NoPryingEyesConfig.getInstance().disable_global_bans) {
             NoPryingEyes.LogVerbose("Falsifying ban details");
             info.setReturnValue(null);
+        }
+    }
+
+    @Inject(method = "isUsernameBanned()Z", at = @At("HEAD"), cancellable = true)
+    public void isUsernameBanned(CallbackInfoReturnable<Boolean> info) {
+        if (NoPryingEyesConfig.getInstance().disable_global_bans) {
+            info.setReturnValue(false);
         }
     }
 
