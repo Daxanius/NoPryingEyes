@@ -25,7 +25,7 @@ public class AbstractTextFiltererMixin {
      */
     @WrapOperation(at = @At(value = "INVOKE", target = "Ljava/util/concurrent/CompletableFuture;supplyAsync(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"), method = "filter(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/filter/AbstractTextFilterer$HashIgnorer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;")
     private CompletableFuture<Object> filterMessage(Supplier<Object> supplier, Executor executor, Operation<CompletableFuture<Object>> original, @Local(ordinal = 0, argsOnly = true) String raw) {
-        if (NoPryingEyesConfig.getInstance().disable_profanity_filter) {
+        if (NoPryingEyesConfig.getInstance().disable_chat_control) {
             NoPryingEyes.LogVerbose("Passing message as permitted");
             return CompletableFuture.completedFuture(FilteredMessage.permitted(raw));
         }

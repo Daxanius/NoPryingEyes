@@ -52,10 +52,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .build());
 
             // Profanity filter
-            cat.addEntry(entryBuilder.startBooleanToggle(Text.translatable("npe.config.disable_profanity_filter"), config.disable_profanity_filter)
-                    .setTooltip(Text.translatable("npe.config.disable_profanity_filter.tooltip"))
-                    .setDefaultValue(configDefault.disable_profanity_filter)
-                    .setSaveConsumer(value -> config.disable_profanity_filter = value)
+            cat.addEntry(entryBuilder.startBooleanToggle(Text.translatable("npe.config.disable_chat_control"), config.disable_chat_control)
+                    .setTooltip(Text.translatable("npe.config.disable_chat_control.tooltip"))
+                    .setDefaultValue(configDefault.disable_chat_control)
+                    .setSaveConsumer(value -> config.disable_chat_control = value)
                     .build());
 
             // Server toasts

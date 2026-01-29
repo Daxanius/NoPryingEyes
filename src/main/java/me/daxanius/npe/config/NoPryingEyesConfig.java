@@ -25,7 +25,7 @@ public class NoPryingEyesConfig {
 
     public boolean disable_global_bans = true;
 
-    public boolean disable_profanity_filter = true;
+    public boolean disable_chat_control = true;
 
     public boolean server_toasts = true;
 
