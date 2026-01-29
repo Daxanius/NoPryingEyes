@@ -1,13 +1,18 @@
 package me.daxanius.npe.mixins.client;
 
+import java.util.UUID;
 import java.util.concurrent.Executor;
 
+import com.mojang.authlib.minecraft.report.AbuseReportLimits;
+import com.mojang.authlib.yggdrasil.request.AbuseReportRequest;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
+import me.daxanius.npe.util.telemetry.AbuseReportLimitsCustom;
 import net.fabricmc.loader.api.FabricLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.minecraft.TelemetrySession;
@@ -27,9 +32,27 @@ public class YggdrasilUserApiServiceMixin {
         NoPryingEyes.LogVerbose("Creating telemetry session");
     }
 
+    @Inject(method = "isBlockedPlayer(Ljava/util/UUID;)Z", at = @At("HEAD"), cancellable = true)
+    public void isBlockedPlayer(final UUID playerID, CallbackInfoReturnable<Boolean> info) {
+        if (NoPryingEyesConfig.getInstance().disable_global_bans) {
+            info.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "reportAbuse(Lcom/mojang/authlib/yggdrasil/request/AbuseReportRequest;)V", at = @At("HEAD"), cancellable = true)
+    public void reportAbuse(final AbuseReportRequest request, CallbackInfo info) {
+        // Just completely ignore any attempted report requests
+        info.cancel();
+    }
+
     @Inject(method = "canSendReports()Z", at = @At("HEAD"), cancellable = true)
     private void onCanSendReports(CallbackInfoReturnable<Boolean> info) {
         // Only allow the reporting button in the devenv for testing purposes
         info.setReturnValue(FabricLoader.getInstance().isDevelopmentEnvironment());
+    }
+
+    @Inject(method = "getAbuseReportLimits()Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;", at = @At("HEAD"), cancellable = true)
+    public void getAbuseReportLimits(CallbackInfoReturnable<AbuseReportLimits> info) {
+        info.setReturnValue(AbuseReportLimitsCustom.ZERO);
     }
 }
