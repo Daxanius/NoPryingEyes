@@ -11,7 +11,7 @@ Provides full control over your data; namely telemetry and chat reporting.
 - Fabric API
 
 ## Features
-All of these features are configurable and enabled by default.
+Most features are configurable and enabled by default.
 
 - Disable chat reporting using 4 different modes
 - Disable telemetry data collection
@@ -19,7 +19,7 @@ All of these features are configurable and enabled by default.
 - Disable profanity filter
 - Fake ban (yes, pretend to be banned)
 - On-demand signing
-- More features planned
+- A client-side patch for the UK chat restriction
 
 ## How it works
 If something is unclear, you are welcome to join the [Discord](https://discord.gg/8Mm3g3T5re) to talk about it.
@@ -59,8 +59,8 @@ On the client-side this prevents the game client from sending the player's publi
 #### 4. ON_DEMAND
 This will yield on servers that require signing, thus enabling signing. NPE will however prompt you to ask if you want to sign your messages on said servers. The prompt is also configurable.
 
-### Profanity filter
-This disables the profanity filter (used in realms) that you can also just disable in your Minecraft account settings. It removes the asterisks. At least on the client-side of things, as I cannot modify realms servers.
+### Profanity filter & UK Chat Control
+This disables the profanity filter (and now also UK chat control) that you can also just disable in your Minecraft account settings. It removes the asterisks. This only works client-side so if servers decide to filter words, this cannot prevent them from doing that.
 
 It's a nice feature to be able to toggle on the fly without having to potentially go on the Minecraft website, modify your account settings and restarting your game.
 
