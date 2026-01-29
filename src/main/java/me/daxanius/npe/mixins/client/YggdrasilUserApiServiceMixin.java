@@ -10,6 +10,8 @@ import com.mojang.authlib.yggdrasil.response.KeyPairResponse;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import me.daxanius.npe.util.telemetry.AbuseReportLimitsCustom;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.mojang.authlib.minecraft.TelemetrySession;
 import com.mojang.authlib.yggdrasil.YggdrasilUserApiService;
 
+@Environment(EnvType.CLIENT)
 @Mixin(value = YggdrasilUserApiService.class, remap = false)
 public class YggdrasilUserApiServiceMixin {
     @Inject(method = "newTelemetrySession", at = @At("HEAD"), cancellable = true)
