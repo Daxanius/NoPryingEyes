@@ -4,8 +4,8 @@ import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.session.ProfileKeysImpl;
-import net.minecraft.network.encryption.PlayerKeyPair;
+import net.minecraft.client.multiplayer.AccountProfileKeyPairManager;
+import net.minecraft.world.entity.player.ProfileKeyPair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,15 +15,15 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
-@Mixin(ProfileKeysImpl.class)
-public class ProfileKeysImplMixin {
+@Mixin(AccountProfileKeyPairManager.class)
+public class AccountProfileKeyPairManagerMixin {
     /**
      * @reason Prevents the client from accessing the key pair from storage so it won't send it to the server
      * @author Daxanius
      */
 
-    @Inject(method = "loadKeyPairFromFile()Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
-    private void loadKeyPairFromFile(CallbackInfoReturnable<Optional<PlayerKeyPair>> info) {
+    @Inject(method = "readProfileKeyPair()Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
+    private void loadKeyPairFromFile(CallbackInfoReturnable<Optional<ProfileKeyPair>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair from file");
 
         if (NoPryingEyesConfig.getInstance().noKey()) {
@@ -40,8 +40,8 @@ public class ProfileKeysImplMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "getKeyPair(Ljava/util/Optional;)Ljava/util/concurrent/CompletableFuture;", at = @At("HEAD"), cancellable = true)
-    private void getKeyPair(CallbackInfoReturnable<CompletableFuture<Optional<PlayerKeyPair>>> info) {
+    @Inject(method = "readOrFetchProfileKeyPair(Ljava/util/Optional;)Ljava/util/concurrent/CompletableFuture;", at = @At("HEAD"), cancellable = true)
+    private void getKeyPair(CallbackInfoReturnable<CompletableFuture<Optional<ProfileKeyPair>>> info) {
         NoPryingEyes.LogVerbose("Client requested key pair");
 
         if (NoPryingEyesConfig.getInstance().noKey()) {

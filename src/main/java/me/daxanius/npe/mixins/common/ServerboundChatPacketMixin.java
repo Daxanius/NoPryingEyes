@@ -2,9 +2,9 @@ package me.daxanius.npe.mixins.common;
 
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
-import net.minecraft.network.message.LastSeenMessageList;
-import net.minecraft.network.message.MessageSignatureData;
-import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
+import net.minecraft.network.chat.LastSeenMessages;
+import net.minecraft.network.chat.MessageSignature;
+import net.minecraft.network.protocol.game.ServerboundChatPacket;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,21 +17,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.time.Instant;
 
-@Mixin(ChatMessageC2SPacket.class)
-public class ChatMessageC2SPacketMixin {
+@Mixin(ServerboundChatPacket.class)
+public class ServerboundChatPacketMixin {
     @Final
     @Nullable
     @Mutable
     @Shadow
-    private MessageSignatureData signature;
+    private MessageSignature signature;
 
     /**
      * @reason Upon creation of the packet, sets the message signature as null
      * @author Daxanius
      */
 
-    @Inject(method = "<init>(Ljava/lang/String;Ljava/time/Instant;JLnet/minecraft/network/message/MessageSignatureData;Lnet/minecraft/network/message/LastSeenMessageList$Acknowledgment;)V", at = @At("TAIL"))
-    private void init(String string, Instant timestamp, long salt, MessageSignatureData signature, LastSeenMessageList.Acknowledgment acknowledgment, CallbackInfo ci) {
+    @Inject(method = "<init>(Ljava/lang/String;Ljava/time/Instant;JLnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/LastSeenMessages$Update;)V", at = @At("TAIL"))
+    private void init(String string, Instant timestamp, long salt, MessageSignature signature, LastSeenMessages.Update acknowledgment, CallbackInfo ci) {
         NoPryingEyes.LogVerbose("Creating message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
@@ -47,7 +47,7 @@ public class ChatMessageC2SPacketMixin {
      */
 
     @Inject(method = "signature", at = @At("HEAD"), cancellable = true)
-    private void signature(CallbackInfoReturnable<MessageSignatureData> info) {
+    private void signature(CallbackInfoReturnable<MessageSignature> info) {
         NoPryingEyes.LogVerbose("Requested signature from message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {

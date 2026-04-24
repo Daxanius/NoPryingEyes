@@ -1,7 +1,7 @@
 package me.daxanius.npe.mixins.server;
 
 import me.daxanius.npe.config.NoPryingEyesConfig;
-import net.minecraft.server.dedicated.ServerPropertiesHandler;
+import net.minecraft.server.dedicated.DedicatedServerProperties;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Properties;
 
-@Mixin(ServerPropertiesHandler.class)
-public class ServerPropertiesHandlerMixin {
+@Mixin(DedicatedServerProperties.class)
+public class DedicatedServerPropertiesMixin {
     @Final
     @Mutable
     @Shadow
