@@ -13,22 +13,22 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.ServerMetadata;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.status.ServerStatus;
 
 import io.netty.handler.codec.EncoderException;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 
 
-@Mixin(PacketByteBuf.class)
-public abstract class PacketByteBufMixin {
+@Mixin(FriendlyByteBuf.class)
+public abstract class FriendlyByteBufMixin {
     @Shadow @Final
 	private static Gson GSON;
 
     @Shadow
-    public abstract PacketByteBuf writeString(String string);
+    public abstract FriendlyByteBuf writeUtf(String string);
 
-    @Inject(method = "encodeAsJson", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "writeJsonWithCodec", at = @At("HEAD"), cancellable = true)
     private void writeJson(Codec<?> codec, Object value, CallbackInfo ci) {
         /*
          * The raw type and unchecked warnings are not an issue here
@@ -40,7 +40,7 @@ public abstract class PacketByteBufMixin {
          * But we are using an if statement to check the types anyway, so no issues
          */
 
-        if (codec == ServerMetadata.CODEC) {
+        if (codec == ServerStatus.CODEC) {
             ci.cancel();
 
             @SuppressWarnings("unchecked")
@@ -49,7 +49,7 @@ public abstract class PacketByteBufMixin {
 
             element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
 
-            this.writeString(GSON.toJson(element));
+            this.writeUtf(GSON.toJson(element));
 
         }
 
