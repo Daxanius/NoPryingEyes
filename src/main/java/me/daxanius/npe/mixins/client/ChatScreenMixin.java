@@ -3,7 +3,6 @@ package me.daxanius.npe.mixins.client;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
-import me.daxanius.npe.mixins.client.ClientPacketListenerAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.Screen;
