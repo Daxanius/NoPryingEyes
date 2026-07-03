@@ -2,29 +2,29 @@ package me.daxanius.npe.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ConfirmScreen;
-import static net.minecraft.client.world.ClientWorld.QUITTING_MULTIPLAYER_TEXT;
-import static net.minecraft.screen.ScreenTexts.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ConfirmScreen;
+import static net.minecraft.client.multiplayer.ClientLevel.DEFAULT_QUIT_MESSAGE;
+import static net.minecraft.network.chat.CommonComponents.*;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 @Environment(EnvType.CLIENT)
 public class NoPryingEyesWarningScreens {
-    public static final ConfirmScreen REQUIRED_MESSAGE_AND_COMMAND_SIGNING = new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_key"));
-    public static final ConfirmScreen REQUIRED_MESSAGE_SIGNING = new NoPryingEyesWarningScreen(Text.translatable("npe.warning.server_signing"));
-    public static final ConfirmScreen ON_DEMAND_SIGNING_ENABLED = new NoPryingEyesWarningScreen(Text.translatable("npe.warning.on_demand"));
+    public static final ConfirmScreen REQUIRED_MESSAGE_AND_COMMAND_SIGNING = new NoPryingEyesWarningScreen(Component.translatable("npe.warning.server_key"));
+    public static final ConfirmScreen REQUIRED_MESSAGE_SIGNING = new NoPryingEyesWarningScreen(Component.translatable("npe.warning.server_signing"));
+    public static final ConfirmScreen ON_DEMAND_SIGNING_ENABLED = new NoPryingEyesWarningScreen(Component.translatable("npe.warning.on_demand"));
 
     private static class NoPryingEyesWarningScreen extends ConfirmScreen {
-        public NoPryingEyesWarningScreen(Text message) {
+        public NoPryingEyesWarningScreen(Component message) {
             super(resumeGame -> {
-                MinecraftClient client = MinecraftClient.getInstance();
+                Minecraft client = Minecraft.getInstance();
                 if (!resumeGame) {
-                    client.disconnect(QUITTING_MULTIPLAYER_TEXT);
+                    client.disconnectFromWorld(DEFAULT_QUIT_MESSAGE);
                 } else {
-                    MinecraftClient.getInstance().setScreen(null);
+                    Minecraft.getInstance().setScreen(null);
                 }
-            }, Text.translatable("npe.title"), message, ACKNOWLEDGE, DISCONNECT);
+            }, Component.translatable("npe.title"), message, GUI_ACKNOWLEDGE, GUI_DISCONNECT);
         }
     }
 }

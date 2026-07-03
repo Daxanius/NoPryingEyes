@@ -3,10 +3,11 @@ package me.daxanius.npe.mixins.client;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.network.ClientPlayerEntity;
+import me.daxanius.npe.mixins.client.ClientPacketListenerAccessor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,12 +22,12 @@ public class ChatScreenMixin {
      * @reason injects to intercept messages/commands from client and show warning screen
      * @author TechPro424
      */
-    @ModifyExpressionValue(method = "sendMessage(Ljava/lang/String;Z)V", at = @At(value = "INVOKE", target = "Ljava/lang/String;isEmpty()Z"))
+    @ModifyExpressionValue(method = "handleChatInput(Ljava/lang/String;Z)V", at = @At(value = "INVOKE", target = "Ljava/lang/String;isEmpty()Z"))
     private boolean interceptMessage(boolean original) {
-        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        LocalPlayer player = Minecraft.getInstance().player;
         if (!original
                 && player != null
-                && ((ClientPlayNetworkHandlerAccessor) player.networkHandler).getSecureChatEnforced()
+                && ((ClientPacketListenerAccessor) player.connection).getServerEnforcesSecureChat()
                 && NoPryingEyesConfig.getInstance().onDemand()
                 && !NoPryingEyesConfig.getInstance().tempSign()) {
             NoPryingEyes.LogVerbose("Enabling sign for 1 session");
@@ -42,7 +43,7 @@ public class ChatScreenMixin {
 
     }
 
-    @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyInput;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"))
+    @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V"))
     private Screen redirectExitScreen(@Nullable Screen screen) {
         if (shouldCloseToNPEDemandWarningScreen.get()) {
             shouldCloseToNPEDemandWarningScreen.set(false);
