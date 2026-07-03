@@ -4,7 +4,6 @@ import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.network.chat.LastSeenMessages;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.network.chat.SignedMessageBody;
-import net.minecraft.network.message.*;
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.spongepowered.asm.mixin.Mixin;
