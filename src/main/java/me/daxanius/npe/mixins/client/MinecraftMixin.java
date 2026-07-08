@@ -5,7 +5,7 @@ import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.UUID;
 
 @Environment(EnvType.CLIENT)
-@Mixin(MinecraftClient.class)
-public class MinecraftClientMixin {
+@Mixin(Minecraft.class)
+public class MinecraftMixin {
 
     /**
      * @reason prevents the client from fetching valid ban details,
@@ -24,7 +24,7 @@ public class MinecraftClientMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "getMultiplayerBanDetails()Lcom/mojang/authlib/minecraft/BanDetails;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "multiplayerBan()Lcom/mojang/authlib/minecraft/BanDetails;", at = @At("HEAD"), cancellable = true)
     private void getMultiplayerBanDetails(CallbackInfoReturnable<BanDetails> info) {
         NoPryingEyes.LogVerbose("Client is fetching ban details");
 
@@ -42,14 +42,14 @@ public class MinecraftClientMixin {
         }
     }
 
-    @Inject(method = "isUsernameBanned()Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isNameBanned()Z", at = @At("HEAD"), cancellable = true)
     public void isUsernameBanned(CallbackInfoReturnable<Boolean> info) {
         if (NoPryingEyesConfig.getInstance().disable_global_bans) {
             info.setReturnValue(false);
         }
     }
 
-    @Inject(method = "onDisconnected", at = @At("HEAD")) 
+    @Inject(method = "clearDownloadedResourcePacks", at = @At("HEAD"))
     private void onDisconnected(CallbackInfo ci) {
         NoPryingEyesConfig.getInstance().setTempSign(false);
         NoPryingEyesConfig.getInstance().setToastHasBeenSent(false);

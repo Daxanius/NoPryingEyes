@@ -4,9 +4,9 @@ import me.daxanius.npe.NoPryingEyes;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.toast.SystemToast;
-import net.minecraft.client.toast.Toast;
-import net.minecraft.client.toast.ToastManager;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.client.gui.components.toasts.Toast;
+import net.minecraft.client.gui.components.toasts.ToastManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,13 +21,13 @@ public class ToastManagerMixin {
      * @author Daxanius
      */
 
-    @Inject(method = "add(Lnet/minecraft/client/toast/Toast;)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "addToast(Lnet/minecraft/client/gui/components/toasts/Toast;)V", at = @At("HEAD"), cancellable = true)
     public void add(Toast toast, CallbackInfo info) {
         if (NoPryingEyesConfig.getInstance().server_toasts) {
             return;
         }
 
-        if (toast instanceof SystemToast t && t.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING) {
+        if (toast instanceof SystemToast t && t.getToken() == SystemToast.SystemToastId.UNSECURE_SERVER_WARNING) {
             NoPryingEyes.LogVerbose("Blocking system toast for server info");
             info.cancel();
         }
