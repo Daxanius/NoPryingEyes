@@ -23,7 +23,7 @@
   "npe.config.chat_indicator.hide_yellow": "Hide Yellow Warning",
 
   "npe.warning.server_signing": "This server requires all player messages to be signed (reportable to Mojang). If you want to chat, set the signing mode to \"SIGN\" in the No Prying Eyes settings. Otherwise, you can still use any commands that are not related to chat.",
-  "npe.warning.server_key": "This server requires secure profiles, which implies that all player messages to be signed (reportable to Mojang). To join this server, change the signing mode from \"NO_KEY\" to something else in the No PryingEyes settings.",
+  "npe.warning.server_key": "This server requires secure profiles, which implies that all player messages to be signed (reportable to Mojang). To join this server, change the signing mode from \"NO_KEY\" to something else in the No Prying Eyes settings.",
   "npe.modified_chat.toast": "Chat messages are not reportable to Mojang on this server.",
   "npe.unmodified_chat.toast": "Chat messages can be reported to Mojang on this server.",
   "npe.warning.on_demand": "This server requires all player messages to be reportable to Mojang. As your signing mode is set to ON_DEMAND (can be changed in the mod's configuration menu), signing has been enabled for this particular session and all messages you send on this server are reportable."
