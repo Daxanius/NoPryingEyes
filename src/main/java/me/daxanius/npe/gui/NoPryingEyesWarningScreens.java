@@ -22,7 +22,7 @@ public class NoPryingEyesWarningScreens {
                 if (!resumeGame) {
                     client.disconnectFromWorld(DEFAULT_QUIT_MESSAGE);
                 } else {
-                    Minecraft.getInstance().setScreen(null);
+                    Minecraft.getInstance().gui.setScreen(null);
                 }
             }, Component.translatable("npe.title"), message, GUI_ACKNOWLEDGE, GUI_DISCONNECT);
         }

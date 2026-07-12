@@ -7,6 +7,7 @@ import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.chat.ChatListener;
 import net.minecraft.client.gui.components.toasts.SystemToast;
@@ -44,28 +45,27 @@ public abstract class ClientPacketListenerMixin {
      * @reason Add a warning message
      * @author Daxanius
      */
-
     @Inject(method = "handleLogin(Lnet/minecraft/network/protocol/game/ClientboundLoginPacket;)V", at = @At("TAIL"))
     private void onGameJoin(ClientboundLoginPacket packet, CallbackInfo info) {
         if (packet.enforcesSecureChat()) {
             NoPryingEyes.LogVerbose("Opening warning toast.");
-            SystemToast systemToast = SystemToast.multiline(this.client, SystemToast.SystemToastId.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
-            this.client.getToastManager().addToast(systemToast);
+            SystemToast systemToast = new SystemToast(SystemToast.SystemToastId.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
+            this.client.gui.toastManager().addToast(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }
     }
 
     @WrapOperation(method = "handleSystemChat(Lnet/minecraft/network/protocol/game/ClientboundSystemChatPacket;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/chat/ChatListener;handleSystemMessage(Lnet/minecraft/network/chat/Component;Z)V"))
-    private void showWarning(ChatListener instance, Component message, boolean overlay, Operation<Void> original) {
+    private void showWarning(ChatListener instance, Component message, boolean remote, Operation<Void> original) {
         // Yep, this is how we check it
         if (NoPryingEyesConfig.getInstance().noSign()) {
             if (isThisASignatureExceptionMessage(message)) {
-                Minecraft.getInstance().setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
+                Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
             } else if (messageCompareException(message, "chat.disabled.invalid_command_signature")) {
-                Minecraft.getInstance().setScreen(REQUIRED_MESSAGE_SIGNING);
+                Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_SIGNING);
             }
         }
-        original.call(instance, message, overlay);
+        original.call(instance, message, remote);
     }
 
     @Unique
