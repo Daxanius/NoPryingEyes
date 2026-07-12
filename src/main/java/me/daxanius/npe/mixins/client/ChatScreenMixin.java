@@ -35,11 +35,12 @@ public class ChatScreenMixin {
             if (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.ALWAYS
                     || (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.IF_TOAST_NOT_SENT && !NoPryingEyesConfig.getInstance().toastHasBeenSent())) {
                 shouldCloseToNPEDemandWarningScreen.set(true);
+                return true; // When showing the warning, don't send the message yet
             }
-            return true;
+
+            return false; // Otherwise just send the message immediately
         }
         return original;
-
     }
 
     @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V"))
