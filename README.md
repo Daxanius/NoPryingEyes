@@ -1,7 +1,7 @@
 [![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/no-prying-eyes)
 [![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Daxanius/NoPryingEyes)
 ![fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg)
-[![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)
+![neoforge](https://raw.githubusercontent.com/Hyperbole-Devs/vectors/8494ec1ac495cfb481dc7e458356325510933eb0/assets/cozy/supported/neoforge_vector.svg)
 
 # No Prying Eyes
 Provides full control over your data; namely telemetry and chat reporting.
@@ -52,7 +52,7 @@ This strips message signatures, but still requires players to send their public 
 It is generally **discouraged to use this option** unless required.
 
 #### 3. NO_KEY
-This works both server-side and client-side. It strips signatures and public keys from signed messages (server-side) so that clients who sign their messages can still join the server, while also allowing clients who don't send their key (and also don't sign their messages) to join. 
+This works both server-side and client-side. It strips signatures and public keys from signed messages (server-side) so that clients who sign their messages can still join the server, while also allowing clients who don't send their key (and also don't sign their messages) to join.
 
 On the client-side this prevents the game client from sending the player's public key to the server, and prevents the client from signing messages.
 
@@ -69,7 +69,7 @@ About the account settings, you can only disable the profanity filter if Mojang 
 It is disabled by default.
 
 ## Reasoning
-I believe that online privacy is a basic human right, the collection of your personal data should be opt-in. 
+I believe that online privacy is a basic human right, the collection of your personal data should be opt-in.
 You should not be obliged to share your usage information with vendors or third party groups.
 
 Following 1.19, Minecraft implemented telemetry data collection and account bans by allowing players

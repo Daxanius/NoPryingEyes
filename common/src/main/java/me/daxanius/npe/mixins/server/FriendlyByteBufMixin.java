@@ -1,0 +1,52 @@
+package me.daxanius.npe.mixins.server;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.JsonOps;
+import io.netty.handler.codec.EncoderException;
+import me.daxanius.npe.config.NoPryingEyesConfig;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.status.ServerStatus;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(FriendlyByteBuf.class)
+public abstract class FriendlyByteBufMixin {
+    @Shadow @Final
+	private static Gson GSON;
+
+    @Shadow
+    public abstract FriendlyByteBuf writeUtf(String string);
+
+    @Inject(method = "writeJsonWithCodec", at = @At("HEAD"), cancellable = true)
+    private void writeJson(Codec<?> codec, Object value, CallbackInfo ci) {
+        /*
+         * The raw type and unchecked warnings are not an issue here
+         * 
+         * Raw type is needed because if Codec is parameterized with Object in the method,
+         * The if statement throws an "Invalid operand types Object and ServerMetadata" error
+         * 
+         * The unchecked conversion warning is thrown because we have not parameterized Codec
+         * But we are using an if statement to check the types anyway, so no issues
+         */
+
+        if (codec == ServerStatus.CODEC) {
+            ci.cancel();
+
+            @SuppressWarnings("unchecked")
+            DataResult<JsonElement> dataResult = ((Codec<Object>) codec).encodeStart(JsonOps.INSTANCE, value);
+            JsonElement element = dataResult.getOrThrow(string -> new EncoderException("Failed to encode: " + string + " " + value));
+
+            element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
+
+            this.writeUtf(GSON.toJson(element));
+
+        }
+    }
+}
