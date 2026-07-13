@@ -46,7 +46,7 @@ public abstract class ArgumentSignaturesMixin {
      */
     @Inject(method = "signCommand", at = @At("RETURN"), cancellable = true)
     private static void npe$signReturnEmpty(
-            SignableCommand<?> arguments,
+            SignableCommand<?> command,
             ArgumentSignatures.Signer signer,
             CallbackInfoReturnable<ArgumentSignatures> info
     ) {

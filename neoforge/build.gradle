@@ -3,6 +3,14 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+repositories {
+    maven { url "https://maven.shedaniel.me/" }
+}
+
+dependencies {
+    implementation("me.shedaniel.cloth:cloth-config-neoforge:${cloth_version}")
+}
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
@@ -13,7 +21,7 @@ neoForge {
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
-            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+            ideName = "NeoForge ${it.name.capitalize()} (${path})" // Unify the run config names with fabric
         }
         client {
             client()

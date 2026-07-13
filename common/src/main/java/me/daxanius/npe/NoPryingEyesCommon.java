@@ -18,4 +18,8 @@ public class NoPryingEyesCommon {
 
         LOG.info(s);
     }
+
+    public static void initialize() {
+        NoPryingEyesConfig.load();
+    }
 }

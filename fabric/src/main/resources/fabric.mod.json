@@ -15,11 +15,15 @@
     },
 
     "license": "${license}",
-    "icon": "${mod_id}.png",
+    "icon": "assets/npe/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
             "me.daxanius.npe.NoPryingEyes"
+        ],
+
+        "modmenu": [
+            "me.daxanius.npe.ModMenuIntegration"
         ]
     },
     "mixins": [
@@ -35,7 +39,7 @@
     },
 
     "suggests": {
-        "cloth-config": ">=${fabric_cloth_version}",
+        "cloth-config": ">=${cloth_version}",
         "modmenu": ">=${fabric_modmenu_version}"
     },
 

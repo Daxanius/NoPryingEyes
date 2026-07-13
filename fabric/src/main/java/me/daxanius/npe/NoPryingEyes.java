@@ -6,6 +6,6 @@ public class NoPryingEyes implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
+        NoPryingEyesCommon.initialize();
     }
 }
