@@ -3,7 +3,7 @@ package me.daxanius.npe.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.daxanius.npe.NoPryingEyesCommon;
-import net.fabricmc.loader.api.FabricLoader;
+import me.daxanius.npe.platform.Services;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -13,9 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class NoPryingEyesConfig {
-    private static final Path CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve("npe.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static NoPryingEyesConfig INSTANCE;
+
+    private static Path getConfigFile() {
+        return Services.PLATFORM.getConfigDir().resolve("npe.json");
+    }
 
     //https://stackoverflow.com/a/5889590/22705536
     //the transient keyword should exclude tempSign from being serialized
@@ -135,10 +138,10 @@ public class NoPryingEyesConfig {
 
     @Nullable
     private static NoPryingEyesConfig readFile() {
-        if (!Files.isRegularFile(CONFIG_FILE))
+        if (!Files.isRegularFile(getConfigFile()))
             return null;
 
-        try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE)) {
+        try (BufferedReader reader = Files.newBufferedReader(getConfigFile())) {
             return GSON.fromJson(reader, NoPryingEyesConfig.class);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -146,7 +149,7 @@ public class NoPryingEyesConfig {
     }
 
     private static void writeFile(NoPryingEyesConfig instance) {
-        try (BufferedWriter writer = Files.newBufferedWriter(CONFIG_FILE)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(getConfigFile())) {
             GSON.toJson(instance, writer);
         } catch (Exception ex) {
             throw new RuntimeException(ex);

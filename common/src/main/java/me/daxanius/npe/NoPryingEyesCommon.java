@@ -1,5 +1,6 @@
 package me.daxanius.npe;
 
+import me.daxanius.npe.config.NoPryingEyesConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
