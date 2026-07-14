@@ -13,6 +13,8 @@ logoBlur = false
 credits = ""
 authors = "Daxanius, TechPro424"
 description = '''${description}'''
+modUrl = "https://modrinth.com/mod/no-prying-eyes"
+displayURL = "https://modrinth.com/mod/no-prying-eyes"
 
 [[mixins]]
 config = "npe.mixins.json"
