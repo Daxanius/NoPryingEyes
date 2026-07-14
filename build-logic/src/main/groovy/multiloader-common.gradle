@@ -45,13 +45,11 @@ processResources {
             'cloth_version'                : cloth_version,
             'fabric_modmenu_version'       : fabric_modmenu_version,
             'mod_name'                     : mod_name,
-            'mod_author'                   : mod_author,
             'mod_id'                       : mod_id,
             'license'                      : license,
             'description'                  : project.description,
             'neoforge_version'             : neoforge_version,
             'neoforge_loader_version_range': neoforge_loader_version_range,
-            'credits'                      : credits,
             'java_version'                 : java_version
     ]
 

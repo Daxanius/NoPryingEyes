@@ -5,7 +5,8 @@
     "name": "${mod_name}",
     "description": "${description}",
     "authors": [
-        "${mod_author}"
+        "Daxanius",
+        "TechPro424"
     ],
 
     "contact": {
