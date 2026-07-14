@@ -27,9 +27,9 @@
             "me.daxanius.npe.ModMenuIntegration"
         ]
     },
+
     "mixins": [
-        "npe.mixins.json",
-        "npe.fabric.mixins.json"
+        "npe.mixins.json"
     ],
 
     "depends": {

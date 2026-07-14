@@ -16,8 +16,6 @@ description = '''${description}'''
 
 [[mixins]]
 config = "npe.mixins.json"
-[[mixins]]
-config = "npe.neoforge.mixins.json"
 
 [[dependencies.${mod_id}]] #optional
 modId = "neoforge" #mandatory
