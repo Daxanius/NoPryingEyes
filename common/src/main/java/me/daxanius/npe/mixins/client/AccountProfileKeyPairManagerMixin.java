@@ -18,7 +18,6 @@ public class AccountProfileKeyPairManagerMixin {
      * @reason Prevents the client from accessing the key pair from storage so it won't send it to the server
      * @author Daxanius
      */
-
     @Inject(method = "readProfileKeyPair()Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
     private void loadKeyPairFromFile(CallbackInfoReturnable<Optional<ProfileKeyPair>> info) {
         NoPryingEyesCommon.logVerbose("Client requested key pair from file");
@@ -36,7 +35,6 @@ public class AccountProfileKeyPairManagerMixin {
      * @reason Prevents the client from generating a new key pair
      * @author Daxanius
      */
-
     @Inject(method = "readOrFetchProfileKeyPair(Ljava/util/Optional;)Ljava/util/concurrent/CompletableFuture;", at = @At("HEAD"), cancellable = true)
     private void getKeyPair(CallbackInfoReturnable<CompletableFuture<Optional<ProfileKeyPair>>> info) {
         NoPryingEyesCommon.logVerbose("Client requested key pair");

@@ -17,31 +17,31 @@ import java.util.Optional;
 public class ChatTrustLevelMixin {
     // The original way of getting the status
     @Unique
-    private static ChatTrustLevel getStatusOriginal(PlayerChatMessage message, Component decorated, Instant receptionTimestamp) {
+    private static ChatTrustLevel npe$getStatusOriginal(PlayerChatMessage message, Component decorated, Instant receptionTimestamp) {
         if (message.hasSignature() && !message.hasExpiredClient(receptionTimestamp)) {
-            return isModified(message, decorated) ? ChatTrustLevel.MODIFIED : ChatTrustLevel.SECURE;
+            return npe$isModified(message, decorated) ? ChatTrustLevel.MODIFIED : ChatTrustLevel.SECURE;
         } else {
             return ChatTrustLevel.NOT_SECURE;
         }
     }
 
     @Unique
-    private static boolean isModified(PlayerChatMessage message, Component decorated) {
+    private static boolean npe$isModified(PlayerChatMessage message, Component decorated) {
         if (!decorated.getString().contains(message.signedContent())) {
             return true;
         } else {
             Component text = message.unsignedContent();
-            return text != null && isNotInDefaultFont(text);
+            return text != null && npe$isNotInDefaultFont(text);
         }
     }
 
     @Unique
-    private static boolean isNotInDefaultFont(Component content) {
-        return content.visit((style, part) -> isNotInDefaultFont(style) ? Optional.of(true) : Optional.empty(), Style.EMPTY).orElse(false);
+    private static boolean npe$isNotInDefaultFont(Component content) {
+        return content.visit((style, part) -> npe$isNotInDefaultFont(style) ? Optional.of(true) : Optional.empty(), Style.EMPTY).orElse(false);
     }
 
     @Unique
-    private static boolean isNotInDefaultFont(Style style) {
+    private static boolean npe$isNotInDefaultFont(Style style) {
         return !style.getFont().equals(FontDescription.DEFAULT);
     }
 
@@ -49,10 +49,9 @@ public class ChatTrustLevelMixin {
      * @reason Removes the insecure message indicator
      * @author Daxanius
      */
-
     @Overwrite
     public static ChatTrustLevel evaluate(PlayerChatMessage message, Component decorated, Instant receptionTimestamp) {
-        ChatTrustLevel status = getStatusOriginal(message, decorated, receptionTimestamp);
+        ChatTrustLevel status = npe$getStatusOriginal(message, decorated, receptionTimestamp);
 
         switch (status) {
             case NOT_SECURE -> {

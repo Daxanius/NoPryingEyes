@@ -25,7 +25,7 @@ public class DedicatedServerPropertiesMixin {
      * @author Daxanius
      */
     @Inject(method = "<init>(Ljava/util/Properties;)V", at = @At("TAIL"))
-    private void init(Properties properties, CallbackInfo info) {
+    private void init(Properties settings, CallbackInfo info) {
         // This way we still respect the config if noKey is disabled
         enforceSecureProfile = enforceSecureProfile && !NoPryingEyesConfig.getInstance().noKey();
     }

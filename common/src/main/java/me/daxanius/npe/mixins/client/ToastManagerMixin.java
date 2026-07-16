@@ -12,12 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ToastManager.class)
 public class ToastManagerMixin {
-
     /**
      * @reason Allows the client to disable NPE toasts
      * @author Daxanius
      */
-
     @Inject(method = "addToast(Lnet/minecraft/client/gui/components/toasts/Toast;)V", at = @At("HEAD"), cancellable = true)
     public void add(Toast toast, CallbackInfo info) {
         if (NoPryingEyesConfig.getInstance().server_toasts) {

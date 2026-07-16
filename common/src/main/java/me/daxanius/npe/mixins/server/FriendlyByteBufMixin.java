@@ -22,7 +22,7 @@ public abstract class FriendlyByteBufMixin {
 	private static Gson GSON;
 
     @Shadow
-    public abstract FriendlyByteBuf writeUtf(String string);
+    public abstract FriendlyByteBuf writeUtf(String value);
 
     @Inject(method = "writeJsonWithCodec", at = @At("HEAD"), cancellable = true)
     private void writeJson(Codec<?> codec, Object value, CallbackInfo ci) {
@@ -46,7 +46,6 @@ public abstract class FriendlyByteBufMixin {
             element.getAsJsonObject().addProperty("preventsChatReports", NoPryingEyesConfig.getInstance().noSign());
 
             this.writeUtf(GSON.toJson(element));
-
         }
     }
 }

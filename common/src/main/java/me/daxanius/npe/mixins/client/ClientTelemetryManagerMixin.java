@@ -16,7 +16,6 @@ public class ClientTelemetryManagerMixin {
 	 * @reason Provide sa dummy telemetry sender that does not send data
 	 * @author Daxanius
 	 */
-
 	@Inject(method = "getOutsideSessionSender()Lnet/minecraft/client/telemetry/TelemetryEventSender;", at = @At("HEAD"), cancellable = true)
 	private void getSender(CallbackInfoReturnable<TelemetryEventSender> info) {
 		NoPryingEyesCommon.logVerbose("Minecraft is requesting the telemetry sender");

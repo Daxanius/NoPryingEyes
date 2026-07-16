@@ -36,7 +36,7 @@ public abstract class ClientPacketListenerMixin {
     private static final Component SECURE_SERVER_TOAST_TEXT = Component.translatable("npe.unmodified_chat.toast");
 
     @Unique
-    private final Minecraft client = ((ClientCommonPacketListenerImplAccessor) this).getMinecraft();
+    private final Minecraft npe$client = ((ClientCommonPacketListenerImplAccessor) this).getMinecraft();
 
     /**
      * @reason Add a warning message
@@ -47,7 +47,7 @@ public abstract class ClientPacketListenerMixin {
         if (packet.enforcesSecureChat()) {
             NoPryingEyesCommon.logVerbose("Opening warning toast.");
             SystemToast systemToast = new SystemToast(SystemToast.SystemToastId.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
-            this.client.gui.toastManager().addToast(systemToast);
+            this.npe$client.gui.toastManager().addToast(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }
     }
@@ -56,9 +56,9 @@ public abstract class ClientPacketListenerMixin {
     private void showWarning(ChatListener instance, Component message, boolean remote, Operation<Void> original) {
         // Yep, this is how we check it
         if (NoPryingEyesConfig.getInstance().noSign()) {
-            if (isThisASignatureExceptionMessage(message)) {
+            if (npe$isThisASignatureExceptionMessage(message)) {
                 Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
-            } else if (messageCompareException(message, "chat.disabled.invalid_command_signature")) {
+            } else if (npe$messageCompareException(message, "chat.disabled.invalid_command_signature")) {
                 Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_SIGNING);
             }
         }
@@ -66,14 +66,14 @@ public abstract class ClientPacketListenerMixin {
     }
 
     @Unique
-    private boolean isThisASignatureExceptionMessage(Component message) {
-        return messageCompareException(message, "chat.disabled.missingProfileKey") ||
-                messageCompareException(message, "chat.disabled.expiredProfileKey") ||
-                messageCompareException(message, "chat.disabled.invalid_signature");
+    private boolean npe$isThisASignatureExceptionMessage(Component message) {
+        return npe$messageCompareException(message, "chat.disabled.missingProfileKey") ||
+                npe$messageCompareException(message, "chat.disabled.expiredProfileKey") ||
+                npe$messageCompareException(message, "chat.disabled.invalid_signature");
     }
 
     @Unique
-    private boolean messageCompareException(Component message, String key) {
-        return message.equals(Component.translatable(key).withStyle(ChatFormatting.RED));
+    private boolean npe$messageCompareException(Component message, String key) {
+        return message.equals(Component.translatable(key).withStyle(ChatFormatting.DARK_RED));
     }
 }
