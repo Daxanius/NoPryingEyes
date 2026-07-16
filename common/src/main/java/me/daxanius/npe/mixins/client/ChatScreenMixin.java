@@ -9,14 +9,17 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import static me.daxanius.npe.NoPryingEyesCommon.shouldCloseToNPEDemandWarningScreen;
 import static me.daxanius.npe.gui.NoPryingEyesWarningScreens.ON_DEMAND_SIGNING_ENABLED;
 
 @Mixin(ChatScreen.class)
 public class ChatScreenMixin {
+    @Unique
+    private boolean npe$shouldCloseToDemandWarningScreen = false;
+
     /**
      * @reason injects to intercept messages/commands from client and show warning screen
      * @author TechPro424
@@ -34,7 +37,7 @@ public class ChatScreenMixin {
             NoPryingEyesConfig.OnDemandWarning on_demand_warning = NoPryingEyesConfig.getInstance().onDemandWarning;
             if (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.ALWAYS
                     || (on_demand_warning == NoPryingEyesConfig.OnDemandWarning.IF_TOAST_NOT_SENT && !NoPryingEyesConfig.getInstance().toastHasBeenSent())) {
-                shouldCloseToNPEDemandWarningScreen.set(true);
+                npe$shouldCloseToDemandWarningScreen = true;
                 return true; // When showing the warning, don't send the message yet
             }
 
@@ -45,8 +48,8 @@ public class ChatScreenMixin {
 
     @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V"))
     private Screen redirectExitScreen(@Nullable Screen screen) {
-        if (shouldCloseToNPEDemandWarningScreen.get()) {
-            shouldCloseToNPEDemandWarningScreen.set(false);
+        if (npe$shouldCloseToDemandWarningScreen) {
+            npe$shouldCloseToDemandWarningScreen = false;
             NoPryingEyesCommon.logVerbose("Opening on demand warn screen");
             return ON_DEMAND_SIGNING_ENABLED;
         }
