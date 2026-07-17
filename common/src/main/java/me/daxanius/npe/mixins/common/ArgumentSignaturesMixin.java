@@ -1,0 +1,74 @@
+package me.daxanius.npe.mixins.common;
+
+import me.daxanius.npe.NoPryingEyesCommon;
+import me.daxanius.npe.config.NoPryingEyesConfig;
+import net.minecraft.commands.arguments.ArgumentSignatures;
+import net.minecraft.network.chat.SignableCommand;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Mixin(ArgumentSignatures.class)
+public abstract class ArgumentSignaturesMixin {
+    @Final
+    @Nullable
+    @Mutable
+    @Shadow
+    private List<ArgumentSignatures.Entry> entries;
+
+    /**
+     * @reason Upon creation of the packet, sets the message signature as null
+     * @author Daxanius
+     */
+    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("TAIL"))
+    private void init(List<ArgumentSignatures.Entry> list, CallbackInfo ci) {
+        NoPryingEyesCommon.logVerbose("Creating message packet");
+
+        if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
+            NoPryingEyesCommon.logVerbose("Stripping packet signature");
+            entries = new ArrayList<>();
+        }
+    }
+
+    /**
+     * @reason Strips incoming commands of their signature so that it
+     * won't accidentally land in the wrong hands
+     * @author Daxanius
+     */
+    @Inject(method = "signCommand", at = @At("RETURN"), cancellable = true)
+    private static void npe$signReturnEmpty(
+            SignableCommand<?> command,
+            ArgumentSignatures.Signer signer,
+            CallbackInfoReturnable<ArgumentSignatures> info
+    ) {
+        if (NoPryingEyesConfig.getInstance().noSign()) {
+            NoPryingEyesCommon.logVerbose("Stripping packet signature (returning EMPTY)");
+            info.setReturnValue(ArgumentSignatures.EMPTY);
+        }
+    }
+
+    /**
+     * @reason Strips incoming messages of their signature so that it
+     * won't accidentally land in the wrong hands
+     * @author Daxanius
+     */
+    @Inject(method = "entries()Ljava/util/List;", at = @At("HEAD"), cancellable = true)
+    public void entries(CallbackInfoReturnable<List<ArgumentSignatures.Entry>> info) {
+        NoPryingEyesCommon.logVerbose("Requested signature from message packet");
+
+        if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
+            NoPryingEyesCommon.logVerbose("Stripping packet signature");
+            entries = new ArrayList<>();
+            info.setReturnValue(List.of());
+        }
+    }
+}

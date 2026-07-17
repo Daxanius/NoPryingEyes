@@ -1,0 +1,57 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "Daxanius",
+        "TechPro424"
+    ],
+
+    "contact": {
+        "homepage": "https://modrinth.com/mod/no-prying-eyes",
+        "sources": "https://github.com/Daxanius/NoPryingEyes",
+        "issues": "https://github.com/Daxanius/NoPryingEyes/issues"
+    },
+
+    "license": "${license}",
+    "icon": "assets/npe/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "me.daxanius.npe.NoPryingEyes"
+        ],
+
+        "modmenu": [
+            "me.daxanius.npe.ModMenuIntegration"
+        ]
+    },
+
+    "mixins": [
+        "npe.mixins.json"
+    ],
+
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=${java_version}"
+    },
+
+    "suggests": {
+        "cloth-config": ">=${cloth_version}",
+        "modmenu": ">=${fabric_modmenu_version}"
+    },
+
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/8Mm3g3T5re"
+            },
+
+            "update_checker": true
+        }
+    }
+}
+  
