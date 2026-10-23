@@ -25,7 +25,12 @@ public class TextFilterClientMixin {
             at = @At(value = "INVOKE", target = "Ljava/util/concurrent/CompletableFuture;supplyAsync(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"),
             method = "requestMessageProcessing(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/network/TextFilterClient$IgnoreStrategy;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"
     )
-    private CompletableFuture<Object> filterMessage(Supplier<Object> supplier, Executor executor, Operation<CompletableFuture<Object>> original, @Local(argsOnly = true, name = "message") String message) {
+    private CompletableFuture<Object> filterMessage(
+            Supplier<Object> supplier,
+            Executor executor,
+            Operation<CompletableFuture<Object>> original,
+            @Local(argsOnly = true) String message
+    ) {
         if (NoPryingEyesConfig.getInstance().disable_chat_control) {
             NoPryingEyesCommon.logVerbose("Passing message as permitted");
             return CompletableFuture.completedFuture(FilteredText.passThrough(message));
