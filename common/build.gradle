@@ -25,11 +25,6 @@ dependencies {
 
     // Fabric and NeoForge both bundle MixinExtras, so it is safe to use it in common
     compileOnly(annotationProcessor('io.github.llamalad7:mixinextras-common:0.5.3'))
-
-    compileOnly("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") {
-        exclude(group: "net.fabricmc", module: "fabric-loader")
-        exclude(group: "net.fabricmc.fabric-api")
-    }
 }
 
 configurations {

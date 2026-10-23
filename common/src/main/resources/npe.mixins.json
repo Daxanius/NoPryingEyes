@@ -2,26 +2,26 @@
   "required": true,
   "minVersion": "0.8",
   "package": "me.daxanius.npe.mixins",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "common.ArgumentSignaturesMixin",
     "common.ServerboundChatPacketMixin",
-    "server.ServerTextFilterMixin",
+    "server.DedicatedServerPropertiesMixin",
     "server.FriendlyByteBufMixin",
     "server.ServerCommonPacketListenerImplAccessor",
     "server.ServerGamePacketListenerImplMixin",
-    "server.DedicatedServerPropertiesMixin"
+    "server.TextFilterClientMixin"
   ],
   "client": [
+    "client.AccountProfileKeyPairManagerMixin",
     "client.ChatScreenMixin",
+    "client.ChatTrustLevelMixin",
     "client.ClientCommonPacketListenerImplAccessor",
     "client.ClientPacketListenerAccessor",
     "client.ClientPacketListenerMixin",
-    "client.ChatTrustLevelMixin",
-    "client.MinecraftMixin",
-    "client.AccountProfileKeyPairManagerMixin",
     "client.ClientTelemetryManagerMixin",
-    "client.ToastManagerMixin",
+    "client.MinecraftMixin",
+    "client.ToastComponentMixin",
     "client.YggdrasilUserApiServiceMixin"
   ],
   "injectors": {

@@ -2,9 +2,9 @@ package me.daxanius.npe.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmScreen;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.Component;
 
-import static net.minecraft.client.multiplayer.ClientLevel.DEFAULT_QUIT_MESSAGE;
 import static net.minecraft.network.chat.CommonComponents.GUI_ACKNOWLEDGE;
 import static net.minecraft.network.chat.CommonComponents.GUI_DISCONNECT;
 
@@ -18,9 +18,9 @@ public class NoPryingEyesWarningScreens {
             super(resumeGame -> {
                 Minecraft client = Minecraft.getInstance();
                 if (!resumeGame) {
-                    client.disconnectFromWorld(DEFAULT_QUIT_MESSAGE);
+                    client.disconnect(new TitleScreen());
                 } else {
-                    Minecraft.getInstance().gui.setScreen(null);
+                    client.setScreen(null);
                 }
             }, Component.translatable("npe.title"), message, GUI_ACKNOWLEDGE, GUI_DISCONNECT);
         }

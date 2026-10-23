@@ -46,7 +46,10 @@ public class ChatScreenMixin {
         return original;
     }
 
-    @ModifyArg(method = "keyPressed(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V"))
+    @ModifyArg(
+            method = "keyPressed(III)Z",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;setScreen(Lnet/minecraft/client/gui/screens/Screen;)V")
+    )
     private Screen redirectExitScreen(@Nullable Screen screen) {
         if (npe$shouldCloseToDemandWarningScreen) {
             npe$shouldCloseToDemandWarningScreen = false;

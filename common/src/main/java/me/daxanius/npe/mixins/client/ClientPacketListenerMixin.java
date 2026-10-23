@@ -47,7 +47,7 @@ public abstract class ClientPacketListenerMixin {
         if (packet.enforcesSecureChat()) {
             NoPryingEyesCommon.logVerbose("Opening warning toast.");
             SystemToast systemToast = new SystemToast(SystemToast.SystemToastId.UNSECURE_SERVER_WARNING, UNSECURE_SERVER_TOAST_TITLE, SECURE_SERVER_TOAST_TEXT);
-            this.npe$client.gui.toastManager().addToast(systemToast);
+            this.npe$client.getToasts().addToast(systemToast);
             NoPryingEyesConfig.getInstance().setToastHasBeenSent(true);
         }
     }
@@ -57,9 +57,9 @@ public abstract class ClientPacketListenerMixin {
         // Yep, this is how we check it
         if (NoPryingEyesConfig.getInstance().noSign()) {
             if (npe$isThisASignatureExceptionMessage(message)) {
-                Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
+                Minecraft.getInstance().setScreen(REQUIRED_MESSAGE_AND_COMMAND_SIGNING);
             } else if (npe$messageCompareException(message, "chat.disabled.invalid_command_signature")) {
-                Minecraft.getInstance().gui.setScreen(REQUIRED_MESSAGE_SIGNING);
+                Minecraft.getInstance().setScreen(REQUIRED_MESSAGE_SIGNING);
             }
         }
         original.call(instance, message, remote);

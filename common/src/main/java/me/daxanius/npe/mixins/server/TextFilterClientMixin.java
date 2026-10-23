@@ -6,7 +6,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import me.daxanius.npe.NoPryingEyesCommon;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import net.minecraft.server.network.FilteredText;
-import net.minecraft.server.network.ServerTextFilter;
+import net.minecraft.server.network.TextFilterClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -14,15 +14,17 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
-// Disables message filtering by passing all messages as permitted
-@Mixin(ServerTextFilter.class)
-public class ServerTextFilterMixin {
+@Mixin(TextFilterClient.class)
+public class TextFilterClientMixin {
     /**
      * @reason Makes the AbstractTextFilterer class pass everything as filtered
      * so that profanity is allowed
      * @author Daxanius
      */
-    @WrapOperation(at = @At(value = "INVOKE", target = "Ljava/util/concurrent/CompletableFuture;supplyAsync(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"), method = "requestMessageProcessing(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/network/ServerTextFilter$IgnoreStrategy;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;")
+    @WrapOperation(
+            at = @At(value = "INVOKE", target = "Ljava/util/concurrent/CompletableFuture;supplyAsync(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"),
+            method = "requestMessageProcessing(Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/server/network/TextFilterClient$IgnoreStrategy;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;"
+    )
     private CompletableFuture<Object> filterMessage(Supplier<Object> supplier, Executor executor, Operation<CompletableFuture<Object>> original, @Local(argsOnly = true, name = "message") String message) {
         if (NoPryingEyesConfig.getInstance().disable_chat_control) {
             NoPryingEyesCommon.logVerbose("Passing message as permitted");

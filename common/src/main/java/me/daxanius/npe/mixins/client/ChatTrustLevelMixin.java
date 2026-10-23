@@ -1,11 +1,12 @@
 package me.daxanius.npe.mixins.client;
 
 import me.daxanius.npe.config.NoPryingEyesConfig;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.chat.ChatTrustLevel;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
@@ -42,7 +43,8 @@ public class ChatTrustLevelMixin {
 
     @Unique
     private static boolean npe$isNotInDefaultFont(Style style) {
-        return !style.getFont().equals(FontDescription.DEFAULT);
+        ResourceLocation font = style.getFont();
+        return !font.equals(Minecraft.DEFAULT_FONT);
     }
 
     /**
@@ -53,22 +55,20 @@ public class ChatTrustLevelMixin {
     public static ChatTrustLevel evaluate(PlayerChatMessage message, Component decorated, Instant receptionTimestamp) {
         ChatTrustLevel status = npe$getStatusOriginal(message, decorated, receptionTimestamp);
 
-        switch (status) {
+        return switch (status) {
             case NOT_SECURE -> {
                 if (NoPryingEyesConfig.getInstance().chat_indicator.hide_red) {
-                    return ChatTrustLevel.SECURE;
+                    yield ChatTrustLevel.SECURE;
                 }
-                return status;
+                yield status;
             }
             case MODIFIED -> {
                 if (NoPryingEyesConfig.getInstance().chat_indicator.hide_yellow) {
-                    return ChatTrustLevel.SECURE;
+                    yield ChatTrustLevel.SECURE;
                 }
-                return status;
+                yield status;
             }
-            default -> {
-                return status;
-            }
-        }
+            default -> status;
+        };
     }
 }
