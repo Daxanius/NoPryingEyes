@@ -30,7 +30,7 @@ public class ServerboundChatPacketMixin {
      * @author Daxanius
      */
     @Inject(method = "<init>(Ljava/lang/String;Ljava/time/Instant;JLnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/LastSeenMessages$Update;)V", at = @At("TAIL"))
-    private void init(String string, Instant timestamp, long salt, MessageSignature signature, LastSeenMessages.Update acknowledgment, CallbackInfo ci) {
+    private void init(String message, Instant timeStamp, long salt, MessageSignature signature, LastSeenMessages.Update acknowledgment, CallbackInfo ci) {
         NoPryingEyesCommon.logVerbose("Creating message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {

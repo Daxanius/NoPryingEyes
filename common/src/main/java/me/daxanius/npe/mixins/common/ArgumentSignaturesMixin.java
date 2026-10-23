@@ -30,12 +30,12 @@ public abstract class ArgumentSignaturesMixin {
      * @author Daxanius
      */
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("TAIL"))
-    private void init(List<ArgumentSignatures.Entry> list, CallbackInfo ci) {
+    private void init(List<ArgumentSignatures.Entry> entries, CallbackInfo ci) {
         NoPryingEyesCommon.logVerbose("Creating message packet");
 
-        if (NoPryingEyesConfig.getInstance().noSign() && entries != null) {
+        if (NoPryingEyesConfig.getInstance().noSign() && this.entries != null) {
             NoPryingEyesCommon.logVerbose("Stripping packet signature");
-            entries = new ArrayList<>();
+            this.entries = new ArrayList<>();
         }
     }
 
