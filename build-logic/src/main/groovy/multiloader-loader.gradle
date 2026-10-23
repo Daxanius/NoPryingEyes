@@ -22,24 +22,19 @@ dependencies {
     commonResources(project(path: ':common', configuration: 'commonResources'))
 }
 
-tasks.named('compileJava', JavaCompile) {
-    dependsOn(configurations.commonJava)
-    source(configurations.commonJava)
+sourceSets.main {
+    java.srcDirs(configurations.commonJava)
+    resources.srcDirs(configurations.commonResources)
 }
 
 processResources {
     dependsOn(configurations.commonResources)
-    from(configurations.commonResources)
 }
 
 tasks.named('javadoc', Javadoc).configure {
-    dependsOn(configurations.commonJava)
-    source(configurations.commonJava)
+    source(sourceSets.main.allJava)
 }
 
 tasks.named('sourcesJar', Jar) {
-    dependsOn(configurations.commonJava)
-    from(configurations.commonJava)
-    dependsOn(configurations.commonResources)
-    from(configurations.commonResources)
+    from(sourceSets.main.allSource)
 }
