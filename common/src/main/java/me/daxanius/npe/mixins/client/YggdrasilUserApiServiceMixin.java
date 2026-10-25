@@ -3,9 +3,9 @@ package me.daxanius.npe.mixins.client;
 import com.mojang.authlib.minecraft.TelemetrySession;
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.minecraft.report.AbuseReportLimits;
-import com.mojang.authlib.yggdrasil.YggdrasilUserApiService;
-import com.mojang.authlib.yggdrasil.request.AbuseReportRequest;
-import com.mojang.authlib.yggdrasil.response.KeyPairResponse;
+import com.mojang.authlib.services.MinecraftServicesUserApiService;
+import com.mojang.authlib.services.request.AbuseReportRequest;
+import com.mojang.authlib.services.response.KeyPairResponse;
 import me.daxanius.npe.NoPryingEyesCommon;
 import me.daxanius.npe.config.NoPryingEyesConfig;
 import me.daxanius.npe.platform.Services;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.UUID;
 import java.util.concurrent.Executor;
 
-@Mixin(value = YggdrasilUserApiService.class, remap = false)
+@Mixin(value = MinecraftServicesUserApiService.class, remap = false)
 public class YggdrasilUserApiServiceMixin {
     @Inject(method = "newTelemetrySession", at = @At("HEAD"), cancellable = true)
     private void onCreateTelemetrySession(Executor executor, CallbackInfoReturnable<TelemetrySession> info) {
@@ -33,7 +33,7 @@ public class YggdrasilUserApiServiceMixin {
         NoPryingEyesCommon.logVerbose("Creating telemetry session");
     }
 
-    @Inject(method = "getKeyPair()Lcom/mojang/authlib/yggdrasil/response/KeyPairResponse;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getKeyPair()Lcom/mojang/authlib/services/response/KeyPairResponse;", at = @At("HEAD"), cancellable = true)
     public void onGetKeyPair(CallbackInfoReturnable<KeyPairResponse> info) {
         if (NoPryingEyesConfig.getInstance().noKey()) {
             info.setReturnValue(null);
@@ -47,7 +47,7 @@ public class YggdrasilUserApiServiceMixin {
         }
     }
 
-    @Inject(method = "reportAbuse(Lcom/mojang/authlib/yggdrasil/request/AbuseReportRequest;)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "reportAbuse(Lcom/mojang/authlib/services/request/AbuseReportRequest;)V", at = @At("HEAD"), cancellable = true)
     public void onReportAbuse(final AbuseReportRequest request, CallbackInfo info) {
         // Just completely ignore any attempted report requests
         info.cancel();

@@ -16,26 +16,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Mixin(ServerboundChatPacket.class)
 public class ServerboundChatPacketMixin {
     @Final
-    @Nullable
     @Mutable
     @Shadow
-    private MessageSignature signature;
+    private Optional<MessageSignature> signature;
 
     /**
      * @reason Upon creation of the packet, sets the message signature as null
      * @author Daxanius
      */
-    @Inject(method = "<init>(Ljava/lang/String;Ljava/time/Instant;JLnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/LastSeenMessages$Update;)V", at = @At("TAIL"))
-    private void init(String message, Instant timeStamp, long salt, MessageSignature signature, LastSeenMessages.Update acknowledgment, CallbackInfo ci) {
+    @Inject(method = "<init>(Ljava/lang/String;Ljava/time/Instant;JLjava/util/Optional;Lnet/minecraft/network/chat/LastSeenMessages$Update;)V", at = @At("TAIL"))
+    private void init(String message, Instant timeStamp, long salt, Optional<MessageSignature> signature, LastSeenMessages.Update acknowledgment, CallbackInfo ci) {
         NoPryingEyesCommon.logVerbose("Creating message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyesCommon.logVerbose("Stripping packet signature");
-            this.signature = null;
+            this.signature = Optional.empty();
         }
     }
 
@@ -45,12 +45,12 @@ public class ServerboundChatPacketMixin {
      * @author Daxanius
      */
     @Inject(method = "signature", at = @At("HEAD"), cancellable = true)
-    private void signature(CallbackInfoReturnable<MessageSignature> info) {
+    private void signature(CallbackInfoReturnable<Optional<MessageSignature>> info) {
         NoPryingEyesCommon.logVerbose("Requested signature from message packet");
 
         if (NoPryingEyesConfig.getInstance().noSign()) {
             NoPryingEyesCommon.logVerbose("Stripping packet signature");
-            info.setReturnValue(null);
+            info.setReturnValue(Optional.empty());
         }
     }
 }
