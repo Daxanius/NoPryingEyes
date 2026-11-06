@@ -7,7 +7,7 @@
     "common.ArgumentSignaturesMixin",
     "common.ServerboundChatPacketMixin",
     "server.ServerTextFilterMixin",
-    "server.FriendlyByteBufMixin",
+    "server.ClientboundStatusResponsePacketMixin",
     "server.ServerCommonPacketListenerImplAccessor",
     "server.ServerGamePacketListenerImplMixin",
     "server.DedicatedServerPropertiesMixin"
